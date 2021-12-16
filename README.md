@@ -1,19 +1,10 @@
-QupZilla Web Browser
-----------------------------------------------------------------------------------------
+Qupzilla-Qt - web browser. Modified version of Qupzilla browser.  
 
-Homepage: https://www.qupzilla.com  
-Blog: http://blog.qupzilla.com  
-IRC: `#qupzilla` at `irc.freenode.net`  
+License: GNU General Public License  
+Source code: http://github.com/dualword/Qupzilla-Qt/  
 
-QupZilla was renamed to Falkon and moved to KDE infrastructure
-----------------------------------------------------------------
+Third Party Software:  
+ - Qt License: LGPLv3
 
-New repository is available at https://phabricator.kde.org/source/falkon/.   
+![Screenshot](screenshot.png)
 
-![Falkon icon](https://github.com/QupZilla/qupzilla/blob/master/falkon.png?raw=true)
-
-Homepage: https://falkon.org  
-Source code: https://cgit.kde.org/falkon.git  
-Code review: https://phabricator.kde.org  
-Bugs: https://bugs.kde.org  
-Mailing list: falkon@kde.org  

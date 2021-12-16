@@ -1,3 +1,4 @@
+/* QupZilla-Qt (2021) http://github.com/dualword/QupZilla-Qt License:GNU GPL*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2014-2018 David Rosca <nowrep@gmail.com>
@@ -96,6 +97,7 @@ void DataPaths::init()
 
     m_paths[Translations].append(m_paths[AppData].at(0) + QLatin1String("/locale"));
     m_paths[Themes].append(m_paths[AppData].at(0) + QLatin1String("/themes"));
+    m_paths[Themes].append(QApplication::applicationDirPath() + QLatin1String("/themes"));
     m_paths[Plugins].append(m_paths[AppData].at(0) + QLatin1String("/plugins"));
 
     // Config

@@ -1,3 +1,4 @@
+/* QupZilla-Qt (2021) http://github.com/dualword/QupZilla-Qt License:GNU GPL*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2010-2017 David Rosca <nowrep@gmail.com>
@@ -36,8 +37,8 @@ CookieJar::CookieJar(QObject* parent)
     loadSettings();
     m_client->loadAllCookies();
 
-#if QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
-    m_client->setCookieFilter(std::bind(&CookieJar::cookieFilter, this, std::placeholders::_1));
+#if QT_VERSION >= QT_VERSION_CHECK(5, 11, 0) // TODO
+    //m_client->setCookieFilter(std::bind(&CookieJar::cookieFilter, this, std::placeholders::_1));
 #endif
 
     connect(m_client, &QWebEngineCookieStore::cookieAdded, this, &CookieJar::slotCookieAdded);
@@ -129,7 +130,7 @@ void CookieJar::cookieFilter(QWebEngineCookieStore::FilterRequest &request) cons
 #ifdef COOKIE_DEBUG
             qDebug() << "not in whitelist" << request.origin;
 #endif
-            request.accepted = false;
+            //request.accepted = false;
             return;
         }
     }
@@ -140,7 +141,7 @@ void CookieJar::cookieFilter(QWebEngineCookieStore::FilterRequest &request) cons
 #ifdef COOKIE_DEBUG
             qDebug() << "found in blacklist" << request.origin.host();
 #endif
-            request.accepted = false;
+            //request.accepted = false; // TODO
             return;
         }
     }
@@ -149,7 +150,7 @@ void CookieJar::cookieFilter(QWebEngineCookieStore::FilterRequest &request) cons
 #ifdef COOKIE_DEBUG
         qDebug() << "thirdParty" << request.firstPartyUrl << request.origin;
 #endif
-        request.accepted = false;
+        //request.accepted = false; // TODO
         return;
     }
 }

@@ -32,7 +32,7 @@ DESTDIR = $$QZ_DESTDIR/plugins/
 
 QT *= webenginecore webenginewidgets network
 
-CONFIG += c++11
+CONFIG += c++14
 
 OBJECTS_DIR = build
 MOC_DIR = build

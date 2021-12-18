@@ -55,6 +55,9 @@ void AboutDialog::showAbout()
     ui->authorsButton->setText(tr("Authors and Contributors"));
     if (m_aboutHtml.isEmpty()) {
         m_aboutHtml += "<center><div style='margin:20px;'>";
+        m_aboutHtml += "QupZilla-Qt - modified version of QupZilla browser.<br/>";
+        m_aboutHtml += "Source code: <a href='http://github.com/dualword/QupZilla-Qt'>QupZilla-Qt</a>. License: GNU GPL.<hr/>";
+        m_aboutHtml += "Information about QupZilla browser:";
         m_aboutHtml += tr("<p><b>Application version %1</b><br/>").arg(
 #ifdef GIT_REVISION
                            QString("%1 (%2)").arg(Qz::VERSION, GIT_REVISION)

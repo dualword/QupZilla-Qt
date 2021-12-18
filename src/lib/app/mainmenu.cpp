@@ -464,7 +464,7 @@ void MainMenu::init()
     m_actions[QSL(name)] = action
 
     // Standard actions - needed on Mac to be placed correctly in "application" menu
-    QAction* action = new QAction(QIcon::fromTheme(QSL("help-about")), tr("&About QupZilla"), this);
+    QAction* action = new QAction(QIcon::fromTheme(QSL("help-about")), tr("&About QupZilla-Qt"), this);
     action->setMenuRole(QAction::AboutRole);
     connect(action, SIGNAL(triggered()), this, SLOT(showAboutDialog()));
     m_actions[QSL("Standard/About")] = action;
@@ -596,7 +596,7 @@ void MainMenu::init()
 
     ADD_ACTION("Help/InfoAboutApp", m_menuHelp, QIcon::fromTheme(QSL("help-contents")), tr("Information about application"), SLOT(showInfoAboutApp()), "");
     ADD_ACTION("Help/ConfigInfo", m_menuHelp, QIcon(), tr("Configuration Information"), SLOT(showConfigInfo()), "");
-    ADD_ACTION("Help/ReportIssue", m_menuHelp, QIcon(), tr("Report &Issue"), SLOT(reportIssue()), "");
+    //ADD_ACTION("Help/ReportIssue", m_menuHelp, QIcon(), tr("Report &Issue"), SLOT(reportIssue()), "");
 
     m_actions[QSL("Help/InfoAboutApp")]->setShortcut(QKeySequence(QKeySequence::HelpContents));
 

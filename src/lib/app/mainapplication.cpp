@@ -109,7 +109,7 @@ MainApplication::MainApplication(int &argc, char** argv)
     setAttribute(Qt::AA_UseHighDpiPixmaps);
     setAttribute(Qt::AA_DontCreateNativeWidgetSiblings);
 
-    setApplicationName(QLatin1String("QupZilla"));
+    setApplicationName(QLatin1String("QupZilla-Qt"));
     setOrganizationDomain(QLatin1String("qupzilla"));
     setWindowIcon(QIcon::fromTheme(QSL("qupzilla"), QIcon(QSL(":icons/exeicons/qupzilla-window.png"))));
     setDesktopFileName(QSL("org.qupzilla.QupZilla"));

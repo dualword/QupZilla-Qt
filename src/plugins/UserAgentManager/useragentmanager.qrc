@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/useragentmanager">
+        <file>data/UAplugin.png</file>
+    </qresource>
+</RCC>

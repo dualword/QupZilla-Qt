@@ -1,4 +1,4 @@
-Qupzilla-Qt - web browser. Modified version of Qupzilla browser.  
+QupZilla-Qt - web browser. Modified version of QupZilla browser.  
 
 License: GNU General Public License  
 Source code: http://github.com/dualword/Qupzilla-Qt/  

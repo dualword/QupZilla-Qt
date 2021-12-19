@@ -37,7 +37,7 @@ PluginSpec UAManagerPlugin::pluginSpec() {
     spec.version = "0.1.0";
     spec.author = "";
     spec.icon = QPixmap(":/useragentmanager/data/UAplugin.png");
-    spec.hasSettings = true;
+    spec.hasSettings = false;
     return spec;
 }
 
@@ -71,6 +71,10 @@ QTranslator* UAManagerPlugin::getTranslator(const QString &locale) {
 }
 
 void UAManagerPlugin::showSettings() {
+	Settings settings;
+    settings.beginGroup("Browser-View-Settings");
+    settings.setValue("settingsDialogPage", 12);
+    settings.endGroup();
 	BrowserWindow* w = m_SBIcons.keys()[0];
 	if (!m_preferences) m_preferences = new Preferences(w);
 	m_preferences->open();

@@ -1,6 +1,6 @@
 /* QupZilla-Qt (2021) http://github.com/dualword/QupZilla-Qt License:GNU GPL*/
 
-#include "UIManagerPlugin.h"
+#include "UAManagerPlugin.h"
 #include "abstractbuttoninterface.h"
 #include "browserwindow.h"
 #include "statusbar.h"
@@ -25,11 +25,11 @@ public:
     }
 };
 
-UIManagerPlugin::UIManagerPlugin() : QObject() {
+UAManagerPlugin::UAManagerPlugin() : QObject() {
 
 }
 
-PluginSpec UIManagerPlugin::pluginSpec() {
+PluginSpec UAManagerPlugin::pluginSpec() {
     PluginSpec spec;
     spec.name = "User Agent manager Plugin";
     spec.info = "User Agent manager Plugin";
@@ -41,7 +41,7 @@ PluginSpec UIManagerPlugin::pluginSpec() {
     return spec;
 }
 
-void UIManagerPlugin::init(InitState state, const QString &settingsPath) {
+void UAManagerPlugin::init(InitState state, const QString &settingsPath) {
     Q_UNUSED(state)
     connect(mApp->plugins(), SIGNAL(mainWindowCreated(BrowserWindow*)), this, SLOT(mainWindowCreated(BrowserWindow*)));
     connect(mApp->plugins(), SIGNAL(mainWindowDeleted(BrowserWindow*)), this, SLOT(mainWindowDeleted(BrowserWindow*)));
@@ -54,52 +54,52 @@ void UIManagerPlugin::init(InitState state, const QString &settingsPath) {
     }
 }
 
-void UIManagerPlugin::unload() {
+void UAManagerPlugin::unload() {
     foreach (BrowserWindow* window, mApp->windows()) {
         mainWindowDeleted(window);
     }
 }
 
-bool UIManagerPlugin::testPlugin() {
+bool UAManagerPlugin::testPlugin() {
     return (Qz::VERSION == QLatin1String(QUPZILLA_VERSION));
 }
 
-QTranslator* UIManagerPlugin::getTranslator(const QString &locale) {
+QTranslator* UAManagerPlugin::getTranslator(const QString &locale) {
     QTranslator* translator = new QTranslator(this);
     translator->load(locale, ":/useragentmanager/locale/");
     return translator;
 }
 
-void UIManagerPlugin::showSettings() {
+void UAManagerPlugin::showSettings() {
 	BrowserWindow* w = m_SBIcons.keys()[0];
-	Preferences* d = new Preferences(w);
-	d->open();
+	if (!m_preferences) m_preferences = new Preferences(w);
+	m_preferences->open();
 }
 
-AbstractButtonInterface* UIManagerPlugin::createStatusBarIcon(BrowserWindow* mainWindow) {
+AbstractButtonInterface* UAManagerPlugin::createStatusBarIcon(BrowserWindow* mainWindow) {
     if (m_SBIcons.contains(mainWindow)) {
         return m_SBIcons.value(mainWindow);
     }
 
     UAM_Button *icon = new UAM_Button(this);
     icon->setIcon(QIcon(QSL(":/useragentmanager/data/UAplugin.png")));
-    connect(icon, &AbstractButtonInterface::clicked, this, &UIManagerPlugin::showSettings);
+    connect(icon, &AbstractButtonInterface::clicked, this, &UAManagerPlugin::showSettings);
     m_SBIcons.insert(mainWindow, icon);
     updateSettings();
     return icon;
 }
 
-void UIManagerPlugin::mainWindowCreated(BrowserWindow* window) {
+void UAManagerPlugin::mainWindowCreated(BrowserWindow* window) {
 	window->statusBar()->addButton(createStatusBarIcon(window));
 }
 
-void UIManagerPlugin::mainWindowDeleted(BrowserWindow* window) {
+void UAManagerPlugin::mainWindowDeleted(BrowserWindow* window) {
     window->statusBar()->removeButton(m_SBIcons.value(window));
     delete m_SBIcons.value(window);
     m_SBIcons.remove(window);
 }
 
-void UIManagerPlugin::updateSettings() {
+void UAManagerPlugin::updateSettings() {
     foreach (AbstractButtonInterface* icon, m_SBIcons.values()) {
         Settings settings;
         settings.beginGroup("Web-Browser-Settings");

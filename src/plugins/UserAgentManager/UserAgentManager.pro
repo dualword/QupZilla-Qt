@@ -1,8 +1,8 @@
 TARGET = $$qtLibraryTarget(UserAgentManager)
 
-SOURCES += UIManagerPlugin.cpp
+SOURCES += UAManagerPlugin.cpp
 
-HEADERS += UIManagerPlugin.h
+HEADERS += UAManagerPlugin.h
 
 RESOURCES += useragentmanager.qrc
 

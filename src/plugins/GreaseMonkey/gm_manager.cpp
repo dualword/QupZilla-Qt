@@ -1,3 +1,4 @@
+/* QupZilla-Qt (2021) http://github.com/dualword/QupZilla-Qt License:GNU GPL*/
 /* ============================================================
 * GreaseMonkey plugin for QupZilla
 * Copyright (C) 2012-2018 David Rosca <nowrep@gmail.com>
@@ -299,5 +300,6 @@ void GM_Manager::mainWindowCreated(BrowserWindow* window)
 void GM_Manager::mainWindowDeleted(BrowserWindow* window)
 {
     window->navigationBar()->removeToolButton(m_windows[window]);
+    window->statusBar()->removeButton(m_windows.value(window));
     delete m_windows.take(window);
 }

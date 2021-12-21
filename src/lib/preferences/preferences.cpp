@@ -1,3 +1,4 @@
+/* QupZilla-Qt (2021) http://github.com/dualword/QupZilla-Qt License:GNU GPL*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2010-2018 David Rosca <nowrep@gmail.com>
@@ -254,19 +255,19 @@ Preferences::Preferences(BrowserWindow* window)
     settings.endGroup();
 
     settings.beginGroup("SearchEngines");
-    bool searchFromAB = settings.value("SearchFromAddressBar", true).toBool();
+    bool searchFromAB = settings.value("SearchFromAddressBar", false).toBool();
     ui->searchFromAddressBar->setChecked(searchFromAB);
     ui->searchWithDefaultEngine->setEnabled(searchFromAB);
     ui->searchWithDefaultEngine->setChecked(settings.value("SearchWithDefaultEngine", false).toBool());
     ui->showABSearchSuggestions->setEnabled(searchFromAB);
-    ui->showABSearchSuggestions->setChecked(settings.value("showSearchSuggestions", true).toBool());
+    ui->showABSearchSuggestions->setChecked(settings.value("showSearchSuggestions", false).toBool());
     connect(ui->searchFromAddressBar, SIGNAL(toggled(bool)), this, SLOT(searchFromAddressBarChanged(bool)));
     settings.endGroup();
 
     // BROWSING
     settings.beginGroup("Web-Browser-Settings");
-    ui->allowPlugins->setChecked(settings.value("allowPlugins", true).toBool());
-    ui->allowJavaScript->setChecked(settings.value("allowJavaScript", true).toBool());
+    ui->allowPlugins->setChecked(settings.value("allowPlugins", false).toBool());
+    ui->allowJavaScript->setChecked(settings.value("allowJavaScript", false).toBool());
     ui->linksInFocusChain->setChecked(settings.value("IncludeLinkInFocusChain", false).toBool());
     ui->spatialNavigation->setChecked(settings.value("SpatialNavigation", false).toBool());
     ui->animateScrolling->setChecked(settings.value("AnimateScrolling", true).toBool());

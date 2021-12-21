@@ -1,3 +1,4 @@
+/* QupZilla-Qt (2021) http://github.com/dualword/QupZilla-Qt License:GNU GPL*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2010-2018 David Rosca <nowrep@gmail.com>
@@ -108,6 +109,12 @@ void AdBlockIcon::updateBadgeText()
     const int count = AdBlockManager::instance()->blockedRequestsForUrl(view->url()).count();
     if (count > 0) {
         setBadgeText(QString::number(count));
+    	QString tmp;
+    	tmp.append("AdBlock is active :\n");
+    	for(int i=0;i<count;i++){
+    		tmp.append(AdBlockManager::instance()->blockedRequestsForUrl(view->url())[i].rule).append("\n");
+    	}
+    	setToolTip(tmp);
     } else {
         setBadgeText(QString());
     }

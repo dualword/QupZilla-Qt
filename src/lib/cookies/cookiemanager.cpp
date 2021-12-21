@@ -1,3 +1,4 @@
+/* QupZilla-Qt (2021) http://github.com/dualword/QupZilla-Qt License:GNU GPL*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2010-2018 David Rosca <nowrep@gmail.com>
@@ -70,7 +71,7 @@ CookieManager::CookieManager(QWidget *parent)
     ui->saveCookies->setChecked(settings.value("allowCookies", true).toBool());
     ui->filter3rdParty->setChecked(settings.value("filterThirdPartyCookies", false).toBool());
     ui->filterTracking->setChecked(settings.value("filterTrackingCookie", false).toBool());
-    ui->deleteCookiesOnClose->setChecked(settings.value("deleteCookiesOnClose", false).toBool());
+    ui->deleteCookiesOnClose->setChecked(settings.value("deleteCookiesOnClose", true).toBool());
     ui->whiteList->addItems(settings.value("whitelist", QStringList()).toStringList());
     ui->blackList->addItems(settings.value("blacklist", QStringList()).toStringList());
     settings.endGroup();

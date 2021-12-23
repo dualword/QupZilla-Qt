@@ -320,12 +320,12 @@ MainApplication::MainApplication(int &argc, char** argv)
 
     if (!isPrivate() && !isTestModeEnabled()) {
 #ifndef DISABLE_CHECK_UPDATES
-        Settings settings;
-        bool checkUpdates = settings.value("Web-Browser-Settings/CheckUpdates", true).toBool();
-
-        if (checkUpdates) {
-            new Updater(window);
-        }
+//        Settings settings;
+//        bool checkUpdates = settings.value("Web-Browser-Settings/CheckUpdates", true).toBool();
+//
+//        if (checkUpdates) {
+//            new Updater(window);
+//        }
 #endif
 
         sessionManager()->backupSavedSessions();

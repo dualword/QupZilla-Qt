@@ -139,7 +139,7 @@ Preferences::Preferences(BrowserWindow* window)
     ui->newTabUrl->setText(m_newTabUrl.toEncoded());
     settings.endGroup();
     ui->afterLaunch->setCurrentIndex(mApp->afterLaunch());
-    ui->checkUpdates->setChecked(settings.value("Web-Browser-Settings/CheckUpdates", true).toBool());
+    ui->checkUpdates->setChecked(settings.value("Web-Browser-Settings/CheckUpdates", false).toBool());
     ui->dontLoadTabsUntilSelected->setChecked(settings.value("Web-Browser-Settings/LoadTabsOnActivation", true).toBool());
 
 #if defined(Q_OS_WIN) && !defined(Q_OS_OS2)

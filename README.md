@@ -2,6 +2,7 @@ QupZilla-Qt - web browser. Modified version of QupZilla browser.
 
 Plugins:
  - AdBlock
+ - Greasemonkey / Userscripts
  - Toggle JavaScript
  - Network status
  - User Agent Manager

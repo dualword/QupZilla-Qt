@@ -63,10 +63,8 @@ void SpeedDial::loadSettings()
     settings.endGroup();
 
     if (allPages.isEmpty()) {
-        allPages = "url:\"https://www.qupzilla.com\"|title:\"QupZilla\";"
-                   "url:\"http://blog.qupzilla.com\"|title:\"QupZilla Blog\";"
-                   "url:\"https://github.com/QupZilla/qupzilla\"|title:\"QupZilla GitHub\";"
-                   "url:\"https://duckduckgo.com\"|title:\"DuckDuckGo\";";
+        allPages = "url:\"https://wikipedia.org\"|title:\"Wikipedia\";"
+                   "url:\"https://youtube.com\"|title:\"Youtube\";";
     }
     changed(allPages);
 

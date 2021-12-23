@@ -96,11 +96,8 @@ void DataPaths::init()
 #endif
 
     m_paths[Translations].append(m_paths[AppData].at(0) + QLatin1String("/locale"));
-    m_paths[Translations].append(m_paths[AppData].at(0) + QLatin1String("/locale"));
     m_paths[Themes].append(m_paths[AppData].at(0) + QLatin1String("/themes"));
-    m_paths[Themes].append(QApplication::applicationDirPath() + QLatin1String("/themes"));
     m_paths[Plugins].append(m_paths[AppData].at(0) + QLatin1String("/plugins"));
-    m_paths[Plugins].append(QApplication::applicationDirPath() + QLatin1String("/plugins"));
 
     // Config
     if (MainApplication::isTestModeEnabled()) {

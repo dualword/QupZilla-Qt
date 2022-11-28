@@ -2,7 +2,7 @@ QupZilla-Qt - web browser. Modified version of QupZilla browser.
 
 Plugins:
  - AdBlock
- - Greasemonkey / Userscripts
+ - Greasemonkey / Userscripts ([UserScripts.md](userscripts/UserScripts.md))
  - Toggle JavaScript
  - Network status
  - User Agent Manager
@@ -11,7 +11,7 @@ Plugins:
  - Tab Manager 
 
 License: GNU General Public License  
-Source code: http://github.com/dualword/Qupzilla-Qt/  
+Source code: https://github.com/dualword/Qupzilla-Qt/  
 
 Third Party Software:  
  - Qt License: LGPLv3

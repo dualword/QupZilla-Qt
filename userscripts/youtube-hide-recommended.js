@@ -5,6 +5,7 @@
 // @author        https://github.com/dualword/Qupzilla-Qt/
 // @namespace     https://github.com/dualword/Qupzilla-Qt/
 // @version       0.1
+// @license       MIT
 // ==/UserScript==
 
 var id = "secondary";

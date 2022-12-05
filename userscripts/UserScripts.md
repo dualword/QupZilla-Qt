@@ -1,13 +1,14 @@
 
-Copy userscripts to "~/.config/qupzilla/profiles/default/extensions/greasemonkey".
-Tested with Qupzilla-Qt in Dec-2022.
-License: MIT.
+Copy userscripts to "~/.config/qupzilla/profiles/default/extensions/greasemonkey".  
+Tested with Qupzilla-Qt in Dec-2022.  
+License: MIT.  
 
 ---
 
 youtube.com
  - youtube-expand-description.js
  - youtube-autoplay-off.js
+ - youtube-turn-dark-theme-on.js
  - youtube-toggle-right-sidebar.js
  - youtube-toggle-comments.js
  - youtube-hide-comments.js

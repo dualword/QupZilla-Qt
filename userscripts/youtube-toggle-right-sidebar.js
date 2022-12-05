@@ -14,7 +14,7 @@ new MutationObserver(function(m) {
     if (document.getElementById(id)) {
         o = document.getElementById(id);
 		var link = document.createElement('a');
-		link.innerHTML = '<center><a style="font-size:2em;" id="toggle-sidebar" href="#toggle-sidebar">Toggle sidebar</a></center>';
+		link.innerHTML = '<a style="font-size:1.5em;text-decoration:none;color:green;" id="toggle-sidebar" href="#toggle-sidebar" title="Toggle sidebar">Toggle sidebar</a>';
 		o.parentNode.insertBefore(link.firstChild, o);
 		document.getElementById("toggle-sidebar").addEventListener("click", toggle, true);
 		o.style.visibility = "hidden";

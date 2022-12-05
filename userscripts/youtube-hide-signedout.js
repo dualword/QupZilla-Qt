@@ -10,7 +10,7 @@
 
 var id = 'button[aria-label="Got it"]';
 t = window.setInterval(test, 3000);
-var i = 0, m = 30;
+var i = 0, m = 60;
 
 function test(){
 	var o = document.querySelector(id);

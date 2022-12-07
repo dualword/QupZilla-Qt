@@ -14,6 +14,8 @@ youtube.com
  - youtube-hide-comments.js
  - youtube-hide-recommended.js
  - youtube-hide-signedout.js
+ - youtube-hide-chat.js
+
 
 
  

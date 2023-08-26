@@ -478,9 +478,6 @@ void BrowserWindow::setupMenu()
     QShortcut* openLocationAction = new QShortcut(QKeySequence("Alt+D"), this);
     connect(openLocationAction, SIGNAL(activated()), this, SLOT(openLocation()));
 
-    QShortcut* inspectorAction = new QShortcut(QKeySequence(QSL("F12")), this);
-    connect(inspectorAction, SIGNAL(activated()), this, SLOT(toggleWebInspector()));
-
     QShortcut* restoreClosedWindow = new QShortcut(QKeySequence(QSL("Ctrl+Shift+N")), this);
     connect(restoreClosedWindow, &QShortcut::activated, mApp->closedWindowsManager(), &ClosedWindowsManager::restoreClosedWindow);
 }
@@ -951,20 +948,6 @@ void BrowserWindow::toggleHtmlFullScreen(bool enable)
         m_sideBar.data()->setHidden(enable);
 
     m_isHtmlFullScreen = enable;
-}
-
-void BrowserWindow::showWebInspector()
-{
-    if (weView() && weView()->webTab()) {
-        weView()->webTab()->showWebInspector();
-    }
-}
-
-void BrowserWindow::toggleWebInspector()
-{
-    if (weView() && weView()->webTab()) {
-        weView()->webTab()->toggleWebInspector();
-    }
 }
 
 void BrowserWindow::refreshHistory()

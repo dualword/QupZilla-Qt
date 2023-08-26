@@ -31,7 +31,6 @@
 #include "qzsettings.h"
 #include "enhancedmenu.h"
 #include "locationbar.h"
-#include "webinspector.h"
 #include "scripts.h"
 #include "webhittestresult.h"
 #include "webscrollbarmanager.h"
@@ -75,30 +74,11 @@ WebView::WebView(QWidget* parent)
         parentWidget()->installEventFilter(this);
     }
 
-    WebInspector::registerView(this);
-
-    // Hack to find widget that receives input events
-    QStackedLayout *l = qobject_cast<QStackedLayout*>(layout());
-    connect(l, &QStackedLayout::currentChanged, this, [this]() {
-        QTimer::singleShot(0, this, [this]() {
-            m_rwhvqt = focusProxy();
-            if (!m_rwhvqt) {
-                qCritical() << "Focus proxy is null!";
-                return;
-            }
-            m_rwhvqt->installEventFilter(this);
-            if (QQuickWidget *w = qobject_cast<QQuickWidget*>(m_rwhvqt)) {
-                w->setClearColor(palette().color(QPalette::Window));
-            }
-        });
-    });
 }
 
 WebView::~WebView()
 {
     mApp->plugins()->emitWebPageDeleted(m_page);
-
-    WebInspector::unregisterView(this);
     WebScrollBarManager::instance()->removeWebView(this);
 }
 
@@ -200,7 +180,6 @@ void WebView::load(const QUrl &url)
 
     if (!m_firstLoad) {
         m_firstLoad = true;
-        WebInspector::pushView(this);
     }
 }
 

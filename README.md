@@ -1,4 +1,4 @@
-QupZilla-Qt - web browser. Modified version of QupZilla browser.  
+QupZilla-Qt - lightweight web browser. Modified version of QupZilla browser.  
 
 Plugins:
  - AdBlock

@@ -319,15 +319,6 @@ MainApplication::MainApplication(int &argc, char** argv)
     connect(this, SIGNAL(focusChanged(QWidget*,QWidget*)), this, SLOT(onFocusChanged()));
 
     if (!isPrivate() && !isTestModeEnabled()) {
-#ifndef DISABLE_CHECK_UPDATES
-//        Settings settings;
-//        bool checkUpdates = settings.value("Web-Browser-Settings/CheckUpdates", true).toBool();
-//
-//        if (checkUpdates) {
-//            new Updater(window);
-//        }
-#endif
-
         sessionManager()->backupSavedSessions();
 
         if (m_isStartingAfterCrash || afterLaunch() == RestoreSession) {

@@ -32,7 +32,6 @@
 #include "clearprivatedata.h"
 #include "qzsettings.h"
 #include "pluginproxy.h"
-#include "webinspector.h"
 #include "sessionmanager.h"
 #include "statusbar.h"
 
@@ -315,11 +314,6 @@ void MainMenu::showCookieManager()
     m->raise();
 }
 
-void MainMenu::toggleWebInspector()
-{
-    callSlot("toggleWebInspector");
-}
-
 void MainMenu::showClearRecentHistoryDialog()
 {
     ClearPrivateData* dialog = new ClearPrivateData(m_window);
@@ -575,11 +569,7 @@ void MainMenu::init()
     m_menuTools->addSeparator();
     ADD_ACTION("Tools/DownloadManager", m_menuTools, QIcon(), tr("&Download Manager"), SLOT(showDownloadManager()), "Ctrl+Y");
     ADD_ACTION("Tools/CookiesManager", m_menuTools, QIcon(), tr("&Cookies Manager"), SLOT(showCookieManager()), "");
-    ADD_ACTION("Tools/WebInspector", m_menuTools, QIcon(), tr("Web In&spector"), SLOT(toggleWebInspector()), "Ctrl+Shift+I");
     ADD_ACTION("Tools/ClearRecentHistory", m_menuTools, QIcon::fromTheme(QSL("edit-clear")), tr("Clear Recent &History"), SLOT(showClearRecentHistoryDialog()), "Ctrl+Shift+Del");
-
-    if (!WebInspector::isEnabled())
-        m_actions.value(QSL("Tools/WebInspector"))->setVisible(false);
 
     m_submenuExtensions = new QMenu(tr("&Extensions"));
     m_submenuExtensions->menuAction()->setVisible(false);

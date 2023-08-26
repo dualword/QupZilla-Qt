@@ -30,7 +30,6 @@
 #include "enhancedmenu.h"
 #include "locationbar.h"
 #include "webhittestresult.h"
-#include "webinspector.h"
 
 #include <QHostInfo>
 #include <QContextMenuEvent>
@@ -64,14 +63,6 @@ BrowserWindow* TabbedWebView::browserWindow() const
 void TabbedWebView::setBrowserWindow(BrowserWindow* window)
 {
     m_window = window;
-}
-
-void TabbedWebView::inspectElement()
-{
-    if (m_webTab->haveInspector())
-        triggerPageAction(QWebEnginePage::InspectElement);
-    else
-        m_webTab->showWebInspector(true);
 }
 
 WebTab* TabbedWebView::webTab() const
@@ -198,11 +189,6 @@ void TabbedWebView::_contextMenuEvent(QContextMenuEvent *event)
 
     WebHitTestResult hitTest = page()->hitTestContent(event->pos());
     createContextMenu(m_menu, hitTest);
-
-    if (WebInspector::isEnabled()) {
-        m_menu->addSeparator();
-        m_menu->addAction(tr("Inspect Element"), this, SLOT(inspectElement()));
-    }
 
     if (!m_menu->isEmpty()) {
         // Prevent choosing first option with double rightclick

@@ -70,8 +70,6 @@ private slots:
     void linkHovered(const QString &link);
     void setIp(const QHostInfo &info);
 
-    void inspectElement();
-
 private:
     void _contextMenuEvent(QContextMenuEvent *event) Q_DECL_OVERRIDE;
     void _mouseMoveEvent(QMouseEvent *event) Q_DECL_OVERRIDE;

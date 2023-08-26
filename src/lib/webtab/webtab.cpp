@@ -18,7 +18,6 @@
 #include "webtab.h"
 #include "browserwindow.h"
 #include "tabbedwebview.h"
-#include "webinspector.h"
 #include "webpage.h"
 #include "tabbar.h"
 #include "tabicon.h"
@@ -209,32 +208,6 @@ BrowserWindow *WebTab::browserWindow() const
 TabbedWebView* WebTab::webView() const
 {
     return m_webView;
-}
-
-bool WebTab::haveInspector() const
-{
-    return m_splitter->count() > 1 && m_splitter->widget(1)->inherits("WebInspector");
-}
-
-void WebTab::showWebInspector(bool inspectElement)
-{
-    if (!WebInspector::isEnabled() || haveInspector())
-        return;
-
-    WebInspector *inspector = new WebInspector(this);
-    inspector->setView(m_webView);
-    if (inspectElement)
-        inspector->inspectElement();
-
-    m_splitter->addWidget(inspector);
-}
-
-void WebTab::toggleWebInspector()
-{
-    if (!haveInspector())
-        showWebInspector();
-    else
-        delete m_splitter->widget(1);
 }
 
 void WebTab::showSearchToolBar(const QString &searchText)

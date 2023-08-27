@@ -1,3 +1,4 @@
+/* QupZilla-Qt (2023) http://github.com/dualword/QupZilla-Qt License:GNU GPL*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2010-2018 David Rosca <nowrep@gmail.com>
@@ -248,7 +249,6 @@ void History::clearHistory()
 {
     QSqlQuery query(SqlDatabase::instance()->database());
     query.exec(QSL("DELETE FROM history"));
-    query.exec(QSL("VACUUM"));
 
     mApp->webProfile()->clearAllVisitedLinks();
 

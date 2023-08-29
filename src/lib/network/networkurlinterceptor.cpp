@@ -1,3 +1,4 @@
+/* QupZilla-Qt (2023) http://github.com/dualword/QupZilla-Qt License:GNU GPL*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2015-2018 David Rosca <nowrep@gmail.com>
@@ -25,7 +26,7 @@
 
 NetworkUrlInterceptor::NetworkUrlInterceptor(QObject *parent)
     : QWebEngineUrlRequestInterceptor(parent)
-    , m_sendDNT(false)
+    , m_sendDNT(false), m_fparty(false)
 {
 }
 
@@ -33,9 +34,8 @@ void NetworkUrlInterceptor::interceptRequest(QWebEngineUrlRequestInfo &info)
 {
     QMutexLocker lock(&m_mutex);
 
-    if (m_sendDNT) {
-        info.setHttpHeader(QByteArrayLiteral("DNT"), QByteArrayLiteral("1"));
-    }
+    if (m_sendDNT) info.setHttpHeader(QByteArrayLiteral("DNT"), QByteArrayLiteral("1"));
+	if(m_fparty && (info.firstPartyUrl().host() != info.requestUrl().host()) ) info.block(true);
 
     const QString host = info.firstPartyUrl().host();
 
@@ -86,6 +86,7 @@ void NetworkUrlInterceptor::loadSettings()
     Settings settings;
     settings.beginGroup("Web-Browser-Settings");
     m_sendDNT = settings.value("DoNotTrack", false).toBool();
+    m_fparty = settings.value("FirstParty", false).toBool();
     settings.endGroup();
 
     m_usePerDomainUserAgent = mApp->userAgentManager()->usePerDomainUserAgents();

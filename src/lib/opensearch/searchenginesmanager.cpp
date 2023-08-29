@@ -72,8 +72,8 @@ SearchEnginesManager::SearchEnginesManager(QObject* parent)
 {
     Settings settings;
     settings.beginGroup("SearchEngines");
-    m_startingEngineName = settings.value("activeEngine", "DuckDuckGo").toString();
-    m_defaultEngineName = settings.value("DefaultEngine", "DuckDuckGo").toString();
+    m_startingEngineName = settings.value("activeEngine", "Wikipedia (en)").toString();
+    m_defaultEngineName = settings.value("DefaultEngine", "Wikipedia (en)").toString();
     settings.endGroup();
 
     connect(this, SIGNAL(enginesChanged()), this, SLOT(scheduleSave()));
@@ -184,7 +184,7 @@ void SearchEnginesManager::restoreDefaults()
     addEngine(wiki);
     addEngine(google);
 
-    m_defaultEngine = duck;
+    m_defaultEngine = wiki;
 
     emit enginesChanged();
 }

@@ -1,3 +1,4 @@
+/* QupZilla-Qt (2023) http://github.com/dualword/QupZilla-Qt License:GNU GPL*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2010-2018 David Rosca <nowrep@gmail.com>
@@ -279,7 +280,6 @@ void IconProvider::clearOldIconsInDatabase()
     query.exec();
 
     query.clear();
-    query.exec(QSL("VACUUM"));
 }
 
 QIcon IconProvider::iconFromImage(const QImage &image)

@@ -1,3 +1,4 @@
+/* QupZilla-Qt (2023) http://github.com/dualword/QupZilla-Qt License:GNU GPL*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2014-2017 David Rosca <nowrep@gmail.com>
@@ -482,7 +483,6 @@ bool BookmarksTools::migrateBookmarksIfNecessary(Bookmarks* bookmarks)
 
     query.exec("DROP TABLE folders");
     query.exec("DROP TABLE bookmarks");
-    query.exec("VACUUM");
 
     std::cout << "Bookmarks: Bookmarks successfully migrated!" << std::endl;
     return true;

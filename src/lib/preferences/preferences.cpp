@@ -108,10 +108,6 @@ Preferences::Preferences(BrowserWindow* window)
     m_pluginsList = new PluginsManager(this);
     ui->pluginsFrame->addWidget(m_pluginsList);
 
-#ifdef DISABLE_CHECK_UPDATES
-    ui->checkUpdates->setVisible(false);
-#endif
-
     auto setCategoryIcon = [this](int index, const QIcon &icon) {
         ui->listWidget->item(index)->setIcon(QIcon(icon.pixmap(32)));
     };
@@ -139,7 +135,6 @@ Preferences::Preferences(BrowserWindow* window)
     ui->newTabUrl->setText(m_newTabUrl.toEncoded());
     settings.endGroup();
     ui->afterLaunch->setCurrentIndex(mApp->afterLaunch());
-    ui->checkUpdates->setChecked(settings.value("Web-Browser-Settings/CheckUpdates", false).toBool());
     ui->dontLoadTabsUntilSelected->setChecked(settings.value("Web-Browser-Settings/LoadTabsOnActivation", true).toBool());
 
 #if defined(Q_OS_WIN) && !defined(Q_OS_OS2)
@@ -310,6 +305,7 @@ Preferences::Preferences(BrowserWindow* window)
     connect(ui->html5storage, SIGNAL(toggled(bool)), this, SLOT(allowHtml5storageChanged(bool)));
     // Other
     ui->doNotTrack->setChecked(settings.value("DoNotTrack", false).toBool());
+    ui->firstParty->setChecked(settings.value("FirstParty", false).toBool());
 
     //CSS Style
     ui->userStyleSheet->setText(settings.value("userStyleSheet", "").toString());
@@ -950,7 +946,7 @@ void Preferences::saveSettings()
     settings.setValue("AnimateScrolling", ui->animateScrolling->isChecked());
     settings.setValue("wheelScrollLines", ui->wheelScroll->value());
     settings.setValue("DoNotTrack", ui->doNotTrack->isChecked());
-    settings.setValue("CheckUpdates", ui->checkUpdates->isChecked());
+    settings.setValue("FirstParty", ui->firstParty->isChecked());
     settings.setValue("LoadTabsOnActivation", ui->dontLoadTabsUntilSelected->isChecked());
     settings.setValue("DefaultZoomLevel", ui->defaultZoomLevel->currentIndex());
     settings.setValue("XSSAuditing", ui->xssAuditing->isChecked());

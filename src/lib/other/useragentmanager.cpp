@@ -1,3 +1,4 @@
+/* QupZilla-Qt (2023) http://github.com/dualword/QupZilla-Qt License:GNU GPL*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2010-2018 David Rosca <nowrep@gmail.com>
@@ -19,9 +20,11 @@
 #include "browserwindow.h"
 #include "qztools.h"
 #include "settings.h"
+#include "datapaths.h"
 
 #include <QWebEngineProfile>
 #include <QRegularExpression>
+#include <QRandomGenerator>
 
 UserAgentManager::UserAgentManager(QObject* parent)
     : QObject(parent)
@@ -36,7 +39,23 @@ void UserAgentManager::loadSettings()
     Settings settings;
     settings.beginGroup("Web-Browser-Settings");
     m_globalUserAgent = settings.value("UserAgent", QString()).toString();
+    bool rnd = settings.value("RndAgent", false).toBool();
     settings.endGroup();
+
+    if(rnd) {
+    	QList<QString> arr;
+    	QFile file(DataPaths::currentProfilePath().append("/user-agent.txt"));
+    	      if (file.open(QFile::ReadOnly)) {
+    	          QTextStream stream(&file);
+    	          QString line;
+    	          while (stream.readLineInto(&line)) {
+    	        	  if (line.trimmed().length() <= 0) continue;
+        	          arr.append(line);
+    	          }
+    	      }
+    	      file.close();
+    	      m_globalUserAgent = arr[QRandomGenerator::global()->bounded(arr.size())];
+    }
 
     settings.beginGroup("User-Agent-Settings");
     m_usePerDomainUserAgent = settings.value("UsePerDomainUA", false).toBool();

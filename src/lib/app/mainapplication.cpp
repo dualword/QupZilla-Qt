@@ -772,7 +772,7 @@ void MainApplication::saveSettings()
 
     settings.beginGroup("Web-Browser-Settings");
     bool deleteCache = settings.value("deleteCacheOnClose", false).toBool();
-    bool deleteHistory = settings.value("deleteHistoryOnClose", false).toBool();
+    bool deleteHistory = settings.value("deleteHistoryOnClose", true).toBool();
     bool deleteHtml5Storage = settings.value("deleteHTML5StorageOnClose", false).toBool();
     settings.endGroup();
 
@@ -909,7 +909,7 @@ void MainApplication::loadSettings()
     // Web browsing settings
     settings.beginGroup("Web-Browser-Settings");
 
-    webSettings->setAttribute(QWebEngineSettings::LocalStorageEnabled, settings.value("HTML5StorageEnabled", true).toBool());
+    webSettings->setAttribute(QWebEngineSettings::LocalStorageEnabled, settings.value("HTML5StorageEnabled", false).toBool());
     webSettings->setAttribute(QWebEngineSettings::PluginsEnabled, settings.value("allowPlugins", true).toBool());
     webSettings->setAttribute(QWebEngineSettings::JavascriptEnabled, settings.value("allowJavaScript", true).toBool());
     webSettings->setAttribute(QWebEngineSettings::JavascriptCanOpenWindows, settings.value("allowJavaScriptOpenWindow", false).toBool());
@@ -959,7 +959,7 @@ void MainApplication::loadSettings()
     const QString &cachePath = settings.value("Web-Browser-Settings/CachePath", defaultPath).toString();
     profile->setCachePath(cachePath);
 
-    const bool allowCache = settings.value(QSL("Web-Browser-Settings/AllowLocalCache"), true).toBool();
+    const bool allowCache = settings.value(QSL("Web-Browser-Settings/AllowLocalCache"), false).toBool();
     profile->setHttpCacheType(allowCache ? QWebEngineProfile::DiskHttpCache : QWebEngineProfile::MemoryHttpCache);
 
     const int cacheSize = settings.value(QSL("Web-Browser-Settings/LocalCacheSize"), 50).toInt() * 1000 * 1000;

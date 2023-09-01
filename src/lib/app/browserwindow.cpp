@@ -204,7 +204,7 @@ BrowserWindow::BrowserWindow(Qz::BrowserWindowType type, const QUrl &startUrl)
     setAttribute(Qt::WA_DontCreateNativeAncestors);
 
     setObjectName("mainwindow");
-    setWindowTitle(tr("QupZilla"));
+    setWindowTitle(tr("QupZilla-Qt"));
     setProperty("private", mApp->isPrivate());
 
     setupUi();
@@ -220,10 +220,10 @@ BrowserWindow::BrowserWindow(Qz::BrowserWindowType type, const QUrl &startUrl)
     QTimer::singleShot(0, this, SLOT(postLaunch()));
 
     if (mApp->isPrivate()) {
-        QzTools::setWmClass("QupZilla Browser (Private Window)", this);
+        QzTools::setWmClass("QupZilla-Qt Browser (Private Window)", this);
     }
     else {
-        QzTools::setWmClass("QupZilla Browser", this);
+        QzTools::setWmClass("QupZilla-Qt Browser", this);
     }
 }
 
@@ -967,9 +967,9 @@ void BrowserWindow::currentTabChanged()
 
     const QString title = view->webTab()->title(/*allowEmpty*/true);
     if (title.isEmpty()) {
-        setWindowTitle(tr("QupZilla"));
+        setWindowTitle(tr("QupZilla-Qt"));
     } else {
-        setWindowTitle(tr("%1 - QupZilla").arg(title));
+        setWindowTitle(tr("%1 - QupZilla-Qt").arg(title));
     }
     m_ipLabel->setText(view->getIp());
     view->setFocus();

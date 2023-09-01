@@ -1,3 +1,4 @@
+/* QupZilla-Qt (2023) http://github.com/dualword/QupZilla-Qt License:GNU GPL*/
 /* ============================================================
 * StatusBarIcons - Extra icons in statusbar for QupZilla
 * Copyright (C) 2013-2017 David Rosca <nowrep@gmail.com>
@@ -21,6 +22,7 @@
 #include "sbi_networkmanager.h"
 #include "mainapplication.h"
 #include "browserwindow.h"
+#include "useragentmanager.h"
 
 #include <QMenu>
 #include <QNetworkConfigurationManager>
@@ -95,7 +97,8 @@ void SBI_NetworkIcon::useProxy()
 
 void SBI_NetworkIcon::updateToolTip()
 {
-    QString tooltip = tr("Shows network status and manages proxy<br/><br/><b>Network:</b><br/>%1<br/><br/><b>Proxy:</b><br/>%2");
+    QString tooltip (MainApplication::instance()->userAgentManager()->globalUserAgent());
+    tooltip.append(tr("<br/><br/>Shows network status and manages proxy<br/><br/><b>Network:</b><br/>%1<br/><br/><b>Proxy:</b><br/>%2"));
 
     if (m_networkConfiguration->isOnline()) {
         tooltip = tooltip.arg(tr("Connected"));

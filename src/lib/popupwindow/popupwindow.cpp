@@ -1,3 +1,4 @@
+/* QupZilla-Qt (2023) http://github.com/dualword/QupZilla-Qt License:GNU GPL*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2010-2018 David Rosca <nowrep@gmail.com>
@@ -267,7 +268,7 @@ void PopupWindow::searchOnPage()
 
 void PopupWindow::titleChanged()
 {
-    setWindowTitle(tr("%1 - QupZilla").arg(m_view->title()));
+    setWindowTitle(tr("%1 - QupZilla-Qt").arg(m_view->title()));
 }
 
 void PopupWindow::setWindowGeometry(QRect newRect)

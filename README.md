@@ -1,11 +1,10 @@
-QupZilla-Qt - lightweight, privacy-focused web browser. Modified version of QupZilla browser.  
+QupZilla-Qt - lightweight web browser. Modified version of QupZilla browser.  
 
 Plugins:
  - AdBlock
- - Greasemonkey / Userscripts ([UserScripts.md](userscripts/))
- - Toggle JavaScript
- - Network status
- - User Agent Manager
+ - GreaseMonkey / Userscripts ([UserScripts.md](userscripts/))
+ - StatusBar Icons (JavaScript on/off, network status, current user agent)
+ - User Agent Manager (random user agent)
  - Vim Plugin
  - Vertical Tabs
  - Tab Manager 
@@ -13,7 +12,6 @@ Plugins:
 License: GNU General Public License  
 Source code: https://github.com/dualword/Qupzilla-Qt/  
 
-Third Party Software:  
- - Qt License: LGPLv3
-
-![Screenshot](screenshot.png)
+<p align="middle">
+<img src="screenshot.png" width="150"/>
+</p>

@@ -204,7 +204,7 @@ Preferences::Preferences(BrowserWindow* window)
     ui->showStatusbar->setChecked(settings.value("showStatusBar", false).toBool());
     // NOTE: instantBookmarksToolbar and showBookmarksToolbar cannot be both enabled at the same time
     ui->instantBookmarksToolbar->setChecked(settings.value("instantBookmarksToolbar", false).toBool());
-    ui->showBookmarksToolbar->setChecked(settings.value("showBookmarksToolbar", true).toBool());
+    ui->showBookmarksToolbar->setChecked(settings.value("showBookmarksToolbar", false).toBool());
     ui->instantBookmarksToolbar->setDisabled(settings.value("showBookmarksToolbar", true).toBool());
     ui->showBookmarksToolbar->setDisabled(settings.value("instantBookmarksToolbar").toBool());
     connect(ui->instantBookmarksToolbar, SIGNAL(toggled(bool)), ui->showBookmarksToolbar, SLOT(setDisabled(bool)));
@@ -278,7 +278,7 @@ Preferences::Preferences(BrowserWindow* window)
     ui->closeAppWithCtrlQ->setChecked(settings.value("closeAppWithCtrlQ", true).toBool());
 
     //Cache
-    ui->allowCache->setChecked(settings.value("AllowLocalCache", true).toBool());
+    ui->allowCache->setChecked(settings.value("AllowLocalCache", false).toBool());
     ui->removeCache->setChecked(settings.value("deleteCacheOnClose", false).toBool());
     ui->cacheMB->setValue(settings.value("LocalCacheSize", 50).toInt());
     ui->cachePath->setText(settings.value("CachePath", QWebEngineProfile::defaultProfile()->cachePath()).toString());
@@ -293,14 +293,14 @@ Preferences::Preferences(BrowserWindow* window)
     //PRIVACY
     //Web storage
     ui->saveHistory->setChecked(settings.value("allowHistory", true).toBool());
-    ui->deleteHistoryOnClose->setChecked(settings.value("deleteHistoryOnClose", false).toBool());
+    ui->deleteHistoryOnClose->setChecked(settings.value("deleteHistoryOnClose", true).toBool());
     if (!ui->saveHistory->isChecked()) {
         ui->deleteHistoryOnClose->setEnabled(false);
     }
     connect(ui->saveHistory, SIGNAL(toggled(bool)), this, SLOT(saveHistoryChanged(bool)));
 
     // Html5Storage
-    ui->html5storage->setChecked(settings.value("HTML5StorageEnabled", true).toBool());
+    ui->html5storage->setChecked(settings.value("HTML5StorageEnabled", false).toBool());
     ui->deleteHtml5storageOnClose->setChecked(settings.value("deleteHTML5StorageOnClose", false).toBool());
     connect(ui->html5storage, SIGNAL(toggled(bool)), this, SLOT(allowHtml5storageChanged(bool)));
     // Other

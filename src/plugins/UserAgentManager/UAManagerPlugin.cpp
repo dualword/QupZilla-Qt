@@ -105,9 +105,10 @@ void UAManagerPlugin::mainWindowDeleted(BrowserWindow* window) {
 
 void UAManagerPlugin::updateSettings() {
     foreach (AbstractButtonInterface* icon, m_SBIcons.values()) {
-        Settings settings;
-        settings.beginGroup("Web-Browser-Settings");
-        icon->setToolTip(settings.value("UserAgent", QString()).toString());
-        settings.endGroup();
+//        Settings settings;
+//        settings.beginGroup("Web-Browser-Settings");
+//        icon->setToolTip(settings.value("UserAgent", QString()).toString());
+//        settings.endGroup();
+        icon->setToolTip("Open User Agent settings");
     }
 }

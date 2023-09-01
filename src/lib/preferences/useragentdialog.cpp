@@ -1,3 +1,4 @@
+/* QupZilla-Qt (2023) http://github.com/dualword/QupZilla-Qt License:GNU GPL*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2010-2018 David Rosca <nowrep@gmail.com>
@@ -58,6 +59,12 @@ UserAgentDialog::UserAgentDialog(QWidget* parent)
 
     const QString globalUserAgent = m_manager->globalUserAgent();
     ui->changeGlobal->setChecked(!globalUserAgent.isEmpty());
+
+    ui->rndAgent->setEnabled(ui->changeGlobal->isChecked());
+    Settings settings;
+    settings.beginGroup("Web-Browser-Settings");
+    ui->rndAgent->setChecked(settings.value("RndAgent", false).toBool());
+    settings.endGroup();
     ui->globalComboBox->lineEdit()->setText(globalUserAgent);
     ui->globalComboBox->lineEdit()->setCursorPosition(0);
 
@@ -86,6 +93,10 @@ UserAgentDialog::UserAgentDialog(QWidget* parent)
 
     connect(ui->changeGlobal, SIGNAL(clicked(bool)), this, SLOT(enableGlobalComboBox(bool)));
     connect(ui->changePerSite, SIGNAL(clicked(bool)), this, SLOT(enablePerSiteFrame(bool)));
+	connect(ui->changeGlobal, &QCheckBox::clicked, [=](){
+		ui->rndAgent->setEnabled(ui->changeGlobal->isChecked());
+		ui->rndAgent->setChecked(ui->changeGlobal->isChecked());
+	});
 
     enableGlobalComboBox(ui->changeGlobal->isChecked());
     enablePerSiteFrame(ui->changePerSite->isChecked());
@@ -169,6 +180,7 @@ void UserAgentDialog::accept()
     Settings settings;
     settings.beginGroup("Web-Browser-Settings");
     settings.setValue("UserAgent", globalUserAgent);
+    settings.setValue("RndAgent", ui->rndAgent->isChecked());
     settings.endGroup();
 
     settings.beginGroup("User-Agent-Settings");

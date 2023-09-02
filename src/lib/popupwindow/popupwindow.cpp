@@ -273,7 +273,7 @@ void PopupWindow::titleChanged()
 
 void PopupWindow::setWindowGeometry(QRect newRect)
 {
-    if (!Settings().value("allowJavaScriptGeometryChange", true).toBool())
+    if (!Settings().value("allowJavaScriptGeometryChange", false).toBool())
         return;
 
     // left/top was set while width/height not

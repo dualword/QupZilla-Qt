@@ -410,7 +410,7 @@ BrowserWindow* MainApplication::createWindow(Qz::BrowserWindowType type, const Q
 
 MainApplication::AfterLaunch MainApplication::afterLaunch() const
 {
-    return static_cast<AfterLaunch>(Settings().value(QSL("Web-URL-Settings/afterLaunch"), RestoreSession).toInt());
+    return static_cast<AfterLaunch>(Settings().value(QSL("Web-URL-Settings/afterLaunch"), OpenHomePage).toInt());
 }
 
 void MainApplication::openSession(BrowserWindow* window, RestoreData &restoreData)
@@ -771,13 +771,13 @@ void MainApplication::saveSettings()
     settings.endGroup();
 
     settings.beginGroup("Web-Browser-Settings");
-    bool deleteCache = settings.value("deleteCacheOnClose", false).toBool();
+    bool deleteCache = settings.value("deleteCacheOnClose", true).toBool();
     bool deleteHistory = settings.value("deleteHistoryOnClose", true).toBool();
-    bool deleteHtml5Storage = settings.value("deleteHTML5StorageOnClose", false).toBool();
+    bool deleteHtml5Storage = settings.value("deleteHTML5StorageOnClose", true).toBool();
     settings.endGroup();
 
     settings.beginGroup("Cookie-Settings");
-    bool deleteCookies = settings.value("deleteCookiesOnClose", false).toBool();
+    bool deleteCookies = settings.value("deleteCookiesOnClose", true).toBool();
     settings.endGroup();
 
     if (deleteHistory) {
@@ -887,7 +887,7 @@ void MainApplication::onFocusChanged()
 void MainApplication::runDeferredPostLaunchActions()
 {
     checkDefaultWebBrowser();
-    checkOptimizeDatabase();
+
 }
 
 void MainApplication::downloadRequested(QWebEngineDownloadItem *download)
@@ -910,19 +910,20 @@ void MainApplication::loadSettings()
     settings.beginGroup("Web-Browser-Settings");
 
     webSettings->setAttribute(QWebEngineSettings::LocalStorageEnabled, settings.value("HTML5StorageEnabled", false).toBool());
-    webSettings->setAttribute(QWebEngineSettings::PluginsEnabled, settings.value("allowPlugins", true).toBool());
-    webSettings->setAttribute(QWebEngineSettings::JavascriptEnabled, settings.value("allowJavaScript", true).toBool());
+    webSettings->setAttribute(QWebEngineSettings::PluginsEnabled, settings.value("allowPlugins", false).toBool());
+    webSettings->setAttribute(QWebEngineSettings::JavascriptEnabled, settings.value("allowJavaScript", false).toBool());
     webSettings->setAttribute(QWebEngineSettings::JavascriptCanOpenWindows, settings.value("allowJavaScriptOpenWindow", false).toBool());
-    webSettings->setAttribute(QWebEngineSettings::JavascriptCanAccessClipboard, settings.value("allowJavaScriptAccessClipboard", true).toBool());
+    webSettings->setAttribute(QWebEngineSettings::JavascriptCanAccessClipboard, settings.value("allowJavaScriptAccessClipboard", false).toBool());
     webSettings->setAttribute(QWebEngineSettings::LinksIncludedInFocusChain, settings.value("IncludeLinkInFocusChain", false).toBool());
     webSettings->setAttribute(QWebEngineSettings::XSSAuditingEnabled, settings.value("XSSAuditing", false).toBool());
     webSettings->setAttribute(QWebEngineSettings::PrintElementBackgrounds, settings.value("PrintElementBackground", true).toBool());
     webSettings->setAttribute(QWebEngineSettings::SpatialNavigationEnabled, settings.value("SpatialNavigation", false).toBool());
-    webSettings->setAttribute(QWebEngineSettings::ScrollAnimatorEnabled, settings.value("AnimateScrolling", true).toBool());
+    webSettings->setAttribute(QWebEngineSettings::ScrollAnimatorEnabled, settings.value("AnimateScrolling", false).toBool());
     webSettings->setAttribute(QWebEngineSettings::HyperlinkAuditingEnabled, false);
     webSettings->setAttribute(QWebEngineSettings::FullScreenSupportEnabled, true);
-    webSettings->setAttribute(QWebEngineSettings::LocalContentCanAccessRemoteUrls, true);
+    webSettings->setAttribute(QWebEngineSettings::LocalContentCanAccessRemoteUrls, false);
     webSettings->setAttribute(QWebEngineSettings::FocusOnNavigationEnabled, false);
+    webSettings->setAttribute(QWebEngineSettings::LocalStorageEnabled, false);
 
 #if QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
     webSettings->setUnknownUrlSchemePolicy(QWebEngineSettings::AllowAllUnknownUrlSchemes);

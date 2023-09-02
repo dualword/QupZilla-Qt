@@ -280,6 +280,7 @@ void IconProvider::clearOldIconsInDatabase()
     query.exec();
 
     query.clear();
+    query.exec(QSL("VACUUM"));
 }
 
 QIcon IconProvider::iconFromImage(const QImage &image)

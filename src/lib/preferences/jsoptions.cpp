@@ -32,7 +32,7 @@ JsOptions::JsOptions(QWidget* parent)
     Settings settings;
     settings.beginGroup("Web-Browser-Settings");
     ui->jscanOpenWindow->setChecked(settings.value("allowJavaScriptOpenWindow", false).toBool());
-    ui->jscanChangeSize->setChecked(settings.value("allowJavaScriptGeometryChange", true).toBool());
+    ui->jscanChangeSize->setChecked(settings.value("allowJavaScriptGeometryChange", false).toBool());
     ui->jscanAccessClipboard->setChecked(settings.value("allowJavaScriptAccessClipboard", false).toBool());
     settings.endGroup();
 }

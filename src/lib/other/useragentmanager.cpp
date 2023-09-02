@@ -49,12 +49,13 @@ void UserAgentManager::loadSettings()
     	          QTextStream stream(&file);
     	          QString line;
     	          while (stream.readLineInto(&line)) {
-    	        	  if (line.trimmed().length() <= 0) continue;
+    	        	  line = line.trimmed();
+    	        	  if (line.startsWith("#") || line.length() <= 0) continue;
         	          arr.append(line);
     	          }
     	      }
     	      file.close();
-    	      m_globalUserAgent = arr[QRandomGenerator::global()->bounded(arr.size())];
+    	      if(arr.size() > 0) m_globalUserAgent = arr[QRandomGenerator::global()->bounded(arr.size())];
     }
 
     settings.beginGroup("User-Agent-Settings");

@@ -34,8 +34,12 @@ void NetworkUrlInterceptor::interceptRequest(QWebEngineUrlRequestInfo &info)
 {
     QMutexLocker lock(&m_mutex);
 
-    if (m_sendDNT) info.setHttpHeader(QByteArrayLiteral("DNT"), QByteArrayLiteral("1"));
-	if(m_fparty && (info.firstPartyUrl().host() != info.requestUrl().host()) ) info.block(true);
+    if (m_sendDNT) {
+        info.setHttpHeader(QByteArrayLiteral("DNT"), QByteArrayLiteral("1"));
+    }
+	
+	if(m_fparty && (info.firstPartyUrl().host() != info.requestUrl().host()))
+		info.block(true);
 
     const QString host = info.firstPartyUrl().host();
 

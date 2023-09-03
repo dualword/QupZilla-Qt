@@ -44,7 +44,7 @@ void UserAgentManager::loadSettings()
 
     if(rnd) {
     	QList<QString> arr;
-    	QFile file(DataPaths::currentProfilePath().append("/user-agent.txt"));
+    	QFile file(DataPaths::currentProfilePath().append(QDir::separator()).append("user-agent.txt"));
     	      if (file.open(QFile::ReadOnly)) {
     	          QTextStream stream(&file);
     	          QString line;

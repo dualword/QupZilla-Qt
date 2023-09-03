@@ -8,6 +8,7 @@ Plugins:
  - Vim Plugin
  - Vertical Tabs
  - Tab Manager 
+ - Network Traffic Monitor
 
 License: GNU General Public License  
 Source code: https://github.com/dualword/Qupzilla-Qt/  

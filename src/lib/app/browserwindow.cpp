@@ -280,13 +280,8 @@ void BrowserWindow::postLaunch()
 
     switch (m_windowType) {
     case Qz::BW_FirstAppWindow:
-        if (mApp->isStartingAfterCrash()) {
-            addTab = false;
-            startUrl.clear();
-            m_tabWidget->addView(QUrl("qupzilla:restore"), Qz::NT_CleanSelectedTabAtTheEnd);
-        }
-        else if (mApp->afterLaunch() == MainApplication::SelectSession || mApp->afterLaunch() == MainApplication::RestoreSession) {
-            addTab = m_tabWidget->count() <= 0;
+		if (mApp->afterLaunch() == MainApplication::SelectSession || mApp->afterLaunch() == MainApplication::RestoreSession){
+        addTab = m_tabWidget->count() <= 0;
         }
         break;
 

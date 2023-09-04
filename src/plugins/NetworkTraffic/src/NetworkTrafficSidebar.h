@@ -22,7 +22,7 @@ public:
 
 public slots:
 	void clear();
-	void newRequest1(const QString&, const QString&, const QString&);
+	void newRequest(const QString&, const QString&, const QString&);
 
 private:
     QWidget* w;

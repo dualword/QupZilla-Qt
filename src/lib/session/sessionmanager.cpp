@@ -1,3 +1,4 @@
+/* QupZilla-Qt (2023) http://github.com/dualword/QupZilla-Qt License:GNU GPL*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2017 Razi Alavizadeh <s.r.alavizadeh@gmail.com>
@@ -326,12 +327,12 @@ void SessionManager::loadSettings()
 
 void SessionManager::saveSettings()
 {
-    QDir sessionsDir(DataPaths::path(DataPaths::Sessions));
-
-    Settings settings;
-    settings.beginGroup("Web-Browser-Settings");
-    settings.setValue("lastActiveSessionPath", sessionsDir.relativeFilePath(m_lastActiveSessionPath));
-    settings.endGroup();
+//    QDir sessionsDir(DataPaths::path(DataPaths::Sessions));
+//
+//    Settings settings;
+//    settings.beginGroup("Web-Browser-Settings");
+//    settings.setValue("lastActiveSessionPath", sessionsDir.relativeFilePath(m_lastActiveSessionPath));
+//    settings.endGroup();
 }
 
 QString SessionManager::defaultSessionPath()
@@ -346,27 +347,27 @@ QString SessionManager::lastActiveSessionPath() const
 
 void SessionManager::backupSavedSessions()
 {
-    if (!QFile::exists(m_lastActiveSessionPath)) {
-        return;
-    }
-
-    if (QFile::exists(m_firstBackupSession)) {
-        QFile::remove(m_secondBackupSession);
-        QFile::copy(m_firstBackupSession, m_secondBackupSession);
-    }
-
-    QFile::remove(m_firstBackupSession);
-    QFile::copy(m_lastActiveSessionPath, m_firstBackupSession);
+//    if (!QFile::exists(m_lastActiveSessionPath)) {
+//        return;
+//    }
+//
+//    if (QFile::exists(m_firstBackupSession)) {
+//        QFile::remove(m_secondBackupSession);
+//        QFile::copy(m_firstBackupSession, m_secondBackupSession);
+//    }
+//
+//    QFile::remove(m_firstBackupSession);
+//    QFile::copy(m_lastActiveSessionPath, m_firstBackupSession);
 }
 
 void SessionManager::writeCurrentSession(const QString &filePath)
 {
-    QSaveFile file(filePath);
-    if (!file.open(QIODevice::WriteOnly) || file.write(mApp->saveState()) == -1) {
-        qWarning() << "Error! can not write the current session file: " << filePath << file.errorString();
-        return;
-    }
-    file.commit();
+//    QSaveFile file(filePath);
+//    if (!file.open(QIODevice::WriteOnly) || file.write(mApp->saveState()) == -1) {
+//        qWarning() << "Error! can not write the current session file: " << filePath << file.errorString();
+//        return;
+//    }
+//    file.commit();
 }
 
 void SessionManager::openSessionManagerDialog()
@@ -377,12 +378,12 @@ void SessionManager::openSessionManagerDialog()
 
 void SessionManager::autoSaveLastSession()
 {
-    if (mApp->isPrivate() || mApp->windowCount() == 0) {
-        return;
-    }
-
-    saveSettings();
-    writeCurrentSession(m_lastActiveSessionPath);
+//    if (mApp->isPrivate() || mApp->windowCount() == 0) {
+//        return;
+//    }
+//
+//    saveSettings();
+//    writeCurrentSession(m_lastActiveSessionPath);
 }
 
 QString SessionManager::askSessionFromUser()

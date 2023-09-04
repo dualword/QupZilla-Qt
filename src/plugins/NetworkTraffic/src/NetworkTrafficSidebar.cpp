@@ -32,7 +32,7 @@ QWidget* NetworkTrafficSidebar::createSideBarWidget(BrowserWindow* mainWindow) {
 	w = new QWidget();
 	net = new NetworkInterceptor(w);
 	QObject::connect(net, SIGNAL(newRequest(const QString&,const QString&,const QString&)),
-			SLOT(newRequest1(const QString&,const QString&,const QString&)));
+			SLOT(newRequest(const QString&,const QString&,const QString&)));
 
     QPushButton* btn = new QPushButton("Clear", w);
     QObject::connect(btn, SIGNAL(clicked()), SLOT(clear()));
@@ -56,7 +56,7 @@ void NetworkTrafficSidebar::clear() {
 	tbl->setRowCount(0);
 }
 
-void NetworkTrafficSidebar::newRequest1(const QString& s1, const QString& s2, const QString& s3){
+void NetworkTrafficSidebar::newRequest(const QString& s1, const QString& s2, const QString& s3){
 	tbl->insertRow(tbl->rowCount());
 	int row = tbl->rowCount()-1;
 	QTableWidgetItem *item = new QTableWidgetItem(tr("%1").arg(s1));

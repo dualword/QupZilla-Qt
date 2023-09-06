@@ -14,5 +14,6 @@ License: GNU General Public License
 Source code: https://github.com/dualword/Qupzilla-Qt/  
 
 <p align="middle">
-<img src="screenshot.png" width="150"/>
+<img src="screenshot.png" width="150" alt="Network traffic monitor"/>
+<img src="youtube.png" width="150" alt="Youtube"/>
 </p>

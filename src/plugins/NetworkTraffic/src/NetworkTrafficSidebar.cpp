@@ -63,6 +63,8 @@ void NetworkTrafficSidebar::newRequest(const QString& s1, const QString& s2, con
 	tbl->setItem(row, 0, item);
 	item = new QTableWidgetItem(tr("%1").arg(s2));
 	tbl->setItem(row, 1, item);
+	item->setToolTip(s2);
 	item = new QTableWidgetItem(tr("%1").arg(s3));
 	tbl->setItem(row, 2, item);
+	item->setToolTip(s3);
 }

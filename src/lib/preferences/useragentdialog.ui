@@ -37,7 +37,7 @@
    <item>
     <widget class="QCheckBox" name="rndAgent">
      <property name="toolTip">
-      <string>profilename/user-agent.txt</string>
+      <string/>
      </property>
      <property name="text">
       <string>Choose random User Agent from a file</string>

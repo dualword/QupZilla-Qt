@@ -4,7 +4,7 @@ Plugins:
  - AdBlock
  - GreaseMonkey / Userscripts ([UserScripts.md](userscripts/))
  - StatusBar Icons (JavaScript on/off, network status, current user agent)
- - User Agent Manager (random user agent)
+ - User Agent Manager (random user agent from a file)
  - Vim Plugin
  - Vertical Tabs
  - Tab Manager 
@@ -14,6 +14,6 @@ License: GNU General Public License
 Source code: https://github.com/dualword/Qupzilla-Qt/  
 
 <p align="middle">
-<img src="screenshot.png" width="150" alt="Network traffic monitor"/>
-<img src="youtube.png" width="150" alt="Youtube"/>
+<img src="screenshot.png" width="150" alt="Network traffic monitor" title="Network traffic monitor"/>
+<img src="youtube.png" width="150" alt="Youtube" title="Youtube"/>
 </p>

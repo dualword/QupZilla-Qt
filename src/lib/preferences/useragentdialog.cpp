@@ -23,6 +23,7 @@
 #include "mainapplication.h"
 #include "settings.h"
 #include "networkmanager.h"
+#include "datapaths.h"
 
 #include <QFormLayout>
 #include <QLineEdit>
@@ -60,6 +61,7 @@ UserAgentDialog::UserAgentDialog(QWidget* parent)
     const QString globalUserAgent = m_manager->globalUserAgent();
     ui->changeGlobal->setChecked(!globalUserAgent.isEmpty());
 
+	ui->rndAgent->setToolTip(DataPaths::currentProfilePath().append(QDir::separator()).append("user-agent.txt"));
     ui->rndAgent->setEnabled(ui->changeGlobal->isChecked());
     Settings settings;
     settings.beginGroup("Web-Browser-Settings");

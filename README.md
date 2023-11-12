@@ -5,12 +5,9 @@ Plugins:
  - GreaseMonkey / Userscripts ([UserScripts.md](userscripts/))
  - StatusBar Icons (JavaScript on/off, network status, current user agent)
  - User Agent Manager (random user agent from a file)
- - Vim Plugin
- - Vertical Tabs
- - Tab Manager 
  - Network Traffic Monitor
 
-License: GNU General Public License  
+License: GNU General Public License (Version 3)  
 Source code: https://github.com/dualword/Qupzilla-Qt/  
 
 <p align="middle">

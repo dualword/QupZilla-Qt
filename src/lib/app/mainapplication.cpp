@@ -1,4 +1,4 @@
-/* QupZilla-Qt (2021) http://github.com/dualword/QupZilla-Qt License:GNU GPL*/
+/* QupZilla-Qt (2021-2023) http://github.com/dualword/QupZilla-Qt License:GNU GPL v3*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2010-2018 David Rosca <nowrep@gmail.com>
@@ -703,6 +703,12 @@ void MainApplication::quitApplication()
     if (!isPrivate()) {
         removeLockFile();
     }
+
+    QString path(DataPaths::currentProfilePath().append(QDir::separator()));
+    QDir(path + "GPUCache").removeRecursively();
+    QDir(path + "IndexedDB").removeRecursively();
+    QDir(path + "VideoDecodeStats").removeRecursively();
+    QDir(path + "Service Worker").removeRecursively();
 
     quit();
 }

@@ -1,4 +1,4 @@
-/* QupZilla-Qt (2021) http://github.com/dualword/QupZilla-Qt License:GNU GPL*/
+/* QupZilla-Qt (2021-2023) http://github.com/dualword/QupZilla-Qt License:GNU GPL v3*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2014-2018 David Rosca <nowrep@gmail.com>
@@ -159,5 +159,4 @@ void DataPaths::initCurrentProfile(const QString &profilePath)
 
     QDir dir;
     dir.mkpath(m_paths[Cache].at(0));
-    dir.mkpath(m_paths[Sessions].at(0));
 }

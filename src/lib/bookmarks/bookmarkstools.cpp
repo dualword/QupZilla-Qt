@@ -1,4 +1,4 @@
-/* QupZilla-Qt (2023) http://github.com/dualword/QupZilla-Qt License:GNU GPL*/
+/* QupZilla-Qt (2021-2023) http://github.com/dualword/QupZilla-Qt License:GNU GPL v3*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2014-2017 David Rosca <nowrep@gmail.com>
@@ -405,6 +405,7 @@ void BookmarksTools::addUrlToMenu(QObject* receiver, Menu* menu, BookmarkItem* b
     act->setText(title);
     act->setData(QVariant::fromValue<void*>(static_cast<void*>(bookmark)));
     act->setIconVisibleInMenu(true);
+    act->setStatusTip(bookmark->url().toString());
 
     QObject::connect(act, SIGNAL(triggered()), receiver, SLOT(bookmarkActivated()));
     QObject::connect(act, SIGNAL(ctrlTriggered()), receiver, SLOT(bookmarkCtrlActivated()));

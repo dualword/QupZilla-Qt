@@ -685,10 +685,6 @@ void MainApplication::quitApplication()
         emit window->aboutToClose();
     }
 
-    if (m_sessionManager && m_windows.count() > 0) {
-        m_sessionManager->autoSaveLastSession();
-    }
-
     m_isClosing = true;
 
     for (BrowserWindow *window : qAsConst(m_windows)) {
@@ -709,6 +705,15 @@ void MainApplication::quitApplication()
     QDir(path + "IndexedDB").removeRecursively();
     QDir(path + "VideoDecodeStats").removeRecursively();
     QDir(path + "Service Worker").removeRecursively();
+
+    QFile(path + "Cookies").remove();
+    QFile(path + "Cookies-journal").remove();
+    QFile(path + "QuotaManager").remove();
+    QFile(path + "QuotaManager-journal").remove();
+    QFile(path + "Origin Bound Certs").remove();
+    QFile(path + "Origin Bound Certs-journal").remove();
+    QFile(path + "TransportSecurity").remove();
+    QFile(path + "Visited Links").remove();
 
     quit();
 }

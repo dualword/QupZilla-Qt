@@ -700,21 +700,6 @@ void MainApplication::quitApplication()
         removeLockFile();
     }
 
-    QString path(DataPaths::currentProfilePath().append(QDir::separator()));
-    QDir(path + "GPUCache").removeRecursively();
-    QDir(path + "IndexedDB").removeRecursively();
-    QDir(path + "VideoDecodeStats").removeRecursively();
-    QDir(path + "Service Worker").removeRecursively();
-
-    QFile(path + "Cookies").remove();
-    QFile(path + "Cookies-journal").remove();
-    QFile(path + "QuotaManager").remove();
-    QFile(path + "QuotaManager-journal").remove();
-    QFile(path + "Origin Bound Certs").remove();
-    QFile(path + "Origin Bound Certs-journal").remove();
-    QFile(path + "TransportSecurity").remove();
-    QFile(path + "Visited Links").remove();
-
     quit();
 }
 

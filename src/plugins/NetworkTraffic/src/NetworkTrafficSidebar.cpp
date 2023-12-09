@@ -1,4 +1,4 @@
-/* QupZilla-Qt (2023) http://github.com/dualword/QupZilla-Qt License:GNU GPL*/
+/* QupZilla-Qt (2023) http://github.com/dualword/QupZilla-Qt License:GNU GPL version 3*/
 
 #include "networkurlinterceptor.h"
 #include "NetworkInterceptor.h"
@@ -21,7 +21,7 @@ QString NetworkTrafficSidebar::title() const {
 }
 
 QAction* NetworkTrafficSidebar::createMenuAction() {
-    QAction* act = new QAction(tr("Network Traffic Sidebar"), this);
+    QAction* act = new QAction(tr("Network Traffic"), this);
     act->setCheckable(true);
     return act;
 }

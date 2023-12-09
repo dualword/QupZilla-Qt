@@ -1,3 +1,4 @@
+/* QupZilla-Qt (2021-2023) http://github.com/dualword/QupZilla-Qt License:GNU GPL version 3*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2010-2018 David Rosca <nowrep@gmail.com>
@@ -848,7 +849,7 @@ void WebView::createSelectedTextContextMenu(QMenu* menu, const WebHitTestResult 
     connect(gtwact, SIGNAL(ctrlTriggered()), this, SLOT(openUrlInBackgroundTab()));
     menu->addAction(gtwact);
 
-    Action* dictact = new Action(QIcon::fromTheme("accessories-dictionary"), tr("Dictionary"));
+    Action* dictact = new Action(QIcon::fromTheme("accessories-dictionary"), tr("Dictionary") + " (Wiktionary)");
     dictact->setData(QUrl("http://" + (!langCode.isEmpty() ? langCode + "." : langCode) + "wiktionary.org/wiki/Special:Search?search=" + selectedText));
     connect(dictact, SIGNAL(triggered()), this, SLOT(openUrlInSelectedTab()));
     connect(dictact, SIGNAL(ctrlTriggered()), this, SLOT(openUrlInBackgroundTab()));

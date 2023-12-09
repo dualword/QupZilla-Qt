@@ -1,4 +1,4 @@
-/* QupZilla-Qt (2023) http://github.com/dualword/QupZilla-Qt License:GNU GPL*/
+/* QupZilla-Qt (2023) http://github.com/dualword/QupZilla-Qt License:GNU GPL version 3*/
 
 #include "NetworkInterceptor.h"
 #include "networkurlinterceptor.h"

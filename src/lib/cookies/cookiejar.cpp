@@ -178,6 +178,7 @@ bool CookieJar::rejectCookie(const QString &domain, const QNetworkCookie &cookie
         }
     }
 
+#if QTWEBENGINE_DISABLED
     if (m_filterThirdParty) {
         bool result = matchDomain(cookieDomain, domain);
         if (!result) {
@@ -187,6 +188,7 @@ bool CookieJar::rejectCookie(const QString &domain, const QNetworkCookie &cookie
             return true;
         }
     }
+#endif
 
     if (m_filterTrackingCookie && cookie.name().startsWith("__utm")) {
 #ifdef COOKIE_DEBUG

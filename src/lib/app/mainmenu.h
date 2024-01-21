@@ -1,3 +1,4 @@
+/* QupZilla-Qt (2021-2024) http://github.com/dualword/QupZilla-Qt License:GNU GPL v3*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2014-2018 David Rosca <nowrep@gmail.com>
@@ -94,6 +95,7 @@ private slots:
     void aboutQt();
     void showInfoAboutApp();
     void showConfigInfo();
+    void showGPUInfo();
     void reportIssue();
 
     // Other actions

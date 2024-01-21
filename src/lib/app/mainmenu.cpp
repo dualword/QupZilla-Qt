@@ -1,4 +1,4 @@
-/* QupZilla-Qt (2021) http://github.com/dualword/QupZilla-Qt License:GNU GPL*/
+/* QupZilla-Qt (2021-2024) http://github.com/dualword/QupZilla-Qt License:GNU GPL v3*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2014-2018 David Rosca <nowrep@gmail.com>
@@ -339,6 +339,13 @@ void MainMenu::showConfigInfo()
     }
 }
 
+void MainMenu::showGPUInfo()
+{
+    if (m_window) {
+        m_window->tabWidget()->addView(QUrl(QSL("chrome://gpu/")), Qz::NT_CleanSelectedTab);
+    }
+}
+
 void MainMenu::reportIssue()
 {
     if (m_window) {
@@ -580,7 +587,8 @@ void MainMenu::init()
 
     ADD_ACTION("Help/InfoAboutApp", m_menuHelp, QIcon::fromTheme(QSL("help-contents")), tr("Information about application"), SLOT(showInfoAboutApp()), "");
     ADD_ACTION("Help/ConfigInfo", m_menuHelp, QIcon(), tr("Configuration Information"), SLOT(showConfigInfo()), "");
-	#ifndef Q_OS_MACOS
+    ADD_ACTION("Help/GPUInfo", m_menuHelp, QIcon(), tr("GPU Information"), SLOT(showGPUInfo()), "");
+    #ifndef Q_OS_MACOS
     	m_menuHelp->addSeparator();
     	m_menuHelp->addAction(m_actions[QSL("Standard/About")]);
 	#endif

@@ -1,4 +1,4 @@
-/* QupZilla-Qt (2021) http://github.com/dualword/QupZilla-Qt License:GNU GPL*/
+/* QupZilla-Qt (2021-2024) http://github.com/dualword/QupZilla-Qt License:GNU GPL v3*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2010-2017 David Rosca <nowrep@gmail.com>
@@ -36,13 +36,14 @@ CookieJar::CookieJar(QObject* parent)
 {
     loadSettings();
     m_client->loadAllCookies();
-
-#if QT_VERSION >= QT_VERSION_CHECK(5, 11, 0) // TODO
-    //m_client->setCookieFilter(std::bind(&CookieJar::cookieFilter, this, std::placeholders::_1));
-#endif
-
+    m_client->setCookieFilter(std::bind(&CookieJar::cookieFilter, this, std::placeholders::_1));
     connect(m_client, &QWebEngineCookieStore::cookieAdded, this, &CookieJar::slotCookieAdded);
     connect(m_client, &QWebEngineCookieStore::cookieRemoved, this, &CookieJar::slotCookieRemoved);
+}
+
+CookieJar::~CookieJar()
+{
+    m_client->setCookieFilter(nullptr);
 }
 
 void CookieJar::loadSettings()
@@ -50,8 +51,8 @@ void CookieJar::loadSettings()
     Settings settings;
     settings.beginGroup("Cookie-Settings");
     m_allowCookies = settings.value("allowCookies", true).toBool();
-    m_filterThirdParty = settings.value("filterThirdPartyCookies", false).toBool();
-    m_filterTrackingCookie = settings.value("filterTrackingCookie", false).toBool();
+    m_filterThirdParty = settings.value("filterThirdPartyCookies", true).toBool();
+    m_filterTrackingCookie = settings.value("filterTrackingCookie", true).toBool();
     m_whitelist = settings.value("whitelist", QStringList()).toStringList();
     m_blacklist = settings.value("blacklist", QStringList()).toStringList();
     settings.endGroup();
@@ -121,8 +122,7 @@ void CookieJar::slotCookieRemoved(const QNetworkCookie &cookie)
         emit cookieRemoved(cookie);
 }
 
-#if QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
-void CookieJar::cookieFilter(QWebEngineCookieStore::FilterRequest &request) const
+bool CookieJar::cookieFilter(const QWebEngineCookieStore::FilterRequest &request) const
 {
     if (!m_allowCookies) {
         bool result = listMatchesDomain(m_whitelist, request.origin.host());
@@ -130,8 +130,7 @@ void CookieJar::cookieFilter(QWebEngineCookieStore::FilterRequest &request) cons
 #ifdef COOKIE_DEBUG
             qDebug() << "not in whitelist" << request.origin;
 #endif
-            //request.accepted = false;
-            return;
+            return false;
         }
     }
 
@@ -141,8 +140,7 @@ void CookieJar::cookieFilter(QWebEngineCookieStore::FilterRequest &request) cons
 #ifdef COOKIE_DEBUG
             qDebug() << "found in blacklist" << request.origin.host();
 #endif
-            //request.accepted = false; // TODO
-            return;
+            return false;
         }
     }
 
@@ -150,11 +148,11 @@ void CookieJar::cookieFilter(QWebEngineCookieStore::FilterRequest &request) cons
 #ifdef COOKIE_DEBUG
         qDebug() << "thirdParty" << request.firstPartyUrl << request.origin;
 #endif
-        //request.accepted = false; // TODO
-        return;
+        return false;
     }
+
+    return true;
 }
-#endif
 
 bool CookieJar::rejectCookie(const QString &domain, const QNetworkCookie &cookie, const QString &cookieDomain) const
 {
@@ -180,7 +178,6 @@ bool CookieJar::rejectCookie(const QString &domain, const QNetworkCookie &cookie
         }
     }
 
-#if QTWEBENGINE_DISABLED
     if (m_filterThirdParty) {
         bool result = matchDomain(cookieDomain, domain);
         if (!result) {
@@ -190,7 +187,6 @@ bool CookieJar::rejectCookie(const QString &domain, const QNetworkCookie &cookie
             return true;
         }
     }
-#endif
 
     if (m_filterTrackingCookie && cookie.name().startsWith("__utm")) {
 #ifdef COOKIE_DEBUG

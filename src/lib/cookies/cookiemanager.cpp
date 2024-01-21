@@ -1,4 +1,4 @@
-/* QupZilla-Qt (2021) http://github.com/dualword/QupZilla-Qt License:GNU GPL*/
+/* QupZilla-Qt (2021-2024) http://github.com/dualword/QupZilla-Qt License:GNU GPL v3*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2010-2018 David Rosca <nowrep@gmail.com>
@@ -69,16 +69,12 @@ CookieManager::CookieManager(QWidget *parent)
     Settings settings;
     settings.beginGroup("Cookie-Settings");
     ui->saveCookies->setChecked(settings.value("allowCookies", true).toBool());
-    ui->filter3rdParty->setChecked(settings.value("filterThirdPartyCookies", false).toBool());
-    ui->filterTracking->setChecked(settings.value("filterTrackingCookie", false).toBool());
+    ui->filter3rdParty->setChecked(settings.value("filterThirdPartyCookies", true).toBool());
+    ui->filterTracking->setChecked(settings.value("filterTrackingCookie", true).toBool());
     ui->deleteCookiesOnClose->setChecked(settings.value("deleteCookiesOnClose", true).toBool());
     ui->whiteList->addItems(settings.value("whitelist", QStringList()).toStringList());
     ui->blackList->addItems(settings.value("blacklist", QStringList()).toStringList());
     settings.endGroup();
-
-#if QT_VERSION < QT_VERSION_CHECK(5, 11, 0)
-    ui->filter3rdParty->hide();
-#endif
 
     ui->search->setPlaceholderText(tr("Search"));
     ui->cookieTree->setDefaultItemShowMode(TreeWidget::ItemsCollapsed);

@@ -1,3 +1,4 @@
+/* QupZilla-Qt (2021-2024) http://github.com/dualword/QupZilla-Qt License:GNU GPL v3*/
 /* ============================================================
 * QupZilla - WebKit based browser
 * Copyright (C) 2010-2016  David Rosca <nowrep@gmail.com>
@@ -32,6 +33,7 @@ class QUPZILLA_EXPORT CookieJar : public QObject
 
 public:
     explicit CookieJar(QObject* parent = 0);
+    ~CookieJar();
 
     void loadSettings();
 
@@ -53,10 +55,7 @@ protected:
 private:
     void slotCookieAdded(const QNetworkCookie &cookie);
     void slotCookieRemoved(const QNetworkCookie &cookie);
-
-#if QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
-    void cookieFilter(QWebEngineCookieStore::FilterRequest &request) const;
-#endif
+    bool cookieFilter(const QWebEngineCookieStore::FilterRequest &request) const;
 
     bool acceptCookie(const QUrl &firstPartyUrl, const QByteArray &cookieLine, const QUrl &cookieSource) const;
     bool rejectCookie(const QString &domain, const QNetworkCookie &cookie, const QString &cookieDomain) const;

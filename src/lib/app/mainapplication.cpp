@@ -1,4 +1,4 @@
-/* QupZilla-Qt (2021-2023) http://github.com/dualword/QupZilla-Qt License:GNU GPL v3*/
+/* QupZilla-Qt (2021-2024) http://github.com/dualword/QupZilla-Qt License:GNU GPL v3*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2010-2018 David Rosca <nowrep@gmail.com>
@@ -920,10 +920,7 @@ void MainApplication::loadSettings()
     webSettings->setAttribute(QWebEngineSettings::LocalContentCanAccessRemoteUrls, false);
     webSettings->setAttribute(QWebEngineSettings::FocusOnNavigationEnabled, false);
     webSettings->setAttribute(QWebEngineSettings::LocalStorageEnabled, false);
-
-#if QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
     webSettings->setUnknownUrlSchemePolicy(QWebEngineSettings::AllowAllUnknownUrlSchemes);
-#endif
     webSettings->setDefaultTextEncoding(settings.value("DefaultEncoding", webSettings->defaultTextEncoding()).toString());
 
     setWheelScrollLines(settings.value("wheelScrollLines", wheelScrollLines()).toInt());

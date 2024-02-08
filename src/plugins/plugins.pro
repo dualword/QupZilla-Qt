@@ -42,3 +42,4 @@ outOfDirPlugins = $$(QUPZILLA_PLUGINS_SRCDIR)
 
 # QtWebEngine disable
 disablePlugin(AccessKeysNavigation)
+disablePlugin(Readability)

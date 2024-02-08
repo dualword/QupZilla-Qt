@@ -1,3 +1,4 @@
+/* QupZilla-Qt (2021-2024) http://github.com/dualword/QupZilla-Qt License:GNU GPL v3*/
 /* ============================================================
 * QupZilla - WebKit based browser
 * Copyright (C) 2010-2014  David Rosca <nowrep@gmail.com>
@@ -138,6 +139,13 @@ void BookmarksManager::createContextMenu(const QPoint &pos)
         actNewPrivateWindow->setDisabled(true);
     }
 
+    foreach (BookmarkItem* item, items) {
+        if (item->isUrl()) {
+        	actNewTab->setDisabled(false);
+            break;
+        }
+    }
+
     menu.exec(pos);
 }
 
@@ -149,8 +157,12 @@ void BookmarksManager::openBookmark(BookmarkItem* item)
 
 void BookmarksManager::openBookmarkInNewTab(BookmarkItem* item)
 {
-    item = item ? item : m_selectedBookmark;
-    BookmarksTools::openBookmarkInNewTab(getQupZilla(), item);
+    QList<BookmarkItem*> items = ui->tree->selectedBookmarks();
+    foreach (BookmarkItem* item, items) {
+        if (item->isUrl()) {
+        	BookmarksTools::openBookmarkInNewTab(getQupZilla(), item);
+        }
+    }
 }
 
 void BookmarksManager::openBookmarkInNewWindow(BookmarkItem* item)

@@ -2,8 +2,8 @@
 // @name          youtube-expand-description
 // @description   Expands the description of the video
 // @match         https://www.youtube.com/watch*
-// @author        https://github.com/dualword/Qupzilla-Qt/
-// @namespace     https://github.com/dualword/Qupzilla-Qt/
+// @author        https://github.com/dualword/QupZillKa/
+// @namespace     https://github.com/dualword/QupZillKa/
 // @version       0.1
 // @license       MIT
 // ==/UserScript==

@@ -1,4 +1,4 @@
-/* QupZilla-Qt (2021-2024) http://github.com/dualword/QupZilla-Qt License:GNU GPL v3*/
+/* QupZillKa (2021-2024) http://github.com/dualword/QupZillKa License:GNU GPL v3*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2010-2018 David Rosca <nowrep@gmail.com>
@@ -110,7 +110,7 @@ MainApplication::MainApplication(int &argc, char** argv)
     setAttribute(Qt::AA_UseHighDpiPixmaps);
     setAttribute(Qt::AA_DontCreateNativeWidgetSiblings);
 
-    setApplicationName(QLatin1String("QupZilla-Qt"));
+    setApplicationName(QLatin1String("QupZillKa"));
     setOrganizationDomain(QLatin1String("qupzilla"));
     setWindowIcon(QIcon::fromTheme(QSL("qupzilla"), QIcon(QSL(":icons/exeicons/qupzilla-window.png"))));
     setDesktopFileName(QSL("org.qupzilla.QupZilla"));

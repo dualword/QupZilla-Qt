@@ -1,6 +1,6 @@
 
 Copy userscripts to "~/.config/qupzilla/profiles/default/extensions/greasemonkey".  
-Tested with Qupzilla-Qt.  
+Tested with QupZillKa.  
 License: MIT.  
 
 ---

@@ -1,4 +1,4 @@
-/* QupZilla-Qt (2023) http://github.com/dualword/QupZilla-Qt License:GNU GPL version 3*/
+/* QupZillKa (2023) http://github.com/dualword/QupZillKa License:GNU GPL version 3*/
 
 #ifndef SRC_PLUGINS_NETWORKTRAFFIC_SRC_NETWORKTRAFFICSIDEBAR_H_
 #define SRC_PLUGINS_NETWORKTRAFFIC_SRC_NETWORKTRAFFICSIDEBAR_H_

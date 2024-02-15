@@ -1,4 +1,4 @@
-/* QupZilla-Qt (2023) http://github.com/dualword/QupZilla-Qt License:GNU GPL*/
+/* QupZillKa (2023) http://github.com/dualword/QupZillKa License:GNU GPL*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2010-2018 David Rosca <nowrep@gmail.com>
@@ -593,7 +593,7 @@ void WebTab::titleWasChanged(const QString &title)
     }
 
     if (m_isCurrentTab) {
-        m_window->setWindowTitle(tr("%1 - QupZilla-Qt").arg(title));
+        m_window->setWindowTitle(tr("%1 - QupZillKa").arg(title));
     }
 
     m_tabBar->setTabText(tabIndex(), title);

@@ -1,4 +1,4 @@
-/* QupZilla-Qt (2021) http://github.com/dualword/QupZilla-Qt License:GNU GPL*/
+/* QupZillKa (2021) http://github.com/dualword/QupZillKa License:GNU GPL*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2010-2018 David Rosca <nowrep@gmail.com>
@@ -56,8 +56,8 @@ void AboutDialog::showAbout()
     ui->authorsButton->setText(tr("Authors and Contributors"));
     if (m_aboutHtml.isEmpty()) {
         m_aboutHtml += "<center><div style='margin:20px;'>";
-        m_aboutHtml += "QupZilla-Qt - modified version of QupZilla browser<br/>";
-        m_aboutHtml += "Source code: <a href='https://github.com/dualword/QupZilla-Qt'>https://github.com/dualword/QupZilla-Qt</a><hr/>";
+        m_aboutHtml += "QupZillKa - modified version of QupZilla browser<br/>";
+        m_aboutHtml += "Source code: <a href='https://github.com/dualword/QupZillKa'>https://github.com/dualword/QupZillKa</a><hr/>";
         m_aboutHtml += "Information about QupZilla browser:";
         m_aboutHtml += tr("<p><b>Application version %1</b>").arg(
 #ifdef GIT_REVISION

@@ -1,4 +1,4 @@
-/* QupZilla-Qt (2021-2024) http://github.com/dualword/QupZilla-Qt License:GNU GPL v3*/
+/* QupZillKa (2021-2024) http://github.com/dualword/QupZillKa License:GNU GPL v3*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2014-2018 David Rosca <nowrep@gmail.com>
@@ -466,7 +466,7 @@ void MainMenu::init()
     m_actions[QSL(name)] = action
 
     // Standard actions - needed on Mac to be placed correctly in "application" menu
-    QAction* action = new QAction(QIcon::fromTheme(QSL("help-about")), tr("&About QupZilla-Qt"), this);
+    QAction* action = new QAction(QIcon::fromTheme(QSL("help-about")), tr("&About QupZillKa"), this);
     action->setMenuRole(QAction::AboutRole);
     connect(action, SIGNAL(triggered()), this, SLOT(showAboutDialog()));
     m_actions[QSL("Standard/About")] = action;

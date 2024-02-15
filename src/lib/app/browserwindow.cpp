@@ -1,4 +1,4 @@
-/* QupZilla-Qt (2023) http://github.com/dualword/QupZilla-Qt License:GNU GPL*/
+/* QupZillKa (2023) http://github.com/dualword/QupZillKa License:GNU GPL*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2010-2018 David Rosca <nowrep@gmail.com>
@@ -204,7 +204,7 @@ BrowserWindow::BrowserWindow(Qz::BrowserWindowType type, const QUrl &startUrl)
     setAttribute(Qt::WA_DontCreateNativeAncestors);
 
     setObjectName("mainwindow");
-    setWindowTitle(tr("QupZilla-Qt"));
+    setWindowTitle(tr("QupZillKa"));
     setProperty("private", mApp->isPrivate());
 
     setupUi();
@@ -220,10 +220,10 @@ BrowserWindow::BrowserWindow(Qz::BrowserWindowType type, const QUrl &startUrl)
     QTimer::singleShot(0, this, SLOT(postLaunch()));
 
     if (mApp->isPrivate()) {
-        QzTools::setWmClass("QupZilla-Qt Browser (Private Window)", this);
+        QzTools::setWmClass("QupZillKa Browser (Private Window)", this);
     }
     else {
-        QzTools::setWmClass("QupZilla-Qt Browser", this);
+        QzTools::setWmClass("QupZillKa Browser", this);
     }
 }
 
@@ -962,9 +962,9 @@ void BrowserWindow::currentTabChanged()
 
     const QString title = view->webTab()->title(/*allowEmpty*/true);
     if (title.isEmpty()) {
-        setWindowTitle(tr("QupZilla-Qt"));
+        setWindowTitle(tr("QupZillKa"));
     } else {
-        setWindowTitle(tr("%1 - QupZilla-Qt").arg(title));
+        setWindowTitle(tr("%1 - QupZillKa").arg(title));
     }
     m_ipLabel->setText(view->getIp());
     view->setFocus();

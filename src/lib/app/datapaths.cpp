@@ -1,4 +1,4 @@
-/* QupZilla-Qt (2021-2023) http://github.com/dualword/QupZilla-Qt License:GNU GPL v3*/
+/* QupZillKa (2021-2023) http://github.com/dualword/QupZillKa License:GNU GPL v3*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2014-2018 David Rosca <nowrep@gmail.com>

@@ -1,4 +1,4 @@
-/* QupZilla-Qt (2023) http://github.com/dualword/QupZilla-Qt License:GNU GPL*/
+/* QupZillKa (2023) http://github.com/dualword/QupZillKa License:GNU GPL*/
 /* ============================================================
 * StatusBarIcons - Extra icons in statusbar for QupZilla
 * Copyright (C) 2013-2017 David Rosca <nowrep@gmail.com>

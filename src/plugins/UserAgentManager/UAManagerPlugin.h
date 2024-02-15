@@ -1,4 +1,4 @@
-/* QupZilla-Qt (2021) http://github.com/dualword/QupZilla-Qt License:GNU GPL*/
+/* QupZillKa (2021) http://github.com/dualword/QupZillKa License:GNU GPL*/
 
 #ifndef SRC_PLUGINS_USERAGENTMANAGER_UAMANAGERPLUGIN_H_
 #define SRC_PLUGINS_USERAGENTMANAGER_UAMANAGERPLUGIN_H_

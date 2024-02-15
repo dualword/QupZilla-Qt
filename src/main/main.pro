@@ -2,8 +2,8 @@ include(../defines.pri)
 
 QT += webenginecore webenginewidgets network widgets sql
 
-TARGET = qupzilla
-mac: TARGET = QupZilla
+TARGET = qupzillka
+mac: TARGET = QupZillKa
 
 TEMPLATE = app
 

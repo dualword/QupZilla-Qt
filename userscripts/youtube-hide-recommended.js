@@ -2,8 +2,8 @@
 // @name          youtube-hide-recommended
 // @description   Hides recommended video sidebar
 // @match         https://www.youtube.com/watch*
-// @author        https://github.com/dualword/Qupzilla-Qt/
-// @namespace     https://github.com/dualword/Qupzilla-Qt/
+// @author        https://github.com/dualword/QupZillKa/
+// @namespace     https://github.com/dualword/QupZillKa/
 // @version       0.1
 // @license       MIT
 // ==/UserScript==

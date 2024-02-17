@@ -1,0 +1,3 @@
+MailHandle TODO
+ * load links in new tab (Do we really need this?)
+ * optimize code in schemehandler.cpp and make it less ugly

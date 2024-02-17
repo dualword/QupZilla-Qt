@@ -43,3 +43,6 @@ outOfDirPlugins = $$(QUPZILLA_PLUGINS_SRCDIR)
 # QtWebEngine disable
 disablePlugin(AccessKeysNavigation)
 disablePlugin(Readability)
+disablePlugin(CopyTitle)
+disablePlugin(MailHandle)
+disablePlugin(Videoner)

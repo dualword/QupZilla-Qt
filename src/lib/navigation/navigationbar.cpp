@@ -1,3 +1,4 @@
+/* QupZillKa (2021-2024) http://github.com/dualword/QupZillKa License:GNU GPL v3*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2010-2018 David Rosca <nowrep@gmail.com>
@@ -66,9 +67,8 @@ NavigationBar::NavigationBar(BrowserWindow* window)
     setObjectName(QSL("navigationbar"));
 
     m_layout = new QHBoxLayout(this);
-    m_layout->setMargin(style()->pixelMetric(QStyle::PM_ToolBarItemMargin, 0, this)
-                          + style()->pixelMetric(QStyle::PM_ToolBarFrameWidth, 0, this));
-    m_layout->setSpacing(style()->pixelMetric(QStyle::PM_ToolBarItemSpacing, 0, this));
+    m_layout->setContentsMargins(0,0,0,0);
+    m_layout->setSpacing(0);
     setLayout(m_layout);
 
     m_buttonBack = new ToolButton(this);

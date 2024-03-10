@@ -1,4 +1,4 @@
-/* QupZillKa (2021) http://github.com/dualword/QupZillKa License:GNU GPL*/
+/* QupZillKa (2021-2024) http://github.com/dualword/QupZillKa License:GNU GPL v3*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2010-2018 David Rosca <nowrep@gmail.com>
@@ -34,7 +34,7 @@ AboutDialog::AboutDialog(QWidget* parent)
     setAttribute(Qt::WA_DeleteOnClose);
 
     ui->setupUi(this);
-    ui->label->setPixmap(QIcon(QSL(":icons/other/about.png")).pixmap(300, 130));
+    ui->label->setPixmap(QIcon(QSL(":icons/other/about.png")).pixmap(253, 170));
 
     connect(ui->buttonBox, SIGNAL(clicked(QAbstractButton*)), this, SLOT(close()));
     connect(ui->authorsButton, SIGNAL(clicked()), this, SLOT(buttonClicked()));

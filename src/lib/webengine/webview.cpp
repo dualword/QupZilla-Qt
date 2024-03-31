@@ -1,4 +1,4 @@
-/* QupZillKa (2021-2023) http://github.com/dualword/QupZillKa License:GNU GPL version 3*/
+/* QupZillKa (2021-2024) http://github.com/dualword/QupZillKa License:GNU GPL v3*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2010-2018 David Rosca <nowrep@gmail.com>
@@ -850,7 +850,7 @@ void WebView::createSelectedTextContextMenu(QMenu* menu, const WebHitTestResult 
     menu->addAction(gtwact);
 
     Action* dictact = new Action(QIcon::fromTheme("accessories-dictionary"), tr("Dictionary") + " (Wiktionary)");
-    dictact->setData(QUrl("http://" + (!langCode.isEmpty() ? langCode + "." : langCode) + "wiktionary.org/wiki/Special:Search?search=" + selectedText));
+    dictact->setData(QUrl("https://" + (!langCode.isEmpty() ? langCode + "." : langCode) + "wiktionary.org/wiki/Special:Search?search=" + selectedText));
     connect(dictact, SIGNAL(triggered()), this, SLOT(openUrlInSelectedTab()));
     connect(dictact, SIGNAL(ctrlTriggered()), this, SLOT(openUrlInBackgroundTab()));
     menu->addAction(dictact);
@@ -866,10 +866,14 @@ void WebView::createSelectedTextContextMenu(QMenu* menu, const WebHitTestResult 
     if (isUrlValid(guessedUrl)) {
         Action* act = new Action(QIcon::fromTheme("document-open-remote"), tr("Go to &web address"));
         act->setData(guessedUrl);
-
         connect(act, SIGNAL(triggered()), this, SLOT(openActionUrl()));
         connect(act, SIGNAL(ctrlTriggered()), this, SLOT(userDefinedOpenUrlInNewTab()));
         menu->addAction(act);
+
+        Action* act1 = new Action(QIcon::fromTheme("document-open-remote"), tr("Open web address in new tab"));
+        act1->setData(guessedUrl);
+        connect(act1, SIGNAL(triggered()), this, SLOT(openUrlInSelectedTab()));
+        menu->addAction(act1);
     }
 
     menu->addSeparator();

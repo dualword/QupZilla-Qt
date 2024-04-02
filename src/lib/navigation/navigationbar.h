@@ -115,6 +115,7 @@ private:
     Menu *m_menuTools;
     ToolButton* m_supMenu;
     ToolButton *m_exitFullscreen;
+    ToolButton *m_toggleJS;
 
     struct WidgetData {
         QString id;

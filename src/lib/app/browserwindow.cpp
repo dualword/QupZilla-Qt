@@ -1,4 +1,4 @@
-/* QupZillKa (2023) http://github.com/dualword/QupZillKa License:GNU GPL*/
+/* QupZillKa (2021-2024) http://github.com/dualword/QupZillKa License:GNU GPL v3*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2010-2018 David Rosca <nowrep@gmail.com>
@@ -575,9 +575,9 @@ void BrowserWindow::loadSettings()
     //Browser Window settings
     settings.beginGroup("Browser-View-Settings");
     bool showStatusBar = settings.value("showStatusBar", false).toBool();
-    bool showBookmarksToolbar = settings.value("showBookmarksToolbar", false).toBool();
+    bool showBookmarksToolbar = settings.value("showBookmarksToolbar", true).toBool();
     bool showNavigationToolbar = settings.value("showNavigationToolbar", true).toBool();
-    bool showMenuBar = settings.value("showMenubar", false).toBool();
+    bool showMenuBar = settings.value("showMenubar", true).toBool();
 
     // Make sure both menubar and navigationbar are not hidden
     // Fixes #781

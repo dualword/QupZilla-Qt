@@ -40,6 +40,8 @@
 #include <QWebEngineHistory>
 #include <QMouseEvent>
 #include <QStyleOption>
+#include <QWebEngineProfile>
+#include <QWebEngineSettings>
 
 static QString titleForUrl(QString title, const QUrl &url)
 {
@@ -159,6 +161,17 @@ NavigationBar::NavigationBar(BrowserWindow* window)
     m_navigationSplitter->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Maximum);
     m_navigationSplitter->setCollapsible(0, false);
 
+    m_toggleJS = new ToolButton(this);
+    m_toggleJS->setObjectName("navigation-button-togglejs");
+    m_toggleJS->setToolTip(tr("Toggle JavaScript"));
+    m_toggleJS->setCheckable(true);
+    m_toggleJS->setChecked(mApp->webProfile()->settings()->testAttribute(QWebEngineSettings::JavascriptEnabled));
+    m_toggleJS->setText("JS");
+    m_toggleJS->setToolbarButtonLook(true);
+    m_toggleJS->setFocusPolicy(Qt::NoFocus);
+    m_toggleJS->setAutoRaise(true);
+    m_toggleJS->setVisible(true);
+
     m_exitFullscreen = new ToolButton(this);
     m_exitFullscreen->setObjectName("navigation-button-exitfullscreen");
     m_exitFullscreen->setToolTip(tr("Exit Fullscreen"));
@@ -186,12 +199,18 @@ NavigationBar::NavigationBar(BrowserWindow* window)
     connect(buttonAddTab, SIGNAL(clicked()), m_window, SLOT(addTab()));
     connect(buttonAddTab, SIGNAL(middleMouseClicked()), m_window->tabWidget(), SLOT(addTabFromClipboard()));
     connect(m_exitFullscreen, SIGNAL(clicked(bool)), m_window, SLOT(toggleFullScreen()));
+    connect(m_toggleJS, &QToolButton::clicked, this, [=]() {
+    	mApp->webProfile()->settings()->setAttribute(QWebEngineSettings::JavascriptEnabled,
+    			!mApp->webProfile()->settings()->testAttribute(QWebEngineSettings::JavascriptEnabled));
+    	m_toggleJS->setChecked(mApp->webProfile()->settings()->testAttribute(QWebEngineSettings::JavascriptEnabled));
+    });
 
     addWidget(backNextWidget, QSL("button-backforward"), tr("Back and Forward buttons"));
     addWidget(m_reloadStop, QSL("button-reloadstop"), tr("Reload button"));
     addWidget(buttonHome, QSL("button-home"), tr("Home button"));
     addWidget(buttonAddTab, QSL("button-addtab"), tr("Add tab button"));
     addWidget(m_navigationSplitter, QSL("locationbar"), tr("Address and Search bar"));
+    addWidget(m_toggleJS, QSL("button-togglejs"), tr("Toggle JavaScript"));
     addWidget(buttonTools, QSL("button-tools"), tr("Tools button"));
     addWidget(m_exitFullscreen, QSL("button-exitfullscreen"), tr("Exit Fullscreen button"));
 
@@ -500,6 +519,7 @@ void NavigationBar::loadSettings()
         QSL("button-home"),
         QSL("locationbar"),
         QSL("button-downloads"),
+		QSL("button-togglejs"),
         QSL("adblock-icon"),
         QSL("button-tools")
     };

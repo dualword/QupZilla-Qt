@@ -12,6 +12,6 @@ License: GNU General Public License (Version 3)
 Source code: https://github.com/dualword/QupZillKa/  
 
 <p align="middle">
-<img src="screenshot.png" width="150" alt="Network traffic monitor" title="Network traffic monitor"/>
-<img src="youtube.png" width="150" alt="Youtube" title="Youtube"/>
+<img src="screenshot.png" height="125" width="150" alt="Network traffic monitor" title="Network traffic monitor"/>
+<img src="youtube.png" height="125" width="150" alt="Youtube" title="Youtube"/>
 </p>

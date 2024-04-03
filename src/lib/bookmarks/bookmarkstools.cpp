@@ -1,4 +1,4 @@
-/* QupZillKa (2021-2023) http://github.com/dualword/QupZillKa License:GNU GPL v3*/
+/* QupZillKa (2021-2024) http://github.com/dualword/QupZillKa License:GNU GPL v3*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2014-2017 David Rosca <nowrep@gmail.com>
@@ -272,14 +272,13 @@ void BookmarksTools::openBookmark(BrowserWindow* window, BookmarkItem* item)
 {
     Q_ASSERT(window);
 
-    if (!item || !item->isUrl()) {
+    if (!item) {
         return;
     }
 
     if (item->isFolder()) {
         openFolderInTabs(window, item);
-    }
-    else if (item->isUrl()) {
+    } else if (item->isUrl()) {
         item->updateVisitCount();
         window->loadAddress(item->url());
     }
@@ -435,6 +434,18 @@ void BookmarksTools::addFolderContentsToMenu(QObject *receiver, Menu *menu, Book
 
     if (menu->isEmpty()) {
         menu->addAction(Bookmarks::tr("Empty"))->setDisabled(true);
+        return;
+    }
+
+    if (folder->type() != BookmarkItem::Type::Root){
+        Action* act = new Action(menu);
+        QString title = QFontMetrics(act->font()).elidedText("Open All", Qt::ElideRight, 250);
+        act->setText(title);
+        act->setData(QVariant::fromValue<void*>(static_cast<void*>(folder)));
+        act->setIconVisibleInMenu(true);
+        act->setStatusTip("Open all bookmarks from this folder");
+        QObject::connect(act, SIGNAL(triggered()), receiver, SLOT(bookmarkActivated()));
+        menu->addAction(act);
     }
 }
 

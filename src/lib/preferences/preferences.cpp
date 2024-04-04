@@ -201,10 +201,10 @@ Preferences::Preferences(BrowserWindow* window)
 
     //APPEREANCE
     settings.beginGroup("Browser-View-Settings");
-    ui->showStatusbar->setChecked(settings.value("showStatusBar", false).toBool());
+    ui->showStatusbar->setChecked(settings.value("showStatusBar", true).toBool());
     // NOTE: instantBookmarksToolbar and showBookmarksToolbar cannot be both enabled at the same time
     ui->instantBookmarksToolbar->setChecked(settings.value("instantBookmarksToolbar", false).toBool());
-    ui->showBookmarksToolbar->setChecked(settings.value("showBookmarksToolbar", false).toBool());
+    ui->showBookmarksToolbar->setChecked(settings.value("showBookmarksToolbar", true).toBool());
     ui->instantBookmarksToolbar->setDisabled(settings.value("showBookmarksToolbar", true).toBool());
     ui->showBookmarksToolbar->setDisabled(settings.value("instantBookmarksToolbar").toBool());
     connect(ui->instantBookmarksToolbar, SIGNAL(toggled(bool)), ui->showBookmarksToolbar, SLOT(setDisabled(bool)));
@@ -287,8 +287,8 @@ Preferences::Preferences(BrowserWindow* window)
     allowCacheChanged(ui->allowCache->isChecked());
 
     //PASSWORD MANAGER
-    ui->allowPassManager->setChecked(settings.value("SavePasswordsOnSites", true).toBool());
-    ui->autoCompletePasswords->setChecked(settings.value("AutoCompletePasswords", true).toBool());
+    ui->allowPassManager->setChecked(settings.value("SavePasswordsOnSites", false).toBool());
+    ui->autoCompletePasswords->setChecked(settings.value("AutoCompletePasswords", false).toBool());
 
     //PRIVACY
     //Web storage

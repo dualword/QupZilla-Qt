@@ -1041,7 +1041,7 @@ void BrowserWindow::createToolbarsMenu(QMenu* menu)
 
     action = menu->addAction(tr("&Bookmarks Toolbar"), this, SLOT(toggleShowBookmarksToolbar()));
     action->setCheckable(true);
-    action->setChecked(Settings().value("Browser-View-Settings/showBookmarksToolbar").toBool());
+    action->setChecked(m_bookmarksToolbar->isVisible());
 
     menu->addSeparator();
 

@@ -438,6 +438,7 @@ void BookmarksTools::addFolderContentsToMenu(QObject *receiver, Menu *menu, Book
     }
 
     if (folder->type() != BookmarkItem::Type::Root){
+    	menu->addSeparator();
         Action* act = new Action(menu);
         QString title = QFontMetrics(act->font()).elidedText("Open All", Qt::ElideRight, 250);
         act->setText(title);

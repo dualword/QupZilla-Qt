@@ -199,10 +199,17 @@ NavigationBar::NavigationBar(BrowserWindow* window)
     connect(buttonAddTab, SIGNAL(clicked()), m_window, SLOT(addTab()));
     connect(buttonAddTab, SIGNAL(middleMouseClicked()), m_window->tabWidget(), SLOT(addTabFromClipboard()));
     connect(m_exitFullscreen, SIGNAL(clicked(bool)), m_window, SLOT(toggleFullScreen()));
-    connect(m_toggleJS, &QToolButton::clicked, this, [=]() {
-    	mApp->webProfile()->settings()->setAttribute(QWebEngineSettings::JavascriptEnabled,
-    			!mApp->webProfile()->settings()->testAttribute(QWebEngineSettings::JavascriptEnabled));
+    connect(mApp, &MainApplication::settingsReloaded, this, [=]() {
     	m_toggleJS->setChecked(mApp->webProfile()->settings()->testAttribute(QWebEngineSettings::JavascriptEnabled));
+    });
+    connect(m_toggleJS, &QToolButton::clicked, this, [=]() {
+    	bool js = !mApp->webProfile()->settings()->testAttribute(QWebEngineSettings::JavascriptEnabled);
+    	mApp->webProfile()->settings()->setAttribute(QWebEngineSettings::JavascriptEnabled, js);
+    	Settings settings;
+        settings.beginGroup("Web-Browser-Settings");
+        settings.setValue("allowJavaScript", js);
+        settings.endGroup();
+    	m_toggleJS->setChecked(js);
     });
 
     addWidget(backNextWidget, QSL("button-backforward"), tr("Back and Forward buttons"));

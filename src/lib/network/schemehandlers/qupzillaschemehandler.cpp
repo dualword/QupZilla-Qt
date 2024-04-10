@@ -1,3 +1,4 @@
+/* QupZillKa (2021-2024) http://github.com/dualword/QupZillKa License:GNU GPL v3*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2010-2018 David Rosca <nowrep@gmail.com>
@@ -185,7 +186,7 @@ QString QupZillaSchemeReply::startPage()
     }
 
     sPage.append(QzTools::readAllFileContents(":html/start.html"));
-    sPage.replace(QLatin1String("%ABOUT-IMG%"), QzTools::pixmapToDataUrl(QzTools::dpiAwarePixmap(QSL(":icons/other/startpage.png"))).toString());
+    sPage.replace(QLatin1String("%ABOUT-IMG%"), QzTools::pixmapToDataUrl(QzTools::dpiAwarePixmap(QSL(":icons/other/about.png"))).toString());
 
     sPage.replace(QLatin1String("%TITLE%"), tr("Start Page"));
     sPage.replace(QLatin1String("%BUTTON-LABEL%"), tr("Search on Web"));

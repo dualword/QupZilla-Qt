@@ -696,6 +696,7 @@ function addBox(url, title, img_source) {
     var a = document.createElement('a');
     a.setAttribute('href', url);
     a.setAttribute('class', 'boxUrl');
+    a.setAttribute('target', '_blank');
     var span1 = document.createElement('span');
     span1.setAttribute('class', 'boxTitle');
     span1.setAttribute('title', unescapeTitle(title));

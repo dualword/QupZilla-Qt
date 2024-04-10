@@ -129,7 +129,7 @@ Preferences::Preferences(BrowserWindow* window)
     Settings settings;
     //GENERAL URLs
     settings.beginGroup("Web-URL-Settings");
-    m_homepage = settings.value("homepage", QUrl(QSL("qupzilla:speeddial"))).toUrl();
+    m_homepage = settings.value("homepage", QUrl(QSL("qupzilla:start"))).toUrl();
     m_newTabUrl = settings.value("newTabUrl", QUrl(QSL("qupzilla:speeddial"))).toUrl();
     ui->homepage->setText(m_homepage.toEncoded());
     ui->newTabUrl->setText(m_newTabUrl.toEncoded());

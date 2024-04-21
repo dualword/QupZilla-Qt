@@ -40,6 +40,7 @@
 #include <QProcess>
 #include <QMessageBox>
 #include <QUrlQuery>
+#include <QPainterPath>
 
 #ifdef QZ_WS_X11
 #include <QX11Info>

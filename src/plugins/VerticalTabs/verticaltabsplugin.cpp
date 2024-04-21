@@ -30,6 +30,7 @@
 
 #include <QSettings>
 #include <QTranslator>
+#include <QFile>
 
 VerticalTabsPlugin::VerticalTabsPlugin()
     : QObject()

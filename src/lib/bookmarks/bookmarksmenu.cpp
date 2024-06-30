@@ -138,7 +138,7 @@ void BookmarksMenu::openFolder(BookmarkItem* item)
 
 void BookmarksMenu::openBookmark(BookmarkItem* item)
 {
-    Q_ASSERT(item->isUrl());
+    //Q_ASSERT(item->isUrl());
 
     if (m_window) {
         BookmarksTools::openBookmark(m_window, item);

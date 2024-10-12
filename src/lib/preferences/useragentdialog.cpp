@@ -1,4 +1,4 @@
-/* QupZillKa (2023) http://github.com/dualword/QupZillKa License:GNU GPL*/
+/* QupZillKa (2024) http://github.com/dualword/QupZillKa License:GNU GPL*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2010-2018 David Rosca <nowrep@gmail.com>
@@ -54,7 +54,13 @@ UserAgentDialog::UserAgentDialog(QWidget* parent)
     m_knownUserAgents << QString("Opera/9.80 (%1) Presto/2.12.388 Version/12.16").arg(os)
                       << QString("Mozilla/5.0 (%1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/%2 Safari/537.36").arg(os, chromeVersion)
                       << QString("Mozilla/5.0 (%1) AppleWebKit/602.3.12 (KHTML, like Gecko) Version/10.0.2 Safari/602.3.12").arg(os)
-                      << QString("Mozilla/5.0 (%1; rv:57.0) Gecko/20100101 Firefox/57.0").arg(os);
+                      << QString("Mozilla/5.0 (%1; rv:52.0) Gecko/20100101 Firefox/52.0").arg(os)
+                      << QString("Mozilla/5.0 (%1; rv:60.0) Gecko/20100101 Firefox/60.0").arg(os)
+                      << QString("Mozilla/5.0 (%1; rv:68.0) Gecko/20100101 Firefox/68.0").arg(os)
+                      << QString("Mozilla/5.0 (%1; rv:78.0) Gecko/20100101 Firefox/78.0").arg(os)
+                      << QString("Mozilla/5.0 (%1; rv:91.0) Gecko/20100101 Firefox/91.0").arg(os)
+                      << QString("Mozilla/5.0 (%1; rv:102.0) Gecko/20100101 Firefox/102.0").arg(os)
+                      << QString("Mozilla/5.0 (%1; rv:115.0) Gecko/20100101 Firefox/115.0").arg(os);
 
     ui->globalComboBox->addItems(m_knownUserAgents);
 

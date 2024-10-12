@@ -1,4 +1,4 @@
-/* QupZillKa (2023) http://github.com/dualword/QupZillKa License:GNU GPL*/
+/* QupZillKa (2024) http://github.com/dualword/QupZillKa License:GNU GPL*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2015-2018 David Rosca <nowrep@gmail.com>
@@ -26,7 +26,7 @@
 
 NetworkUrlInterceptor::NetworkUrlInterceptor(QObject *parent)
     : QWebEngineUrlRequestInterceptor(parent)
-    , m_sendDNT(false), m_fparty(false)
+    , m_sendDNT(false), m_fparty(false), m_clearRef(false)
 {
 }
 
@@ -36,6 +36,10 @@ void NetworkUrlInterceptor::interceptRequest(QWebEngineUrlRequestInfo &info)
 
     if (m_sendDNT) {
         info.setHttpHeader(QByteArrayLiteral("DNT"), QByteArrayLiteral("1"));
+    }
+
+    if (m_clearRef) {
+        info.setHttpHeader(QByteArrayLiteral("Referer"),{});
     }
 	
 	if(m_fparty && (info.firstPartyUrl().host() != info.requestUrl().host()))
@@ -91,8 +95,10 @@ void NetworkUrlInterceptor::loadSettings()
     settings.beginGroup("Web-Browser-Settings");
     m_sendDNT = settings.value("DoNotTrack", false).toBool();
     m_fparty = settings.value("FirstParty", false).toBool();
+    m_clearRef = settings.value("ClearRef", false).toBool();
     settings.endGroup();
 
     m_usePerDomainUserAgent = mApp->userAgentManager()->usePerDomainUserAgents();
     m_userAgentsList = mApp->userAgentManager()->perDomainUserAgentsList();
+
 }

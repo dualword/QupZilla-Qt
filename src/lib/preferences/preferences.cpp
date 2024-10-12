@@ -306,6 +306,7 @@ Preferences::Preferences(BrowserWindow* window)
     // Other
     ui->doNotTrack->setChecked(settings.value("DoNotTrack", false).toBool());
     ui->firstParty->setChecked(settings.value("FirstParty", false).toBool());
+    ui->clearRef->setChecked(settings.value("ClearRef", false).toBool());
 
     //CSS Style
     ui->userStyleSheet->setText(settings.value("userStyleSheet", "").toString());
@@ -947,6 +948,7 @@ void Preferences::saveSettings()
     settings.setValue("wheelScrollLines", ui->wheelScroll->value());
     settings.setValue("DoNotTrack", ui->doNotTrack->isChecked());
     settings.setValue("FirstParty", ui->firstParty->isChecked());
+    settings.setValue("ClearRef", ui->clearRef->isChecked());
     settings.setValue("LoadTabsOnActivation", ui->dontLoadTabsUntilSelected->isChecked());
     settings.setValue("DefaultZoomLevel", ui->defaultZoomLevel->currentIndex());
     settings.setValue("XSSAuditing", ui->xssAuditing->isChecked());

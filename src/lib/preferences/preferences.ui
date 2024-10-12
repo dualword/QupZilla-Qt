@@ -145,12 +145,21 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>596</width>
-        <height>457</height>
+        <width>581</width>
+        <height>476</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_4">
-       <property name="margin">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
         <number>0</number>
        </property>
        <item>
@@ -180,7 +189,16 @@
            <item row="4" column="2">
             <widget class="QFrame" name="newTabFrame">
              <layout class="QHBoxLayout" name="horizontalLayout_3">
-              <property name="margin">
+              <property name="leftMargin">
+               <number>0</number>
+              </property>
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <property name="rightMargin">
+               <number>0</number>
+              </property>
+              <property name="bottomMargin">
                <number>0</number>
               </property>
               <item>
@@ -485,7 +503,16 @@
                <string>Themes</string>
               </attribute>
               <layout class="QGridLayout" name="gridLayout_22">
-               <property name="margin">
+               <property name="leftMargin">
+                <number>0</number>
+               </property>
+               <property name="topMargin">
+                <number>0</number>
+               </property>
+               <property name="rightMargin">
+                <number>0</number>
+               </property>
+               <property name="bottomMargin">
                 <number>0</number>
                </property>
                <item row="0" column="0">
@@ -1948,43 +1975,17 @@
          </widget>
          <widget class="QWidget" name="privacyPage">
           <layout class="QGridLayout" name="gridLayout_12">
-           <item row="8" column="0" colspan="3">
-            <widget class="QLabel" name="label_12">
+           <item row="22" column="1" colspan="3">
+            <widget class="QCheckBox" name="doNotTrack">
              <property name="text">
-              <string>&lt;b&gt;Cookies&lt;/b&gt;</string>
+              <string>Send Do Not Track header to servers</string>
              </property>
             </widget>
            </item>
-           <item row="20" column="0" colspan="4">
-            <widget class="QLabel" name="label_50">
+           <item row="12" column="0" colspan="3">
+            <widget class="QLabel" name="label_19">
              <property name="text">
-              <string>&lt;b&gt;Other&lt;/b&gt;</string>
-             </property>
-            </widget>
-           </item>
-           <item row="28" column="0" colspan="4">
-            <spacer name="verticalSpacer_3">
-             <property name="orientation">
-              <enum>Qt::Vertical</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>20</width>
-               <height>40</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-           <item row="16" column="3">
-            <widget class="QPushButton" name="jsOptionsButton">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="text">
-              <string>JavaScript options</string>
+              <string>Manage Cookies</string>
              </property>
             </widget>
            </item>
@@ -1998,8 +1999,8 @@
              </property>
             </widget>
            </item>
-           <item row="12" column="3">
-            <widget class="QPushButton" name="cookieManagerBut">
+           <item row="16" column="3">
+            <widget class="QPushButton" name="jsOptionsButton">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -2007,17 +2008,7 @@
               </sizepolicy>
              </property>
              <property name="text">
-              <string>Cookies Manager</string>
-             </property>
-            </widget>
-           </item>
-           <item row="16" column="0" colspan="3">
-            <widget class="QLabel" name="label_25">
-             <property name="mouseTracking">
-              <bool>false</bool>
-             </property>
-             <property name="text">
-              <string>Manage JavaScript privacy options</string>
+              <string>JavaScript options</string>
              </property>
             </widget>
            </item>
@@ -2037,6 +2028,62 @@
              </property>
             </spacer>
            </item>
+           <item row="19" column="3">
+            <widget class="QPushButton" name="html5permissions">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="text">
+              <string>HTML5 Permissions</string>
+             </property>
+            </widget>
+           </item>
+           <item row="29" column="0" colspan="4">
+            <spacer name="verticalSpacer_3">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item row="16" column="0" colspan="3">
+            <widget class="QLabel" name="label_25">
+             <property name="mouseTracking">
+              <bool>false</bool>
+             </property>
+             <property name="text">
+              <string>Manage JavaScript privacy options</string>
+             </property>
+            </widget>
+           </item>
+           <item row="12" column="3">
+            <widget class="QPushButton" name="cookieManagerBut">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="text">
+              <string>Cookies Manager</string>
+             </property>
+            </widget>
+           </item>
+           <item row="8" column="0" colspan="3">
+            <widget class="QLabel" name="label_12">
+             <property name="text">
+              <string>&lt;b&gt;Cookies&lt;/b&gt;</string>
+             </property>
+            </widget>
+           </item>
            <item row="19" column="0" colspan="3">
             <widget class="QLabel" name="label_63">
              <property name="text">
@@ -2044,10 +2091,17 @@
              </property>
             </widget>
            </item>
-           <item row="12" column="0" colspan="3">
-            <widget class="QLabel" name="label_19">
+           <item row="20" column="0" colspan="4">
+            <widget class="QLabel" name="label_50">
              <property name="text">
-              <string>Manage Cookies</string>
+              <string>&lt;b&gt;Other&lt;/b&gt;</string>
+             </property>
+            </widget>
+           </item>
+           <item row="23" column="1">
+            <widget class="QCheckBox" name="firstParty">
+             <property name="text">
+              <string>Allow requests to the visited domain only</string>
              </property>
             </widget>
            </item>
@@ -2071,30 +2125,10 @@
              </property>
             </widget>
            </item>
-           <item row="19" column="3">
-            <widget class="QPushButton" name="html5permissions">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
+           <item row="24" column="1">
+            <widget class="QCheckBox" name="clearRef">
              <property name="text">
-              <string>HTML5 Permissions</string>
-             </property>
-            </widget>
-           </item>
-           <item row="22" column="1" colspan="3">
-            <widget class="QCheckBox" name="doNotTrack">
-             <property name="text">
-              <string>Send Do Not Track header to servers</string>
-             </property>
-            </widget>
-           </item>
-           <item row="23" column="1">
-            <widget class="QCheckBox" name="firstParty">
-             <property name="text">
-              <string>Allow requests to the visited domain only</string>
+              <string>Clear Referrer</string>
              </property>
             </widget>
            </item>
@@ -2271,7 +2305,16 @@
               </sizepolicy>
              </property>
              <layout class="QHBoxLayout" name="pluginsFrame">
-              <property name="margin">
+              <property name="leftMargin">
+               <number>0</number>
+              </property>
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <property name="rightMargin">
+               <number>0</number>
+              </property>
+              <property name="bottomMargin">
                <number>0</number>
               </property>
              </layout>
@@ -2373,8 +2416,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>98</width>
-                <height>36</height>
+                <width>96</width>
+                <height>30</height>
                </rect>
               </property>
               <layout class="QHBoxLayout" name="horizontalLayout_14">

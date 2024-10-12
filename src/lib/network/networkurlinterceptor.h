@@ -1,4 +1,4 @@
-/* QupZillKa (2023) http://github.com/dualword/QupZillKa License:GNU GPL*/
+/* QupZillKa (2024) http://github.com/dualword/QupZillKa License:GNU GPL*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2015-2018 David Rosca <nowrep@gmail.com>
@@ -42,9 +42,10 @@ public:
 private:
     QMutex m_mutex;
     QList<UrlInterceptor*> m_interceptors;
-    bool m_sendDNT, m_fparty;
+    bool m_sendDNT, m_fparty, m_clearRef;
     bool m_usePerDomainUserAgent = false;
     QHash<QString, QString> m_userAgentsList;
+
 };
 
 #endif // NETWORKURLINTERCEPTOR_H

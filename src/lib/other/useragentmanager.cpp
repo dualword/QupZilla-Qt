@@ -31,7 +31,7 @@ UserAgentManager::UserAgentManager(QObject* parent)
     , m_usePerDomainUserAgent(false)
 {
     m_defaultUserAgent = QWebEngineProfile::defaultProfile()->httpUserAgent();
-    m_defaultUserAgent.replace(QRegularExpression(QSL("QtWebEngine/[^\\s]+")), QSL("QupZillKa/%1").arg(Qz::VERSION));
+    m_defaultUserAgent.replace(QRegularExpression(QSL("QtWebEngine/[^\\s]+")), QSL("QupZilla/%1").arg(Qz::VERSION));
 }
 
 void UserAgentManager::loadSettings()

@@ -1,4 +1,4 @@
-/* QupZillKa (2021-2024) http://github.com/dualword/QupZillKa License:GNU GPL v3*/
+/* QupZillKa (2021-2025) https://github.com/dualword/QupZillKa License:GNU GPL v3*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2010-2018 David Rosca <nowrep@gmail.com>
@@ -78,6 +78,7 @@
 #include <QScrollArea>
 #include <QCollator>
 #include <QTemporaryFile>
+#include <QScreen>
 
 #ifdef QZ_WS_X11
 #include <QX11Info>
@@ -398,7 +399,7 @@ void BrowserWindow::setupUi()
     m_statusBar->addButton(downloadsButton);
     m_navigationToolbar->addToolButton(downloadsButton);
 
-    QDesktopWidget* desktop = mApp->desktop();
+    auto desktop = QGuiApplication::primaryScreen();
     int windowWidth = desktop->availableGeometry().width() / 1.3;
     int windowHeight = desktop->availableGeometry().height() / 1.3;
 
@@ -1013,7 +1014,7 @@ void BrowserWindow::restoreWindow(const SavedWindow &window)
     restoreGeometry(window.windowGeometry);
     restoreUiState(window.windowUiState);
 #ifdef QZ_WS_X11
-    moveToVirtualDesktop(window.virtualDesktop);
+    //moveToVirtualDesktop(window.virtualDesktop);
 #endif
     if (!mApp->isTestModeEnabled()) {
         show(); // Window has to be visible before adding QWebEngineView's

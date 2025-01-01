@@ -1,3 +1,4 @@
+/* QupZillKa (2021-2025) https://github.com/dualword/QupZillKa License:GNU GPL v3*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2017  Razi Alavizadeh <s.r.alavizadeh@gmail.com>
@@ -66,8 +67,8 @@ public slots:
 private slots:
     void aboutToShowSessionsMenu();
     void sessionsDirectoryChanged();
-    void openSession(QString sessionFilePath = QString(), SessionFlags flags = nullptr);
-    void renameSession(QString sessionFilePath = QString(), SessionFlags flags = nullptr);
+    void openSession(QString sessionFilePath = QString(), SessionManager::SessionFlags flags = {});
+    void renameSession(QString sessionFilePath = QString(), SessionManager::SessionFlags flags = {});
     void saveSession();
 
     void replaceSession(const QString &filePath);

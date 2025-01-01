@@ -1,3 +1,4 @@
+/* QupZillKa (2021-2025) https://github.com/dualword/QupZillKa License:GNU GPL v3*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2010-2018 David Rosca <nowrep@gmail.com>
@@ -27,6 +28,7 @@
 #include "networkurlinterceptor.h"
 #include "schemehandlers/qupzillaschemehandler.h"
 #include "schemehandlers/extensionschemehandler.h"
+#include "useragentmanager.h"
 
 #include <QLabel>
 #include <QDialog>
@@ -50,7 +52,7 @@ NetworkManager::NetworkManager(QObject *parent)
 
     // Create url interceptor
     m_urlInterceptor = new NetworkUrlInterceptor(this);
-    mApp->webProfile()->setRequestInterceptor(m_urlInterceptor);
+    mApp->webProfile()->setUrlRequestInterceptor(m_urlInterceptor);
 
     // Create cookie jar
     mApp->cookieJar();
@@ -285,7 +287,7 @@ void NetworkManager::shutdown()
 QNetworkReply *NetworkManager::createRequest(QNetworkAccessManager::Operation op, const QNetworkRequest &request, QIODevice *outgoingData)
 {
     QNetworkRequest req = request;
-    req.setAttribute(QNetworkRequest::SpdyAllowedAttribute, true);
+    req.setHeader(QNetworkRequest::UserAgentHeader, mApp->userAgentManager()->globalUserAgent().toUtf8());
     req.setAttribute(QNetworkRequest::FollowRedirectsAttribute, true);
 
     return QNetworkAccessManager::createRequest(op, req, outgoingData);

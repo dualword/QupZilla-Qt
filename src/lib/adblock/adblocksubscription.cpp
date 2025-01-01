@@ -1,3 +1,4 @@
+/* QupZillKa (2021-2025) https://github.com/dualword/QupZillKa License:GNU GPL v3*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2010-2018 David Rosca <nowrep@gmail.com>
@@ -319,12 +320,12 @@ void AdBlockCustomList::saveSubscription()
 
     QTextStream textStream(&file);
     textStream.setCodec("UTF-8");
-    textStream << "Title: " << title() << endl;
-    textStream << "Url: " << url().toString() << endl;
-    textStream << "[Adblock Plus 1.1.1]" << endl;
+    textStream << "Title: " << title() << Qt::endl;
+    textStream << "Url: " << url().toString() << Qt::endl;
+    textStream << "[Adblock Plus 1.1.1]" << Qt::endl;
 
     foreach (const AdBlockRule* rule, m_rules) {
-        textStream << rule->filter() << endl;
+        textStream << rule->filter() << Qt::endl;
     }
 
     file.close();

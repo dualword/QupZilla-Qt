@@ -1,4 +1,4 @@
-/* QupZillKa (2024) http://github.com/dualword/QupZillKa License:GNU GPL*/
+/* QupZillKa (2021-2025) https://github.com/dualword/QupZillKa License:GNU GPL v3*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2010-2018 David Rosca <nowrep@gmail.com>
@@ -51,14 +51,11 @@ UserAgentDialog::UserAgentDialog(QWidget* parent)
     QRegularExpression chromeRx(QSL("Chrome/([^\\s]+)"));
     const QString chromeVersion = chromeRx.match(m_manager->defaultUserAgent()).captured(1);
 
-    m_knownUserAgents << QString("Mozilla/5.0 (%1; rv:52.0) Gecko/20100101 Firefox/52.0").arg(os)
-                      << QString("Mozilla/5.0 (%1; rv:60.0) Gecko/20100101 Firefox/60.0").arg(os)
-                      << QString("Mozilla/5.0 (%1; rv:68.0) Gecko/20100101 Firefox/68.0").arg(os)
-                      << QString("Mozilla/5.0 (%1; rv:78.0) Gecko/20100101 Firefox/78.0").arg(os)
-                      << QString("Mozilla/5.0 (%1; rv:91.0) Gecko/20100101 Firefox/91.0").arg(os)
-                      << QString("Mozilla/5.0 (%1; rv:102.0) Gecko/20100101 Firefox/102.0").arg(os)
-                      << QString("Mozilla/5.0 (%1; rv:115.0) Gecko/20100101 Firefox/115.0").arg(os)
-                      << QString("Mozilla/5.0 (%1; rv:128.0) Gecko/20100101 Firefox/128.0").arg(os);
+    m_knownUserAgents << QString("Mozilla/5.0 (%1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/%2 Safari/537.36").arg(os, chromeVersion)
+                      << QString("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36")
+                      << QString("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36")
+                      << QString("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.83 Safari/537.36")
+                      << QString("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.6099.224 Safari/537.36");
 
     ui->globalComboBox->addItems(m_knownUserAgents);
 

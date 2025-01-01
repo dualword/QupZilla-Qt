@@ -1,3 +1,4 @@
+/* QupZillKa (2021-2025) https://github.com/dualword/QupZillKa License:GNU GPL v3*/
 /* ============================================================
 * QupZilla - WebKit based browser
 * Copyright (C) 2010-2016 David Rosca <nowrep@gmail.com>
@@ -77,9 +78,9 @@ public:
 
     // QFileDialog static functions that remembers last used directory
     static QString getExistingDirectory(const QString &name, QWidget* parent = 0, const QString &caption = QString(), const QString &dir = QString(), QFileDialog::Options options = QFileDialog::ShowDirsOnly);
-    static QString getOpenFileName(const QString &name, QWidget* parent = 0, const QString &caption = QString(), const QString &dir = QString(), const QString &filter = QString(), QString* selectedFilter = 0, QFileDialog::Options options = 0);
-    static QStringList getOpenFileNames(const QString &name, QWidget* parent = 0, const QString &caption = QString(), const QString &dir = QString(), const QString &filter = QString(), QString* selectedFilter = 0, QFileDialog::Options options = 0);
-    static QString getSaveFileName(const QString &name, QWidget* parent = 0, const QString &caption = QString(), const QString &dir = QString(), const QString &filter = QString(), QString* selectedFilter = 0, QFileDialog::Options options = 0);
+    static QString getOpenFileName(const QString &name, QWidget* parent = 0, const QString &caption = QString(), const QString &dir = QString(), const QString &filter = QString(), QString* selectedFilter = 0, QFileDialog::Options options = QFileDialog::Options());
+    static QStringList getOpenFileNames(const QString &name, QWidget* parent = 0, const QString &caption = QString(), const QString &dir = QString(), const QString &filter = QString(), QString* selectedFilter = 0, QFileDialog::Options options = QFileDialog::Options());
+    static QString getSaveFileName(const QString &name, QWidget* parent = 0, const QString &caption = QString(), const QString &dir = QString(), const QString &filter = QString(), QString* selectedFilter = 0, QFileDialog::Options options = QFileDialog::Options());
 
     static bool matchDomain(const QString &pattern, const QString &domain);
     static QKeySequence actionShortcut(QKeySequence shortcut, QKeySequence fallBack, QKeySequence shortcutRtl = QKeySequence(), QKeySequence fallbackRtl = QKeySequence());

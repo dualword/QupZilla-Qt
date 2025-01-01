@@ -1,4 +1,4 @@
-/* QupZillKa (2024) http://github.com/dualword/QupZillKa License:GNU GPL*/
+/* QupZillKa (2021-2025) https://github.com/dualword/QupZillKa License:GNU GPL v3*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2015-2018 David Rosca <nowrep@gmail.com>
@@ -46,7 +46,7 @@ void NetworkUrlInterceptor::interceptRequest(QWebEngineUrlRequestInfo &info)
 		info.block(true);
 
     const QString host = info.firstPartyUrl().host();
-
+    info.setHttpHeader(QByteArrayLiteral("User-Agent"), mApp->userAgentManager()->globalUserAgent().toUtf8());
     if (m_usePerDomainUserAgent) {
         QString userAgent;
         if (m_userAgentsList.contains(host)) {

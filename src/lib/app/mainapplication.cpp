@@ -1,4 +1,4 @@
-/* QupZillKa (2021-2024) http://github.com/dualword/QupZillKa License:GNU GPL v3*/
+/* QupZillKa (2021-2025) https://github.com/dualword/QupZillKa License:GNU GPL v3*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2010-2018 David Rosca <nowrep@gmail.com>
@@ -65,6 +65,7 @@
 #include <QWebEngineProfile>
 #include <QWebEngineDownloadItem>
 #include <QWebEngineScriptCollection>
+#include <QWebEngineUrlScheme>
 
 #ifdef Q_OS_WIN
 #include <QtWin>
@@ -269,6 +270,15 @@ MainApplication::MainApplication(int &argc, char** argv)
     profileManager.initCurrentProfile(startProfile);
 
     Settings::createSettings(DataPaths::currentProfilePath() + QLatin1String("/settings.ini"));
+
+    QWebEngineUrlScheme qScheme("qupzilla");
+    qScheme.setFlags(QWebEngineUrlScheme::SecureScheme | QWebEngineUrlScheme::ContentSecurityPolicyIgnored);
+    qScheme.setSyntax(QWebEngineUrlScheme::Syntax::Path);
+    QWebEngineUrlScheme::registerScheme(qScheme);
+    QWebEngineUrlScheme eScheme("extension");
+    eScheme.setFlags(QWebEngineUrlScheme::SecureScheme | QWebEngineUrlScheme::ContentSecurityPolicyIgnored);
+    eScheme.setSyntax(QWebEngineUrlScheme::Syntax::Path);
+    QWebEngineUrlScheme::registerScheme(eScheme);
 
     m_webProfile = isPrivate() ? new QWebEngineProfile(this) : QWebEngineProfile::defaultProfile();
     connect(m_webProfile, &QWebEngineProfile::downloadRequested, this, &MainApplication::downloadRequested);
@@ -681,6 +691,8 @@ void MainApplication::quitApplication()
         return;
     }
 
+    m_plugins->shutdown();
+
     for (BrowserWindow *window : qAsConst(m_windows)) {
         emit window->aboutToClose();
     }
@@ -790,8 +802,6 @@ void MainApplication::saveSettings()
     }
 
     m_searchEnginesManager->saveSettings();
-    m_plugins->shutdown();
-    m_networkManager->shutdown();
 
     DataPaths::clearTempData();
 

@@ -1,3 +1,4 @@
+/* QupZillKa (2021-2025) https://github.com/dualword/QupZillKa License:GNU GPL v3*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2010-2017 David Rosca <nowrep@gmail.com>
@@ -233,7 +234,7 @@ void SpeedDial::changed(const QString &allPages)
         return;
     }
 
-    const QStringList entries = allPages.split(QLatin1String("\";"), QString::SkipEmptyParts);
+    const QStringList entries = allPages.split(QLatin1String("\";"), Qt::SkipEmptyParts);
     m_pages.clear();
 
     foreach (const QString &entry, entries) {
@@ -241,7 +242,7 @@ void SpeedDial::changed(const QString &allPages)
             continue;
         }
 
-        const QStringList tmp = entry.split(QLatin1String("\"|"), QString::SkipEmptyParts);
+        const QStringList tmp = entry.split(QLatin1String("\"|"), Qt::SkipEmptyParts);
         if (tmp.count() != 2) {
             continue;
         }

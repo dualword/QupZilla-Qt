@@ -1,3 +1,4 @@
+/* QupZillKa (2021-2025) https://github.com/dualword/QupZillKa License:GNU GPL v3*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2010-2017 David Rosca <nowrep@gmail.com>
@@ -107,8 +108,8 @@ void AutoFillManager::loadPasswords()
         ui->treeExcept->addTopLevelItem(item);
     }
 
-    ui->treePass->sortByColumn(-1);
-    ui->treeExcept->sortByColumn(-1);
+    ui->treePass->sortByColumn(-1, Qt::AscendingOrder);
+    ui->treeExcept->sortByColumn(-1, Qt::AscendingOrder);
 }
 
 void AutoFillManager::changePasswordBackend()

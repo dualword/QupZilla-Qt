@@ -1,3 +1,4 @@
+/* QupZillKa (2021-2025) https://github.com/dualword/QupZillKa License:GNU GPL v3*/
 /* ============================================================
 * QupZilla - WebKit based browser
 * Copyright (C) 2010-2014  David Rosca <nowrep@gmail.com>
@@ -50,7 +51,7 @@ BookmarksImportDialog::BookmarksImportDialog(QWidget* parent)
     connect(ui->cancelButton, SIGNAL(rejected()), this, SLOT(close()));
 
 #ifndef Q_OS_WIN
-    ui->browserList->setItemHidden(ui->browserList->item(IE), true);
+    ui->browserList->item(IE)->setHidden(true);
 #endif
 }
 

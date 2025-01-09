@@ -1,3 +1,4 @@
+/* QupZillKa (2021-2025) https://github.com/dualword/QupZillKa License:GNU GPL v3*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2010-2017 David Rosca <nowrep@gmail.com>
@@ -43,7 +44,7 @@ SearchEnginesDialog::SearchEnginesDialog(QWidget* parent)
     connect(ui->treeWidget, SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)), this, SLOT(editEngine()));
 
     ui->treeWidget->setItemDelegate(new RemoveItemFocusDelegate(ui->treeWidget));
-    ui->treeWidget->sortByColumn(-1);
+    ui->treeWidget->sortByColumn(-1, Qt::AscendingOrder);
     reloadEngines();
 }
 

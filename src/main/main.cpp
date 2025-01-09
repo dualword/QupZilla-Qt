@@ -1,3 +1,4 @@
+/* QupZillKa (2021-2025) https://github.com/dualword/QupZillKa License:GNU GPL v3*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2010-2017 David Rosca <nowrep@gmail.com>
@@ -78,15 +79,15 @@ void qupzilla_signal_handler(int s)
     }
 
     QTextStream stream(&file);
-    stream << "Time: " << currentDateTime.toString() << endl;
-    stream << "Qt version: " << qVersion() << " (compiled with " << QT_VERSION_STR << ")" << endl;
-    stream << "QupZilla version: " << Qz::VERSION << endl;
-    stream << "Rendering engine: QtWebEngine" << endl;
-    stream << endl;
-    stream << "============== BACKTRACE ==============" << endl;
+    stream << "Time: " << currentDateTime.toString() << Qt::endl;
+    stream << "Qt version: " << qVersion() << " (compiled with " << QT_VERSION_STR << ")" << Qt::endl;
+    stream << "QupZilla version: " << Qz::VERSION << Qt::endl;
+    stream << "Rendering engine: QtWebEngine" << Qt::endl;
+    stream << Qt::endl;
+    stream << "============== BACKTRACE ==============" << Qt::endl;
 
     for (int i = 0; i < size; ++i) {
-        stream << "#" << i << ": " << strings[i] << endl;
+        stream << "#" << i << ": " << strings[i] << Qt::endl;
     }
 
     file.close();

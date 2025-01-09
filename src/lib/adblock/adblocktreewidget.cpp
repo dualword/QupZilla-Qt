@@ -1,3 +1,4 @@
+/* QupZillKa (2021-2025) https://github.com/dualword/QupZillKa License:GNU GPL v3*/
 /* ============================================================
 * QupZilla - WebKit based browser
 * Copyright (C) 2010-2017 David Rosca <nowrep@gmail.com>
@@ -207,7 +208,7 @@ void AdBlockTreeWidget::adjustItemFeatures(QTreeWidgetItem* item, const AdBlockR
 
     item->setFlags(item->flags() | Qt::ItemIsUserCheckable);
     item->setCheckState(0, Qt::Checked);
-    item->setForeground(0, palette().foreground());
+    item->setForeground(0, palette().windowText());
     item->setFont(0, font());
 
     if (rule->isException()) {

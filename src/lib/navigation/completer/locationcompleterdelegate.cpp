@@ -1,3 +1,4 @@
+/* QupZillKa (2021-2025) https://github.com/dualword/QupZillKa License:GNU GPL v3*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2010-2018 David Rosca <nowrep@gmail.com>
@@ -280,7 +281,7 @@ int LocationCompleterDelegate::viewItemDrawText(QPainter *p, const QStyleOptionV
 
     if (!searchText.isEmpty()) {
         QList<int> delimiters;
-        QStringList searchStrings = searchText.split(QLatin1Char(' '), QString::SkipEmptyParts);
+        QStringList searchStrings = searchText.split(QLatin1Char(' '), Qt::SkipEmptyParts);
         // Look for longer parts first
         std::sort(searchStrings.begin(), searchStrings.end(), sizeBiggerThan);
 

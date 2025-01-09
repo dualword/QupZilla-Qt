@@ -1,3 +1,4 @@
+/* QupZillKa (2021-2025) https://github.com/dualword/QupZillKa License:GNU GPL v3*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2010-2017 David Rosca <nowrep@gmail.com>
@@ -106,7 +107,7 @@ QSqlQuery LocationCompleterModel::createHistoryQuery(const QString &searchString
         query.append(QLatin1String("title LIKE ? OR url LIKE ? "));
     }
     else {
-        searchList = searchString.split(QLatin1Char(' '), QString::SkipEmptyParts);
+        searchList = searchString.split(QLatin1Char(' '), Qt::SkipEmptyParts);
         const int slSize = searchList.size();
         for (int i = 0; i < slSize; ++i) {
             query.append(QLatin1String("(title LIKE ? OR url LIKE ?) "));

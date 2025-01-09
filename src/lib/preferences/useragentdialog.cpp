@@ -52,10 +52,7 @@ UserAgentDialog::UserAgentDialog(QWidget* parent)
     const QString chromeVersion = chromeRx.match(m_manager->defaultUserAgent()).captured(1);
 
     m_knownUserAgents << QString("Mozilla/5.0 (%1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/%2 Safari/537.36").arg(os, chromeVersion)
-                      << QString("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36")
-                      << QString("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36")
-                      << QString("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.83 Safari/537.36")
-                      << QString("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.6099.224 Safari/537.36");
+                      << QString("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.6099.216 Safari/537.36");
 
     ui->globalComboBox->addItems(m_knownUserAgents);
 
@@ -87,7 +84,7 @@ UserAgentDialog::UserAgentDialog(QWidget* parent)
         ui->table->setItem(row, 1, userAgentItem);
     }
 
-    ui->table->sortByColumn(-1);
+    ui->table->sortByColumn(-1, Qt::AscendingOrder);
 
     connect(ui->add, SIGNAL(clicked()), this, SLOT(addSite()));
     connect(ui->remove, SIGNAL(clicked()), this, SLOT(removeSite()));

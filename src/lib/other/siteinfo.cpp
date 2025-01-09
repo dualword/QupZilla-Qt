@@ -1,3 +1,4 @@
+/* QupZillKa (2021-2025) https://github.com/dualword/QupZillKa License:GNU GPL v3*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2010-2018 David Rosca <nowrep@gmail.com>
@@ -127,9 +128,9 @@ SiteInfo::SiteInfo(WebView *view)
     connect(ui->treeImages, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(imagesCustomContextMenuRequested(QPoint)));
 
     ui->treeImages->setContextMenuPolicy(Qt::CustomContextMenu);
-    ui->treeImages->sortByColumn(-1);
+    ui->treeImages->sortByColumn(-1, Qt::AscendingOrder);
 
-    ui->treeTags->sortByColumn(-1);
+    ui->treeTags->sortByColumn(-1, Qt::AscendingOrder);
 
     QzTools::setWmClass("Site Info", this);
 }

@@ -1035,7 +1035,14 @@
                    </property>
                   </widget>
                  </item>
-                 <item>
+		 <item>
+		 <widget class="QCheckBox" name="allowPdf">
+		  <property name="text">
+		   <string>Enable internal PDF viewer</string>
+		  </property>
+		 </widget>
+		</item>
+		<item>
                   <widget class="QCheckBox" name="allowJavaScript">
                    <property name="text">
                     <string>Allow JavaScript</string>
@@ -1043,6 +1050,13 @@
                   </widget>
                  </item>
                  <item>
+		 <widget class="QCheckBox" name="enableWebGL">
+		  <property name="text">
+		   <string>Enable WebGL</string>
+		  </property>
+		 </widget>
+		</item>
+		<item>
                   <widget class="QCheckBox" name="linksInFocusChain">
                    <property name="text">
                     <string>Include links in focus chain</string>

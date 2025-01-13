@@ -1,3 +1,4 @@
+/* QupZillKa (2021-2025) https://github.com/dualword/QupZillKa License:GNU GPL v3*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2010-2018 David Rosca <nowrep@gmail.com>
@@ -126,6 +127,7 @@ void AdBlockDialog::currentChanged(int index)
     if (index != -1) {
         m_currentTreeWidget = qobject_cast<AdBlockTreeWidget*>(tabWidget->widget(index));
         m_currentSubscription = m_currentTreeWidget->subscription();
+        filterString(search->text());
     }
 }
 

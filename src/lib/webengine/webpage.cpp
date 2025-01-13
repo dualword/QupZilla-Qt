@@ -1,3 +1,4 @@
+/* QupZillKa (2021-2025) https://github.com/dualword/QupZillKa License:GNU GPL v3*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2010-2018 David Rosca <nowrep@gmail.com>
@@ -60,7 +61,7 @@
 
 QString WebPage::s_lastUploadLocation = QDir::homePath();
 QUrl WebPage::s_lastUnsupportedUrl;
-QTime WebPage::s_lastUnsupportedUrlTime;
+QElapsedTimer WebPage::s_lastUnsupportedUrlTime;
 
 static const bool kEnableJsOutput = qEnvironmentVariableIsSet("QUPZILLA_ENABLE_JS_OUTPUT");
 static const bool kEnableJsNonBlockDialogs = qEnvironmentVariableIsSet("QUPZILLA_ENABLE_JS_NONBLOCK_DIALOGS");
@@ -316,12 +317,12 @@ void WebPage::desktopServicesOpen(const QUrl &url)
     // Open same url only once in 2 secs
     const int sameUrlTimeout = 2 * 1000;
 
-    if (s_lastUnsupportedUrl != url || s_lastUnsupportedUrlTime.isNull() || s_lastUnsupportedUrlTime.elapsed() > sameUrlTimeout) {
+    if (s_lastUnsupportedUrl != url || !s_lastUnsupportedUrlTime.isValid() || s_lastUnsupportedUrlTime.elapsed() > sameUrlTimeout) {
         s_lastUnsupportedUrl = url;
-        s_lastUnsupportedUrlTime.restart();
+        s_lastUnsupportedUrlTime.invalidate();
+        s_lastUnsupportedUrlTime.start();
         QDesktopServices::openUrl(url);
-    }
-    else {
+    } else {
         qWarning() << "WebPage::desktopServicesOpen Url" << url << "has already been opened!\n"
                    "Ignoring it to prevent infinite loop!";
     }

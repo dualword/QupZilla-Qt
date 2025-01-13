@@ -1,3 +1,4 @@
+/* QupZillKa (2021-2025) https://github.com/dualword/QupZillKa License:GNU GPL v3*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2010-2018 David Rosca <nowrep@gmail.com>
@@ -26,8 +27,7 @@ AdBlockAddSubscriptionDialog::AdBlockAddSubscriptionDialog(QWidget* parent)
     ui->setupUi(this);
 
     m_knownSubscriptions << Subscription("EasyList (English)", ADBLOCK_EASYLIST_URL)
-                         << Subscription("NoCoin List", ADBLOCK_NOCOINLIST_URL)
-                         << Subscription("EasyPrivacy (English)", "http://easylist-downloads.adblockplus.org/easyprivacy.txt")
+                         << Subscription("EasyPrivacy (English)", "https://easylist-downloads.adblockplus.org/easyprivacy.txt")
                          << Subscription("RU Adlist (Russian)", "https://easylist-downloads.adblockplus.org/advblock.txt")
                          << Subscription("Easylist China (Chinese)", "https://easylist-downloads.adblockplus.org/easylistchina.txt")
                          << Subscription(tr("Other..."), QString());

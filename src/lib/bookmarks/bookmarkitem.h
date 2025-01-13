@@ -1,3 +1,4 @@
+/* QupZillKa (2021-2025) https://github.com/dualword/QupZillKa License:GNU GPL v3*/
 /* ============================================================
 * QupZilla - WebKit based browser
 * Copyright (C) 2014  David Rosca <nowrep@gmail.com>
@@ -21,7 +22,6 @@
 #include <QString>
 #include <QList>
 #include <QIcon>
-#include <QTime>
 #include <QUrl>
 
 #include "qzcommon.h"
@@ -97,7 +97,6 @@ private:
     QString m_description;
     QString m_keyword;
     QIcon m_icon;
-    QTime m_iconTime;
     int m_visitCount;
     bool m_expanded;
     bool m_sidebarExpanded;

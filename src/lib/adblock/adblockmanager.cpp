@@ -1,3 +1,4 @@
+/* QupZillKa (2021-2025) https://github.com/dualword/QupZillKa License:GNU GPL v3*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2010-2018 David Rosca <nowrep@gmail.com>
@@ -311,17 +312,12 @@ void AdBlockManager::load()
         m_subscriptions.append(subscription);
     }
 
-    // Add EasyList + NoCoinList if subscriptions are empty
+    // Add EasyList if subscriptions are empty
     if (m_subscriptions.isEmpty()) {
         AdBlockSubscription *easyList = new AdBlockSubscription(tr("EasyList"), this);
         easyList->setUrl(QUrl(ADBLOCK_EASYLIST_URL));
         easyList->setFilePath(DataPaths::currentProfilePath() + QLatin1String("/adblock/easylist.txt"));
         m_subscriptions.append(easyList);
-
-        AdBlockSubscription *noCoinList = new AdBlockSubscription(tr("NoCoin List"), this);
-        noCoinList->setUrl(QUrl(ADBLOCK_NOCOINLIST_URL));
-        noCoinList->setFilePath(DataPaths::currentProfilePath() + QLatin1String("/adblock/nocoinlist.txt"));
-        m_subscriptions.append(noCoinList);
     }
 
     // Append CustomList
@@ -336,7 +332,7 @@ void AdBlockManager::load()
         connect(subscription, SIGNAL(subscriptionChanged()), this, SLOT(updateMatcher()));
     }
 
-    if (lastUpdate.addDays(5) < QDateTime::currentDateTime()) {
+    if (lastUpdate.addDays(31) < QDateTime::currentDateTime()) {
         QTimer::singleShot(1000 * 60, this, SLOT(updateAllSubscriptions()));
     }
 

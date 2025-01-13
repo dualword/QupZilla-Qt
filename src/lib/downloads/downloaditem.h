@@ -1,3 +1,4 @@
+/* QupZillKa (2021-2025) https://github.com/dualword/QupZillKa License:GNU GPL v3*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2010-2017 David Rosca <nowrep@gmail.com>
@@ -24,6 +25,7 @@
 #include <QUrl>
 #include <QNetworkReply>
 #include <QTime>
+#include <QElapsedTimer>
 
 #include "qzcommon.h"
 
@@ -81,7 +83,7 @@ private:
     QWebEngineDownloadItem* m_download;
     QString m_path;
     QString m_fileName;
-    QTime m_downTimer;
+    QElapsedTimer m_downTimer;
     QTime m_remTime;
     QBasicTimer m_timer;
     QUrl m_downUrl;

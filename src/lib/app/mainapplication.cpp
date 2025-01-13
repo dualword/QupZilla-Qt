@@ -917,6 +917,9 @@ void MainApplication::loadSettings()
 
     webSettings->setAttribute(QWebEngineSettings::LocalStorageEnabled, settings.value("HTML5StorageEnabled", false).toBool());
     webSettings->setAttribute(QWebEngineSettings::PluginsEnabled, settings.value("allowPlugins", false).toBool());
+    webSettings->setAttribute(QWebEngineSettings::PdfViewerEnabled, settings.value("allowPdf", false).toBool());
+    webSettings->setAttribute(QWebEngineSettings::WebGLEnabled, settings.value("enableWebGL", false).toBool());
+    webSettings->setAttribute(QWebEngineSettings::Accelerated2dCanvasEnabled, settings.value("enableWebGL", false).toBool());
     webSettings->setAttribute(QWebEngineSettings::JavascriptEnabled, settings.value("allowJavaScript", false).toBool());
     webSettings->setAttribute(QWebEngineSettings::JavascriptCanOpenWindows, settings.value("allowJavaScriptOpenWindow", false).toBool());
     webSettings->setAttribute(QWebEngineSettings::JavascriptCanAccessClipboard, settings.value("allowJavaScriptAccessClipboard", false).toBool());
@@ -929,9 +932,15 @@ void MainApplication::loadSettings()
     webSettings->setAttribute(QWebEngineSettings::FullScreenSupportEnabled, true);
     webSettings->setAttribute(QWebEngineSettings::LocalContentCanAccessRemoteUrls, false);
     webSettings->setAttribute(QWebEngineSettings::FocusOnNavigationEnabled, false);
-    webSettings->setAttribute(QWebEngineSettings::LocalStorageEnabled, false);
     webSettings->setUnknownUrlSchemePolicy(QWebEngineSettings::AllowAllUnknownUrlSchemes);
     webSettings->setDefaultTextEncoding(settings.value("DefaultEncoding", webSettings->defaultTextEncoding()).toString());
+    webSettings->setAttribute(QWebEngineSettings::AllowRunningInsecureContent, false);
+    webSettings->setAttribute(QWebEngineSettings::AllowGeolocationOnInsecureOrigins, false);
+    webSettings->setAttribute(QWebEngineSettings::AllowWindowActivationFromJavaScript, false);
+    webSettings->setAttribute(QWebEngineSettings::PlaybackRequiresUserGesture, false);
+    webSettings->setAttribute(QWebEngineSettings::JavascriptCanPaste, false);
+    webSettings->setAttribute(QWebEngineSettings::WebRTCPublicInterfacesOnly, false);
+    webSettings->setAttribute(QWebEngineSettings::DnsPrefetchEnabled, false);
 
     setWheelScrollLines(settings.value("wheelScrollLines", wheelScrollLines()).toInt());
 

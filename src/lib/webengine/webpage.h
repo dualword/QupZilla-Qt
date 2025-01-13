@@ -1,3 +1,4 @@
+/* QupZillKa (2021-2025) https://github.com/dualword/QupZillKa License:GNU GPL v3*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2010-2018 David Rosca <nowrep@gmail.com>
@@ -22,6 +23,7 @@
 #include <QWebEngineScript>
 #include <QWebEngineFullScreenRequest>
 #include <QVector>
+#include <QElapsedTimer>
 
 #include "qzcommon.h"
 
@@ -96,7 +98,7 @@ private:
 
     static QString s_lastUploadLocation;
     static QUrl s_lastUnsupportedUrl;
-    static QTime s_lastUnsupportedUrlTime;
+    static QElapsedTimer s_lastUnsupportedUrlTime;
 
     DelayedFileWatcher* m_fileWatcher;
     QEventLoop* m_runningLoop;

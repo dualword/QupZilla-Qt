@@ -1,4 +1,4 @@
-/* QupZillKa (2021-2024) http://github.com/dualword/QupZillKa License:GNU GPL v3*/
+/* QupZillKa (2021-2025) https://github.com/dualword/QupZillKa License:GNU GPL v3*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2010-2018 David Rosca <nowrep@gmail.com>
@@ -262,7 +262,10 @@ Preferences::Preferences(BrowserWindow* window)
     // BROWSING
     settings.beginGroup("Web-Browser-Settings");
     ui->allowPlugins->setChecked(settings.value("allowPlugins", false).toBool());
+    ui->allowPdf->setChecked(settings.value("allowPdf", false).toBool());
+    ui->allowPdf->setEnabled(ui->allowPlugins->isChecked());
     ui->allowJavaScript->setChecked(settings.value("allowJavaScript", false).toBool());
+    ui->enableWebGL->setChecked(settings.value("enableWebGL", false).toBool());
     ui->linksInFocusChain->setChecked(settings.value("IncludeLinkInFocusChain", false).toBool());
     ui->spatialNavigation->setChecked(settings.value("SpatialNavigation", false).toBool());
     ui->animateScrolling->setChecked(settings.value("AnimateScrolling", true).toBool());
@@ -270,6 +273,10 @@ Preferences::Preferences(BrowserWindow* window)
     ui->xssAuditing->setChecked(settings.value("XSSAuditing", false).toBool());
     ui->printEBackground->setChecked(settings.value("PrintElementBackground", true).toBool());
     ui->useNativeScrollbars->setChecked(settings.value("UseNativeScrollbars", false).toBool());
+    connect(ui->allowPlugins, &QCheckBox::clicked, [=](){
+        ui->allowPdf->setEnabled(ui->allowPlugins->isChecked());
+        ui->allowPdf->setChecked(ui->allowPlugins->isChecked());
+    });
 
     foreach (int level, WebView::zoomLevels()) {
         ui->defaultZoomLevel->addItem(QString("%1%").arg(level));
@@ -522,7 +529,7 @@ Preferences::Preferences(BrowserWindow* window)
     connect(ui->searchEngines, SIGNAL(clicked()), this, SLOT(openSearchEnginesManager()));
 
     connect(ui->listWidget, SIGNAL(currentItemChanged(QListWidgetItem*,QListWidgetItem*)), this, SLOT(showStackedPage(QListWidgetItem*)));
-    ui->listWidget->setItemSelected(ui->listWidget->itemAt(5, 5), true);
+    ui->listWidget->itemAt(5, 5)->setSelected(true);
 
     ui->listWidget->setCurrentRow(currentSettingsPage);
 
@@ -941,7 +948,9 @@ void Preferences::saveSettings()
     //BROWSING
     settings.beginGroup("Web-Browser-Settings");
     settings.setValue("allowPlugins", ui->allowPlugins->isChecked());
+    settings.setValue("allowPdf", ui->allowPdf->isChecked());
     settings.setValue("allowJavaScript", ui->allowJavaScript->isChecked());
+    settings.setValue("enableWebGL", ui->enableWebGL->isChecked());
     settings.setValue("IncludeLinkInFocusChain", ui->linksInFocusChain->isChecked());
     settings.setValue("SpatialNavigation", ui->spatialNavigation->isChecked());
     settings.setValue("AnimateScrolling", ui->animateScrolling->isChecked());

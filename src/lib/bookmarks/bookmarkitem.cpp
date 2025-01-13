@@ -1,3 +1,4 @@
+/* QupZillKa (2021-2025) https://github.com/dualword/QupZillKa License:GNU GPL v3*/
 /* ============================================================
 * QupZilla - WebKit based browser
 * Copyright (C) 2014  David Rosca <nowrep@gmail.com>
@@ -72,15 +73,9 @@ QList<BookmarkItem*> BookmarkItem::children() const
 
 QIcon BookmarkItem::icon()
 {
-    // Cache icon for 20 seconds
-    const int iconCacheTime = 20 * 1000;
-
     switch (m_type) {
     case Url:
-        if (m_iconTime.isNull() || m_iconTime.elapsed() > iconCacheTime) {
-            m_icon = IconProvider::iconForUrl(m_url);
-            m_iconTime.restart();
-        }
+        m_icon = IconProvider::iconForUrl(m_url);
         return m_icon;
     case Folder:
         return IconProvider::standardIcon(QStyle::SP_DirIcon);

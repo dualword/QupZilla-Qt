@@ -1,3 +1,4 @@
+/* QupZillKa (2021-2025) https://github.com/dualword/QupZillKa License:GNU GPL v3*/
 /* ============================================================
 * QupZilla - WebKit based browser
 * Copyright (C) 2010-2014  David Rosca <nowrep@gmail.com>
@@ -29,7 +30,9 @@ class BrowsingLibrary;
 
 class HistoryManager;
 class BookmarksManager;
+class RSSManager;
 class BrowserWindow;
+
 class QUPZILLA_EXPORT BrowsingLibrary : public QWidget
 {
     Q_OBJECT
@@ -40,11 +43,13 @@ public:
 
     void showHistory(BrowserWindow* window);
     void showBookmarks(BrowserWindow* window);
+    void showRSS(BrowserWindow* window);
 
     void optimizeDatabase();
 
     HistoryManager* historyManager() { return m_historyManager; }
-    BookmarksManager* bookmarksManager() { return m_bookmarksManager; }
+    BookmarksManager* bookmarksManager() { return m_bookmarksManager; }\
+    RSSManager* rssManager() { return m_rssManager; }
 
 private slots:
     void search();
@@ -59,6 +64,9 @@ private:
     Ui::BrowsingLibrary* ui;
     HistoryManager* m_historyManager;
     BookmarksManager* m_bookmarksManager;
+    RSSManager* m_rssManager;
+
+    bool m_rssLoaded;
 };
 
 #endif // LIBRARY_H

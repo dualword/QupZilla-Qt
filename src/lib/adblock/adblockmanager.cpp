@@ -332,8 +332,8 @@ void AdBlockManager::load()
         connect(subscription, SIGNAL(subscriptionChanged()), this, SLOT(updateMatcher()));
     }
 
-    if (lastUpdate.addDays(31) < QDateTime::currentDateTime()) {
-        QTimer::singleShot(1000 * 60, this, SLOT(updateAllSubscriptions()));
+    if (lastUpdate.daysTo(QDateTime::currentDateTime()) >= 7) {
+        QTimer::singleShot(1000 * 60 * 5, this, SLOT(updateAllSubscriptions()));
     }
 
 #ifdef ADBLOCK_DEBUG
@@ -368,6 +368,7 @@ void AdBlockManager::updateAllSubscriptions()
     settings.beginGroup("AdBlock");
     settings.setValue("lastUpdate", QDateTime::currentDateTime());
     settings.endGroup();
+    emit refresh();
 }
 
 void AdBlockManager::save()

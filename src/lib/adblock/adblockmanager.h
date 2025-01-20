@@ -90,6 +90,7 @@ public:
 signals:
     void enabledChanged(bool enabled);
     void blockedRequestsChanged(const QUrl &url);
+    void refresh();
 
 public slots:
     void setEnabled(bool enabled);

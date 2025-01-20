@@ -1,3 +1,4 @@
+/* QupZillKa (2021-2025) https://github.com/dualword/QupZillKa License:GNU GPL v3*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2010-2018 David Rosca <nowrep@gmail.com>
@@ -49,6 +50,7 @@ class SearchEnginesManager;
 class HTML5PermissionsManager;
 class RegisterQAppAssociation;
 class DesktopNotificationsFactory;
+class RSSManager;
 class ProxyStyle;
 class SessionManager;
 class ClosedWindowsManager;
@@ -94,7 +96,7 @@ public:
     QString currentLanguageFile() const;
     QString currentLanguage() const;
 
-    History* history();
+    History* history() {return m_history;};
     Bookmarks* bookmarks();
 
     AutoFill* autoFill();
@@ -102,11 +104,12 @@ public:
     PluginProxy* plugins();
     BrowsingLibrary* browsingLibrary();
 
-    NetworkManager* networkManager();
-    RestoreManager* restoreManager();
-    SessionManager* sessionManager();
+    RSSManager* rssManager() {return m_rssManager;};
+    NetworkManager* networkManager() {return m_networkManager;};
+    RestoreManager* restoreManager() {return m_restoreManager;};
+    SessionManager* sessionManager() {return m_sessionManager;};
     DownloadManager* downloadManager();
-    UserAgentManager* userAgentManager();
+    UserAgentManager* userAgentManager() {return m_userAgentManager;};
     SearchEnginesManager* searchEnginesManager();
     ClosedWindowsManager* closedWindowsManager();
     HTML5PermissionsManager* html5PermissionsManager();
@@ -178,6 +181,7 @@ private:
     PluginProxy* m_plugins;
     BrowsingLibrary* m_browsingLibrary;
 
+    RSSManager* m_rssManager;
     NetworkManager* m_networkManager;
     RestoreManager* m_restoreManager;
     SessionManager* m_sessionManager;

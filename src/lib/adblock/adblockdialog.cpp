@@ -23,11 +23,13 @@
 #include "adblockaddsubscriptiondialog.h"
 #include "mainapplication.h"
 #include "qztools.h"
+#include "settings.h"
 
 #include <QMenu>
 #include <QTimer>
 #include <QMessageBox>
 #include <QInputDialog>
+#include <QDateTime>
 
 AdBlockDialog::AdBlockDialog(QWidget* parent)
     : QDialog(parent)
@@ -45,6 +47,7 @@ AdBlockDialog::AdBlockDialog(QWidget* parent)
     tabWidget->setDocumentMode(false);
 #endif
     adblockCheckBox->setChecked(m_manager->isEnabled());
+    txtUpdate->setText("Updated: " + getUpdate());
 
     QMenu* menu = new QMenu(buttonOptions);
     m_actionAddRule = menu->addAction(tr("Add Rule"), this, SLOT(addRule()));
@@ -52,7 +55,7 @@ AdBlockDialog::AdBlockDialog(QWidget* parent)
     menu->addSeparator();
     m_actionAddSubscription = menu->addAction(tr("Add Subscription"), this, SLOT(addSubscription()));
     m_actionRemoveSubscription = menu->addAction(tr("Remove Subscription"), this, SLOT(removeSubscription()));
-    menu->addAction(tr("Update Subscriptions"), m_manager, SLOT(updateAllSubscriptions()));
+    menu->addAction(tr("Update All Subscriptions"), m_manager, SLOT(updateAllSubscriptions()));
     menu->addSeparator();
     menu->addAction(tr("Learn about writing rules..."), this, SLOT(learnAboutRules()));
 
@@ -63,6 +66,7 @@ AdBlockDialog::AdBlockDialog(QWidget* parent)
     connect(search, SIGNAL(textChanged(QString)), this, SLOT(filterString(QString)));
     connect(tabWidget, SIGNAL(currentChanged(int)), this, SLOT(currentChanged(int)));
     connect(buttonBox, SIGNAL(accepted()), this, SLOT(close()));
+    connect(m_manager, &AdBlockManager::refresh, [=]{txtUpdate->setText("Updated: " + getUpdate());});
 
     load();
 
@@ -117,6 +121,10 @@ void AdBlockDialog::addSubscription()
 
 void AdBlockDialog::removeSubscription()
 {
+    QMessageBox::StandardButton button = QMessageBox::warning(this, tr("Confirmation"),
+        tr("Are you sure you want to delete subscription?"), QMessageBox::Yes | QMessageBox::No);
+    if (button != QMessageBox::Yes) return;
+
     if (m_manager->removeSubscription(m_currentSubscription)) {
         delete m_currentTreeWidget;
     }
@@ -159,7 +167,7 @@ void AdBlockDialog::aboutToShowMenu()
 
 void AdBlockDialog::learnAboutRules()
 {
-    mApp->addNewTab(QUrl("http://adblockplus.org/en/filters"));
+    mApp->addNewTab(QUrl("https://adblockplus.org/en/filters"));
 }
 
 void AdBlockDialog::loadSubscriptions()
@@ -184,4 +192,14 @@ void AdBlockDialog::load()
     m_loaded = true;
 
     QTimer::singleShot(50, this, SLOT(loadSubscriptions()));
+}
+
+
+QString AdBlockDialog::getUpdate()
+{
+    Settings settings;
+    settings.beginGroup("AdBlock");
+    QDateTime lastUpdate = settings.value("lastUpdate", QDateTime()).toDateTime();
+    settings.endGroup();
+    return lastUpdate.toString("dddd MMMM d, yyyy hh:mm");
 }

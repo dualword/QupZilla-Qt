@@ -14,4 +14,5 @@ Source code: https://github.com/dualword/QupZillKa/
 <p align="middle">
 <img src="screenshot.png" height="100" width="150" alt="Network traffic monitor" title="Network traffic monitor"/>
 <img src="youtube.png" height="100" width="150" alt="Youtube" title="Youtube"/>
+<img src="adblock.png" height="100" width="150" alt="AdBlock" title="AdBlock"/>
 </p>

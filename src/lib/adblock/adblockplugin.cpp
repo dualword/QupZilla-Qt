@@ -1,3 +1,4 @@
+/* QupZillKa (2021-2025) https://github.com/dualword/QupZillKa License:GNU GPL v3*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2018 David Rosca <nowrep@gmail.com>
@@ -47,6 +48,8 @@ void AdBlockPlugin::init(InitState state, const QString &settingsPath)
     connect(mApp->plugins(), &PluginProxy::webPageCreated, this, &AdBlockPlugin::webPageCreated);
     connect(mApp->plugins(), &PluginProxy::webPageDeleted, this, &AdBlockPlugin::webPageDeleted);
     connect(mApp->plugins(), &PluginProxy::mainWindowCreated, this, &AdBlockPlugin::mainWindowCreated);
+    connect(mApp->plugins(), &PluginProxy::mainWindowDeleted, this, &AdBlockPlugin::mainWindowDeleted);
+
 }
 
 void AdBlockPlugin::unload()
@@ -88,6 +91,14 @@ void AdBlockPlugin::mainWindowCreated(BrowserWindow *window)
     AdBlockIcon *icon = new AdBlockIcon(window);
     window->statusBar()->addButton(icon);
     window->navigationBar()->addToolButton(icon);
+    m_windows[window] = icon;
+}
+
+void AdBlockPlugin::mainWindowDeleted(BrowserWindow *window)
+{
+    window->navigationBar()->removeToolButton(m_windows[window]);
+    window->statusBar()->removeButton(m_windows.value(window));
+    delete m_windows.take(window);
 }
 
 bool AdBlockPlugin::acceptNavigationRequest(WebPage *page, const QUrl &url, QWebEnginePage::NavigationType type, bool isMainFrame)

@@ -29,6 +29,7 @@
 #include "browserwindow.h"
 #include "downloadmanager.h"
 #include "mainapplication.h"
+#include "browsinglibrary.h"
 #include "clearprivatedata.h"
 #include "qzsettings.h"
 #include "pluginproxy.h"
@@ -320,6 +321,13 @@ void MainMenu::showClearRecentHistoryDialog()
     dialog->open();
 }
 
+void MainMenu::showRssManager()
+{
+    if (m_window) {
+        mApp->browsingLibrary()->showRSS(m_window);
+    }
+}
+
 void MainMenu::aboutQt()
 {
     QApplication::aboutQt();
@@ -573,6 +581,7 @@ void MainMenu::init()
     ADD_ACTION("Tools/DownloadManager", m_menuTools, QIcon(), tr("&Download Manager"), SLOT(showDownloadManager()), "Ctrl+Y");
     ADD_ACTION("Tools/CookiesManager", m_menuTools, QIcon(), tr("&Cookies Manager"), SLOT(showCookieManager()), "");
     ADD_ACTION("Tools/ClearRecentHistory", m_menuTools, QIcon::fromTheme(QSL("edit-clear")), tr("Clear &History"), SLOT(showClearRecentHistoryDialog()), "Ctrl+Shift+Del");
+    //ADD_ACTION("Tools/RssReader", m_menuTools, QIcon(), tr("RSS &Reader"), SLOT(showRssManager()), "");
     m_menuTools->addSeparator();
     ADD_ACTION("Tools/SiteInfo", m_menuTools, QIcon::fromTheme(QSL("dialog-information")), tr("Site &Info"), SLOT(showSiteInfo()), "Ctrl+I");
     action->setShortcutContext(Qt::WidgetShortcut);

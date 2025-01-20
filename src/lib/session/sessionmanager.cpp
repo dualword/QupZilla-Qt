@@ -1,4 +1,4 @@
-/* QupZillKa (2023) http://github.com/dualword/QupZillKa License:GNU GPL*/
+/* QupZillKa (2021-2025) https://github.com/dualword/QupZillKa License:GNU GPL v3*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2017 Razi Alavizadeh <s.r.alavizadeh@gmail.com>
@@ -362,6 +362,7 @@ void SessionManager::backupSavedSessions()
 
 void SessionManager::writeCurrentSession(const QString &filePath)
 {
+    Q_UNUSED(filePath);
 //    QSaveFile file(filePath);
 //    if (!file.open(QIODevice::WriteOnly) || file.write(mApp->saveState()) == -1) {
 //        qWarning() << "Error! can not write the current session file: " << filePath << file.errorString();

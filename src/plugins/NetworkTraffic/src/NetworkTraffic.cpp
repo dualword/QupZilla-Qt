@@ -1,4 +1,4 @@
-/* QupZillKa (2023) http://github.com/dualword/QupZillKa License:GNU GPL version 3*/
+/* QupZillKa (2023-2025) https://github.com/dualword/QupZillKa License:GNU GPL v3*/
 #include "NetworkTraffic.h"
 
 #include "NetworkTrafficSidebar.h"
@@ -33,7 +33,7 @@ PluginSpec NetworkTraffic::pluginSpec()
 }
 
 void NetworkTraffic::init(InitState state, const QString &settingsPath) {
-    Q_UNUSED(state)
+    Q_UNUSED(state); Q_UNUSED(settingsPath);
     mApp->plugins()->registerAppEventHandler(PluginProxy::MousePressHandler, this);
     m_sideBar = new NetworkTrafficSidebar(this);
     SideBarManager::addSidebar("networktraffic-sidebar", m_sideBar);

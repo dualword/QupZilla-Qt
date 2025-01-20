@@ -1,4 +1,4 @@
-/* QupZillKa (2021) http://github.com/dualword/QupZillKa License:GNU GPL*/
+/* QupZillKa (2021-2025) https://github.com/dualword/QupZillKa License:GNU GPL v3*/
 
 #include "UAManagerPlugin.h"
 #include "abstractbuttoninterface.h"
@@ -42,7 +42,7 @@ PluginSpec UAManagerPlugin::pluginSpec() {
 }
 
 void UAManagerPlugin::init(InitState state, const QString &settingsPath) {
-    Q_UNUSED(state)
+    Q_UNUSED(state); Q_UNUSED(settingsPath);
     connect(mApp->plugins(), SIGNAL(mainWindowCreated(BrowserWindow*)), this, SLOT(mainWindowCreated(BrowserWindow*)));
     connect(mApp->plugins(), SIGNAL(mainWindowDeleted(BrowserWindow*)), this, SLOT(mainWindowDeleted(BrowserWindow*)));
     connect(mApp, SIGNAL(settingsReloaded()), SLOT(updateSettings()));

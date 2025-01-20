@@ -195,11 +195,11 @@ BrowserWindow::BrowserWindow(Qz::BrowserWindowType type, const QUrl &startUrl)
     : QMainWindow(0)
     , m_startUrl(startUrl)
     , m_windowType(type)
-    , m_startTab(0)
-    , m_startPage(0)
+    , m_startTab(nullptr)
+    , m_startPage(nullptr)
     , m_sideBarManager(new SideBarManager(this))
     , m_isHtmlFullScreen(false)
-    , m_hideNavigationTimer(0)
+    , m_hideNavigationTimer(nullptr)
 {
     setAttribute(Qt::WA_DeleteOnClose);
     setAttribute(Qt::WA_DontCreateNativeAncestors);

@@ -29,6 +29,7 @@
 #include "cookiejar.h"
 #include "bookmarks.h"
 #include "qzsettings.h"
+#include "rssmanager.h"
 #include "proxystyle.h"
 #include "pluginproxy.h"
 #include "iconprovider.h"
@@ -87,23 +88,24 @@ MainApplication::MainApplication(int &argc, char** argv)
     , m_isPortable(false)
     , m_isClosing(false)
     , m_isStartingAfterCrash(false)
-    , m_history(0)
-    , m_bookmarks(0)
-    , m_autoFill(0)
-    , m_cookieJar(0)
-    , m_plugins(0)
-    , m_browsingLibrary(0)
-    , m_networkManager(0)
-    , m_restoreManager(0)
-    , m_sessionManager(0)
-    , m_downloadManager(0)
-    , m_userAgentManager(0)
-    , m_searchEnginesManager(0)
-    , m_closedWindowsManager(0)
-    , m_html5PermissionsManager(0)
-    , m_desktopNotifications(0)
-    , m_webProfile(0)
-    , m_autoSaver(0)
+    , m_history(nullptr)
+    , m_bookmarks(nullptr)
+    , m_autoFill(nullptr)
+    , m_cookieJar(nullptr)
+    , m_plugins(nullptr)
+    , m_browsingLibrary(nullptr)
+    , m_rssManager(nullptr)
+    , m_networkManager(nullptr)
+    , m_restoreManager(nullptr)
+    , m_sessionManager(nullptr)
+    , m_downloadManager(nullptr)
+    , m_userAgentManager(nullptr)
+    , m_searchEnginesManager(nullptr)
+    , m_closedWindowsManager(nullptr)
+    , m_html5PermissionsManager(nullptr)
+    , m_desktopNotifications(nullptr)
+    , m_webProfile(nullptr)
+    , m_autoSaver(nullptr)
 #if defined(Q_OS_WIN) && !defined(Q_OS_OS2)
     , m_registerQAppAssociation(0)
 #endif
@@ -284,6 +286,9 @@ MainApplication::MainApplication(int &argc, char** argv)
     connect(m_webProfile, &QWebEngineProfile::downloadRequested, this, &MainApplication::downloadRequested);
 
     m_networkManager = new NetworkManager(this);
+    m_history = new History(this);
+    m_userAgentManager = new UserAgentManager(this);
+    m_rssManager = new RSSManager(getWindow());
 
     setupUserScripts();
 
@@ -505,14 +510,6 @@ QString MainApplication::currentLanguage() const
     return lang.left(lang.length() - 3);
 }
 
-History* MainApplication::history()
-{
-    if (!m_history) {
-        m_history = new History(this);
-    }
-    return m_history;
-}
-
 Bookmarks* MainApplication::bookmarks()
 {
     if (!m_bookmarks) {
@@ -547,35 +544,12 @@ BrowsingLibrary* MainApplication::browsingLibrary()
     return m_browsingLibrary;
 }
 
-NetworkManager *MainApplication::networkManager()
-{
-    return m_networkManager;
-}
-
-RestoreManager* MainApplication::restoreManager()
-{
-    return m_restoreManager;
-}
-
-SessionManager* MainApplication::sessionManager()
-{
-    return m_sessionManager;
-}
-
 DownloadManager* MainApplication::downloadManager()
 {
     if (!m_downloadManager) {
         m_downloadManager = new DownloadManager();
     }
     return m_downloadManager;
-}
-
-UserAgentManager* MainApplication::userAgentManager()
-{
-    if (!m_userAgentManager) {
-        m_userAgentManager = new UserAgentManager(this);
-    }
-    return m_userAgentManager;
 }
 
 SearchEnginesManager* MainApplication::searchEnginesManager()

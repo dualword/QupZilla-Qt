@@ -1,3 +1,4 @@
+/* QupZillKa (2021-2025) https://github.com/dualword/QupZillKa License:GNU GPL v3*/
 /* ============================================================
 * QupZilla - WebKit based browser
 * Copyright (C) 2010-2014  David Rosca <nowrep@gmail.com>
@@ -21,6 +22,7 @@
 #include "bookmarksexport/bookmarksexportdialog.h"
 #include "historymanager.h"
 #include "bookmarksmanager.h"
+#include "rssmanager.h"
 #include "mainapplication.h"
 #include "qztools.h"
 #include "settings.h"
@@ -54,6 +56,7 @@ BrowsingLibrary::BrowsingLibrary(BrowserWindow* window, QWidget* parent)
 
     ui->tabs->AddTab(m_historyManager, historyIcon, tr("History"));
     ui->tabs->AddTab(m_bookmarksManager, bookmarksIcon, tr("Bookmarks"));
+    //ui->tabs->AddTab(m_rssManager, QIcon(":/icons/other/feed.png"), tr("RSS"));
     ui->tabs->SetMode(FancyTabWidget::Mode_LargeSidebar);
     ui->tabs->setFocus();
 
@@ -105,6 +108,21 @@ void BrowsingLibrary::showBookmarks(BrowserWindow* window)
     ui->tabs->SetCurrentIndex(1);
     show();
     m_bookmarksManager->setMainWindow(window);
+
+    raise();
+    activateWindow();
+}
+
+void BrowsingLibrary::showRSS(BrowserWindow* window)
+{
+    ui->tabs->SetCurrentIndex(2);
+    show();
+    m_rssManager->setMainWindow(window);
+
+    if (!m_rssLoaded) {
+        m_rssManager->refreshTable();
+        m_rssLoaded = true;
+    }
 
     raise();
     activateWindow();

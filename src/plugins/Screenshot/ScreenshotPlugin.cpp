@@ -1,4 +1,4 @@
-/* QupZillKa (2021-2024) http://github.com/dualword/QupZillKa License:GNU GPL v3*/
+/* QupZillKa (2021-2025) https://github.com/dualword/QupZillKa License:GNU GPL v3*/
 
 #include "ScreenshotPlugin.h"
 #include "pluginproxy.h"
@@ -28,7 +28,7 @@ PluginSpec ScreenshotPlugin::pluginSpec() {
 }
 
 void ScreenshotPlugin::init(InitState state, const QString &settingsPath) {
-    Q_UNUSED(state)
+    Q_UNUSED(state); Q_UNUSED(settingsPath);
 }
 
 bool ScreenshotPlugin::testPlugin() {

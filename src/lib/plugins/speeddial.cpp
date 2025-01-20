@@ -64,8 +64,8 @@ void SpeedDial::loadSettings()
     settings.endGroup();
 
     if (allPages.isEmpty()) {
-        allPages = "url:\"https://wikipedia.org\"|title:\"Wikipedia\";"
-                   "url:\"https://youtube.com\"|title:\"Youtube\";";
+//        allPages = "url:\"https://wikipedia.org\"|title:\"Wikipedia\";"
+//                   "url:\"https://youtube.com\"|title:\"Youtube\";";
     }
     changed(allPages);
 

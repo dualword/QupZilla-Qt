@@ -31,6 +31,7 @@ INCLUDEPATH += 3rdparty \
                plugins \
                popupwindow \
                preferences \
+	       rss \
                session \
                sidebar \
                tabwidget \
@@ -158,6 +159,10 @@ SOURCES += \
     preferences/preferences.cpp \
     preferences/thememanager.cpp \
     preferences/useragentdialog.cpp \
+    rss/rssicon.cpp \
+    rss/rssmanager.cpp \
+    rss/rssnotification.cpp \
+    rss/rsswidget.cpp \
     session/recoveryjsobject.cpp \
     session/restoremanager.cpp \
     session/sessionmanager.cpp \
@@ -189,6 +194,7 @@ SOURCES += \
     tools/emptynetworkreply.cpp \
     tools/enhancedmenu.cpp \
     tools/focusselectlineedit.cpp \
+    tools/followredirectreply.cpp \
     tools/frame.cpp \
     tools/headerview.cpp \
     tools/horizontallistwidget.cpp \
@@ -342,6 +348,10 @@ HEADERS  += \
     preferences/preferences.h \
     preferences/thememanager.h \
     preferences/useragentdialog.h \
+    rss/rssicon.h \
+    rss/rssmanager.h \
+    rss/rssnotification.h \
+    rss/rsswidget.h \
     session/recoveryjsobject.h \
     session/restoremanager.h \
     session/sessionmanager.h \
@@ -374,6 +384,7 @@ HEADERS  += \
     tools/emptynetworkreply.h \
     tools/enhancedmenu.h \
     tools/focusselectlineedit.h \
+    tools/followredirectreply.h \
     tools/frame.h \
     tools/headerview.h \
     tools/horizontallistwidget.h \
@@ -440,6 +451,9 @@ FORMS    += \
     preferences/preferences.ui \
     preferences/thememanager.ui \
     preferences/useragentdialog.ui \
+    rss/rssmanager.ui \
+    rss/rssnotification.ui \
+    rss/rsswidget.ui \
     session/sessionmanagerdialog.ui \
     sidebar/bookmarkssidebar.ui \
     sidebar/historysidebar.ui \

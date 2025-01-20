@@ -629,7 +629,7 @@ void AdBlockRule::parseDomains(const QString &domains, const QChar &separator)
 {
     QStringList domainsList = domains.split(separator, Qt::SkipEmptyParts);
 
-    foreach (const QString domain, domainsList) {
+    foreach (const QString &domain, domainsList) {
         if (domain.isEmpty()) {
             continue;
         }

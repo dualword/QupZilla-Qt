@@ -1,4 +1,4 @@
-/* QupZillKa (2021-2024) http://github.com/dualword/QupZillKa License:GNU GPL v3*/
+/* QupZillKa (2021-2025) https://github.com/dualword/QupZillKa License:GNU GPL v3*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2014-2018 David Rosca <nowrep@gmail.com>
@@ -90,6 +90,7 @@ private slots:
     void showDownloadManager();
     void showCookieManager();
     void showClearRecentHistoryDialog();
+    void showRssManager();
 
     // Help menu
     void aboutQt();

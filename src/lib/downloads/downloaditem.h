@@ -21,7 +21,6 @@
 
 #include <QWidget>
 #include <QFile>
-#include <QBasicTimer>
 #include <QUrl>
 #include <QNetworkReply>
 #include <QTime>
@@ -85,7 +84,6 @@ private:
     QString m_fileName;
     QElapsedTimer m_downTimer;
     QTime m_remTime;
-    QBasicTimer m_timer;
     QUrl m_downUrl;
     bool m_openFile;
 

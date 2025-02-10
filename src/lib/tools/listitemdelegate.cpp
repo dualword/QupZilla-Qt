@@ -1,3 +1,4 @@
+/* QupZillKa (2021-2025) https://github.com/dualword/QupZillKa License:GNU GPL v3*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2010-2017 David Rosca <nowrep@gmail.com>
@@ -115,7 +116,7 @@ QSize ListItemDelegate::sizeHint(const QStyleOptionViewItem &option, const QMode
         }
     }
 
-    int width = 2 * m_padding + option.fontMetrics.width(index.data(Qt::DisplayRole).toString());
+    int width = 2 * m_padding + option.fontMetrics.horizontalAdvance(index.data(Qt::DisplayRole).toString());
     width = width > (m_iconSize + 2 * m_padding) ? width : m_iconSize + 2 * m_padding;
 
     if (m_uniformItemSizes) {

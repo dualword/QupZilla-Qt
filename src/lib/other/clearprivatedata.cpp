@@ -1,3 +1,4 @@
+/* QupZillKa (2021-2025) https://github.com/dualword/QupZillKa License:GNU GPL v3*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2010-2018 David Rosca <nowrep@gmail.com>
@@ -38,6 +39,7 @@
 #include <QCloseEvent>
 #include <QFileInfo>
 #include <QWebEngineProfile>
+#include <QTimeZone>
 
 ClearPrivateData::ClearPrivateData(QWidget* parent)
     : QDialog(parent)
@@ -111,13 +113,13 @@ void ClearPrivateData::dialogAccepted()
 
         switch (ui->historyLength->currentIndex()) {
         case 0: //Later Today
-            end = QDateTime(today).toMSecsSinceEpoch();
+            end = QDateTime(today, QTime(), QTimeZone::systemTimeZone()).toMSecsSinceEpoch();
             break;
         case 1: //Week
-            end = QDateTime(week).toMSecsSinceEpoch();
+            end = QDateTime(week, QTime(), QTimeZone::systemTimeZone()).toMSecsSinceEpoch();
             break;
         case 2: //Month
-            end = QDateTime(month).toMSecsSinceEpoch();
+            end = QDateTime(month, QTime(), QTimeZone::systemTimeZone()).toMSecsSinceEpoch();
             break;
         case 3: //All
             break;

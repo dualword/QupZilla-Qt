@@ -1,3 +1,4 @@
+/* QupZillKa (2021-2025) https://github.com/dualword/QupZillKa License:GNU GPL v3*/
 /**
 * Copyright (c) 2009, Benjamin C. Meyer <ben@meyerhome.net>
 *
@@ -38,7 +39,7 @@ void SqueezeLabelV1::paintEvent(QPaintEvent* event)
     if (m_SqueezedTextCache != text()) {
         m_SqueezedTextCache = text();
         QFontMetrics fm = fontMetrics();
-        if (fm.width(m_SqueezedTextCache) > contentsRect().width()) {
+        if (fm.horizontalAdvance(m_SqueezedTextCache) > contentsRect().width()) {
             QString elided = fm.elidedText(text(), Qt::ElideMiddle, width());
             setText(elided);
         }

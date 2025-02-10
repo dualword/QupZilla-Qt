@@ -1,4 +1,4 @@
-/* QupZillKa (2021-2024) http://github.com/dualword/QupZillKa License:GNU GPL v3*/
+/* QupZillKa (2021-2025) https://github.com/dualword/QupZillKa License:GNU GPL v3*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2010-2017 David Rosca <nowrep@gmail.com>
@@ -19,7 +19,6 @@
 #include "cookiejar.h"
 #include "mainapplication.h"
 #include "datapaths.h"
-#include "autosaver.h"
 #include "settings.h"
 #include "qztools.h"
 

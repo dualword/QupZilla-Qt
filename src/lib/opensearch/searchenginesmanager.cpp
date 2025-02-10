@@ -1,4 +1,4 @@
-/* QupZillKa (2021) http://github.com/dualword/QupZillKa License:GNU GPL*/
+/* QupZillKa (2021-2025) https://github.com/dualword/QupZillKa License:GNU GPL v3*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2010-2017 David Rosca <nowrep@gmail.com>
@@ -137,7 +137,7 @@ LoadRequest SearchEnginesManager::searchResult(const Engine &engine, const QStri
     // GET search engine
     if (engine.postData.isEmpty()) {
         QByteArray url = engine.url.toUtf8();
-        url.replace(QLatin1String("%s"), QUrl::toPercentEncoding(string));
+        url.replace("%s", QUrl::toPercentEncoding(string));
 
         return LoadRequest(QUrl::fromEncoded(url));
     }

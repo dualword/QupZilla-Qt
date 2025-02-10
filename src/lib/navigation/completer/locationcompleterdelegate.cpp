@@ -142,7 +142,7 @@ void LocationCompleterDelegate::paint(QPainter* painter, const QStyleOptionViewI
     leftPosition += m_padding * 2;
 
     // Trim link to maximum number of characters that can be visible, otherwise there may be perf issue with huge URLs
-    const int maxChars = (opt.rect.width() - leftPosition) / opt.fontMetrics.width(QL1C('i'));
+    const int maxChars = (opt.rect.width() - leftPosition) / opt.fontMetrics.horizontalAdvance(QL1C('i'));
     QString link;
     const QByteArray linkArray = index.data(Qt::DisplayRole).toByteArray();
     if (!linkArray.startsWith("data") && !linkArray.startsWith("javascript")) {

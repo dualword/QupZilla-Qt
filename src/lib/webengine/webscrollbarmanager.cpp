@@ -1,3 +1,4 @@
+/* QupZillKa (2021-2025) https://github.com/dualword/QupZillKa License:GNU GPL v3*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2016-2017 David Rosca <nowrep@gmail.com>
@@ -66,7 +67,7 @@ private:
 
         QPainter p(this);
         if (mApp->styleName() == QL1S("breeze")) {
-            p.fillRect(ev->rect(), option.palette.background());
+            p.fillRect(ev->rect(), option.palette.window());
         } else {
             style()->drawPrimitive(QStyle::PE_PanelScrollAreaCorner, &option, &p, this);
         }

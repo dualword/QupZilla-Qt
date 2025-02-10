@@ -1,3 +1,4 @@
+/* QupZillKa (2021-2025) https://github.com/dualword/QupZillKa License:GNU GPL v3*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2010-2018 David Rosca <nowrep@gmail.com>
@@ -682,11 +683,10 @@ void LocationBar::paintEvent(QPaintEvent* event)
         QStyleOptionFrame option;
         initStyleOption(&option);
 
-        int lm, tm, rm, bm;
-        getTextMargins(&lm, &tm, &rm, &bm);
+        QMargins margins = textMargins();
 
         QRect contentsRect = style()->subElementRect(QStyle::SE_LineEditContents, &option, this);
-        contentsRect.adjust(lm, tm, -rm, -bm);
+        contentsRect.adjust(margins.left(), margins.top(), -margins.right(), -margins.bottom());
 
         QColor bg = m_progressColor;
         if (!bg.isValid() || bg.alpha() == 0) {

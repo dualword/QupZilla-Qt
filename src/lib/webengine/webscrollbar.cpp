@@ -1,3 +1,4 @@
+/* QupZillKa (2021-2025) https://github.com/dualword/QupZillKa License:GNU GPL v3*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2016-2017 David Rosca <nowrep@gmail.com>
@@ -88,6 +89,6 @@ void WebScrollBar::performScroll()
 void WebScrollBar::paintEvent(QPaintEvent *ev)
 {
     QPainter painter(this);
-    painter.fillRect(ev->rect(), palette().background());
+    painter.fillRect(ev->rect(), palette().window());
     QScrollBar::paintEvent(ev);
 }

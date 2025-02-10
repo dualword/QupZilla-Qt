@@ -362,7 +362,7 @@ QPixmap QzTools::createPixmapForSite(const QIcon &icon, const QString &title, co
 {
     const QFontMetrics fontMetrics = QApplication::fontMetrics();
     const int padding = 4;
-    const int maxWidth = fontMetrics.width(title.length() > url.length() ? title : url) + 3 * padding + 16;
+    const int maxWidth = fontMetrics.horizontalAdvance(title.length() > url.length() ? title : url) + 3 * padding + 16;
     const int width = qMin(maxWidth, 150);
     const int height = fontMetrics.height() * 2 + fontMetrics.leading() + 2 * padding;
 

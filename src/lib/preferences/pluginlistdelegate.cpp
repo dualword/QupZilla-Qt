@@ -1,3 +1,4 @@
+/* QupZillKa (2021-2025) https://github.com/dualword/QupZillKa License:GNU GPL v3*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2010-2017 David Rosca <nowrep@gmail.com>
@@ -89,7 +90,7 @@ void PluginListDelegate::paint(QPainter* painter, const QStyleOptionViewItem &op
     const QString name = index.data(Qt::DisplayRole).toString();
     const int leftTitleEdge = leftPosition + 2;
     const int rightTitleEdge = rightPosition - m_padding;
-    const int leftPosForVersion = titleMetrics.width(name) + m_padding;
+    const int leftPosForVersion = titleMetrics.horizontalAdvance(name) + m_padding;
     QRect nameRect(leftTitleEdge, opt.rect.top() + m_padding, rightTitleEdge - leftTitleEdge, titleMetrics.height());
     painter->setFont(titleFont);
     style->drawItemText(painter, nameRect, Qt::AlignLeft, textPalette, true, name, colorRole);

@@ -1,3 +1,4 @@
+/* QupZillKa (2021-2025) https://github.com/dualword/QupZillKa License:GNU GPL v3*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2010-2018 David Rosca <nowrep@gmail.com>
@@ -29,7 +30,7 @@ SearchToolBar::SearchToolBar(WebView* view, QWidget* parent)
     : QWidget(parent)
     , ui(new Ui::SearchToolbar)
     , m_view(view)
-    , m_findFlags(0)
+    , m_findFlags()
 {
     setAttribute(Qt::WA_DeleteOnClose);
     ui->setupUi(this);
@@ -81,7 +82,7 @@ void SearchToolBar::close()
 
 void SearchToolBar::findNext()
 {
-    m_findFlags = 0;
+    m_findFlags = {};
     updateFindFlags();
 
     searchText(ui->lineEdit->text());

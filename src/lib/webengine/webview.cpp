@@ -1,4 +1,4 @@
-/* QupZillKa (2021-2024) http://github.com/dualword/QupZillKa License:GNU GPL v3*/
+/* QupZillKa (2021-2025) https://github.com/dualword/QupZillKa License:GNU GPL v3*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2010-2018 David Rosca <nowrep@gmail.com>
@@ -1061,9 +1061,9 @@ void WebView::_wheelEvent(QWheelEvent *event)
     if (event->spontaneous()) {
         const qreal multiplier = QApplication::wheelScrollLines() / 3.0;
         if (multiplier != 1.0) {
-            QWheelEvent e(event->pos(), event->globalPos(), event->pixelDelta(),
-                          event->angleDelta() * multiplier, 0, Qt::Horizontal, event->buttons(),
-                          event->modifiers(), event->phase(), event->source(), event->inverted());
+            QWheelEvent e(event->position(), event->globalPosition(), event->pixelDelta(),
+                          event->angleDelta() * multiplier, event->buttons(),
+                          event->modifiers(), event->phase(), event->inverted(), event->source());
             QApplication::sendEvent(m_rwhvqt, &e);
             event->accept();
         }

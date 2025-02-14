@@ -1,3 +1,4 @@
+/* QupZillKa (2021-2025) https://github.com/dualword/QupZillKa License:GNU GPL v3*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2014-2018 David Rosca <nowrep@gmail.com>
@@ -44,6 +45,7 @@ QSqlDatabase SqlDatabase::database()
 
     if (!s_databases.hasLocalData()) {
         const QString threadStr = QString::number((quintptr) QThread::currentThread());
+        QSqlDatabase::removeDatabase(threadStr);
         QSqlDatabase db = QSqlDatabase::addDatabase(QSL("QSQLITE"), threadStr);
         db.setDatabaseName(m_databaseName);
         db.setConnectOptions(m_connectOptions);

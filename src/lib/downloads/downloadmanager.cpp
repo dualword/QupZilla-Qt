@@ -1,3 +1,4 @@
+/* QupZillKa (2021-2025) https://github.com/dualword/QupZillKa License:GNU GPL v3*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2010-2018 David Rosca <nowrep@gmail.com>
@@ -254,13 +255,10 @@ void DownloadManager::download(QWebEngineDownloadItem *downloadItem)
     QString downloadPath;
     bool openFile = false;
 
-    QString fileName = QFileInfo(downloadItem->path()).fileName();
-    fileName = QUrl::fromPercentEncoding(fileName.toUtf8());
-    // Filename may have been percent encoded and actually containing path
-    fileName = QFileInfo(fileName).fileName();
+    QString fileName = downloadItem->downloadFileName();
 
     const bool forceAsk = downloadItem->savePageFormat() != QWebEngineDownloadItem::UnknownSaveFormat
-            || downloadItem->type() == QWebEngineDownloadItem::UserRequested;
+            || downloadItem->isSavePageDownload();
 
     if (m_useExternalManager) {
         startExternalManager(downloadItem->url());
@@ -271,7 +269,7 @@ void DownloadManager::download(QWebEngineDownloadItem *downloadItem)
         if (downloadItem->savePageFormat() != QWebEngineDownloadItem::UnknownSaveFormat) {
             // Save Page requested
             result = SavePage;
-        } else if (downloadItem->type() == QWebEngineDownloadItem::UserRequested) {
+        } else if (downloadItem->isSavePageDownload()) {
             // Save x as... requested
             result = Save;
         } else {
@@ -350,7 +348,8 @@ void DownloadManager::download(QWebEngineDownloadItem *downloadItem)
     }
 
     // Set download path and accept
-    downloadItem->setPath(downloadPath);
+    downloadItem->setDownloadDirectory(QFileInfo(downloadPath).absoluteDir().absolutePath());
+    downloadItem->setDownloadFileName(QFileInfo(downloadPath).fileName());
     downloadItem->accept();
 
     // Create download item

@@ -425,7 +425,7 @@ BrowserWindow* MainApplication::createWindow(Qz::BrowserWindowType type, const Q
 
 MainApplication::AfterLaunch MainApplication::afterLaunch() const
 {
-    return static_cast<AfterLaunch>(Settings().value(QSL("Web-URL-Settings/afterLaunch"), OpenSpeedDial).toInt());
+    return static_cast<AfterLaunch>(Settings().value(QSL("Web-URL-Settings/afterLaunch"), OpenBlankPage).toInt());
 }
 
 void MainApplication::openSession(BrowserWindow* window, RestoreData &restoreData)

@@ -570,7 +570,7 @@ void BrowserWindow::loadSettings()
 
     //Url settings
     settings.beginGroup("Web-URL-Settings");
-    m_homepage = settings.value("homepage", "qupzilla:start").toUrl();
+    m_homepage = settings.value("homepage", "").toUrl();
     settings.endGroup();
 
     //Browser Window settings

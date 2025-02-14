@@ -1,3 +1,4 @@
+/* QupZillKa (2021-2025) https://github.com/dualword/QupZillKa License:GNU GPL v3*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2010-2018 David Rosca <nowrep@gmail.com>
@@ -167,7 +168,7 @@ void TabWidget::loadSettings()
     settings.endGroup();
 
     settings.beginGroup("Web-URL-Settings");
-    m_urlOnNewTab = settings.value("newTabUrl", "qupzilla:speeddial").toUrl();
+    m_urlOnNewTab = settings.value("newTabUrl", "about:blank").toUrl();
     settings.endGroup();
 
     m_tabBar->loadSettings();

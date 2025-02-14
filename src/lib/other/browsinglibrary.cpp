@@ -35,6 +35,8 @@ BrowsingLibrary::BrowsingLibrary(BrowserWindow* window, QWidget* parent)
     , ui(new Ui::BrowsingLibrary)
     , m_historyManager(new HistoryManager(window))
     , m_bookmarksManager(new BookmarksManager(window))
+    , m_rssManager(mApp->rssManager())
+    , m_rssLoaded(false)
 {
     ui->setupUi(this);
 

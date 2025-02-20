@@ -319,6 +319,15 @@ void AdBlockManager::load()
         easyList->setFilePath(DataPaths::currentProfilePath() + QLatin1String("/adblock/easylist.txt"));
         m_subscriptions.append(easyList);
     }
+    if (!m_subscriptions.isEmpty()) {
+        connect(m_subscriptions[0], &AdBlockSubscription::subscriptionUpdated, [this]{
+            Settings settings;
+            settings.beginGroup("AdBlock");
+            settings.setValue("lastUpdate", QDateTime::currentDateTime());
+            settings.endGroup();
+            emit refresh();
+        });
+    }
 
     // Append CustomList
     AdBlockCustomList* customList = new AdBlockCustomList(this);
@@ -363,12 +372,6 @@ void AdBlockManager::updateAllSubscriptions()
     foreach (AdBlockSubscription* subscription, m_subscriptions) {
         subscription->updateSubscription();
     }
-
-    Settings settings;
-    settings.beginGroup("AdBlock");
-    settings.setValue("lastUpdate", QDateTime::currentDateTime());
-    settings.endGroup();
-    emit refresh();
 }
 
 void AdBlockManager::save()

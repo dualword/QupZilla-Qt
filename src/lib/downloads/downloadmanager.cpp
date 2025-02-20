@@ -370,11 +370,6 @@ int DownloadManager::downloadsCount() const
     return ui->list->count();
 }
 
-int DownloadManager::activeDownloadsCount() const
-{
-    return m_activeDownloadsCount;
-}
-
 void DownloadManager::downloadFinished(bool success)
 {
     m_activeDownloadsCount = 0;

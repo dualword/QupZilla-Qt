@@ -1,3 +1,4 @@
+/* QupZillKa (2021-2025) https://github.com/dualword/QupZillKa License:GNU GPL v3*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2014-2018 David Rosca <nowrep@gmail.com>
@@ -85,7 +86,7 @@ QSize BookmarksToolbarButton::sizeHint() const
         width = SEPARATOR_WIDTH;
     }
     else if (!m_showOnlyIcon) {
-        width += PADDING * 2 + fontMetrics().width(m_bookmark->title());
+        width += PADDING * 2 + fontMetrics().horizontalAdvance(m_bookmark->title());
 
         if (menu()) {
             width += PADDING + 8;

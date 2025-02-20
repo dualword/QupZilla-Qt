@@ -1,4 +1,4 @@
-/* QupZillKa (2021-2024) http://github.com/dualword/QupZillKa License:GNU GPL v3*/
+/* QupZillKa (2021-2025) https://github.com/dualword/QupZillKa License:GNU GPL v3*/
 /* ============================================================
 * QupZilla - WebKit based browser
 * Copyright (C) 2010-2014  David Rosca <nowrep@gmail.com>
@@ -157,6 +157,7 @@ void BookmarksManager::openBookmark(BookmarkItem* item)
 
 void BookmarksManager::openBookmarkInNewTab(BookmarkItem* item)
 {
+    Q_UNUSED(item);
     QList<BookmarkItem*> items = ui->tree->selectedBookmarks();
     foreach (BookmarkItem* item, items) {
         if (item->isUrl()) {

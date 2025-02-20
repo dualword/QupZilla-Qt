@@ -30,7 +30,6 @@
 #include "downloadmanager.h"
 #include "mainapplication.h"
 #include "browsinglibrary.h"
-#include "clearprivatedata.h"
 #include "qzsettings.h"
 #include "pluginproxy.h"
 #include "sessionmanager.h"
@@ -315,12 +314,6 @@ void MainMenu::showCookieManager()
     m->raise();
 }
 
-void MainMenu::showClearRecentHistoryDialog()
-{
-    ClearPrivateData* dialog = new ClearPrivateData(m_window);
-    dialog->open();
-}
-
 void MainMenu::showRssManager()
 {
     if (m_window) {
@@ -498,7 +491,7 @@ void MainMenu::init()
     ADD_ACTION("File/NewTab", m_menuFile, IconProvider::newTabIcon(), tr("New Tab"), SLOT(newTab()), "Ctrl+T");
     ADD_ACTION("File/NewWindow", m_menuFile, IconProvider::newWindowIcon(), tr("&New Window"), SLOT(newWindow()), "Ctrl+N");
     ADD_ACTION("File/NewPrivateWindow", m_menuFile, IconProvider::privateBrowsingIcon(), tr("New &Private Window"), SLOT(newPrivateWindow()), "Ctrl+Shift+P");
-    ADD_ACTION("File/OpenLocation", m_menuFile, QIcon::fromTheme(QSL("document-open-remote")), tr("Open Location"), SLOT(openLocation()), "Ctrl+L");
+    //ADD_ACTION("File/OpenLocation", m_menuFile, QIcon::fromTheme(QSL("document-open-remote")), tr("Open Location"), SLOT(openLocation()), "Ctrl+L");
     ADD_ACTION("File/OpenFile", m_menuFile, QIcon::fromTheme(QSL("document-open")), tr("Open &File..."), SLOT(openFile()), "Ctrl+O");
     ADD_ACTION("File/CloseWindow", m_menuFile, QIcon::fromTheme(QSL("window-close")), tr("Close Window"), SLOT(closeWindow()), "Ctrl+Shift+W");
     m_menuFile->addSeparator();
@@ -580,7 +573,6 @@ void MainMenu::init()
 
     ADD_ACTION("Tools/DownloadManager", m_menuTools, QIcon(), tr("&Download Manager"), SLOT(showDownloadManager()), "Ctrl+Y");
     ADD_ACTION("Tools/CookiesManager", m_menuTools, QIcon(), tr("&Cookies Manager"), SLOT(showCookieManager()), "");
-    ADD_ACTION("Tools/ClearRecentHistory", m_menuTools, QIcon::fromTheme(QSL("edit-clear")), tr("Clear &History"), SLOT(showClearRecentHistoryDialog()), "Ctrl+Shift+Del");
     //ADD_ACTION("Tools/RssReader", m_menuTools, QIcon(), tr("RSS &Reader"), SLOT(showRssManager()), "");
     m_menuTools->addSeparator();
     ADD_ACTION("Tools/SiteInfo", m_menuTools, QIcon::fromTheme(QSL("dialog-information")), tr("Site &Info"), SLOT(showSiteInfo()), "Ctrl+I");

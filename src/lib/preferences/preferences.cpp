@@ -1063,8 +1063,6 @@ void Preferences::saveSettings()
     mApp->reloadSettings();
     mApp->desktopNotifications()->loadSettings();
     mApp->autoFill()->loadSettings();
-    mApp->networkManager()->loadSettings();
-
     WebScrollBarManager::instance()->loadSettings();
 }
 

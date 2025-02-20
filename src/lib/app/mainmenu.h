@@ -89,7 +89,6 @@ private slots:
     void showSiteInfo();
     void showDownloadManager();
     void showCookieManager();
-    void showClearRecentHistoryDialog();
     void showRssManager();
 
     // Help menu

@@ -1,3 +1,4 @@
+/* QupZillKa (2021-2025) https://github.com/dualword/QupZillKa License:GNU GPL v3*/
 /* ============================================================
 * QupZilla - Qt web browser
 * Copyright (C) 2014-2018 David Rosca <nowrep@gmail.com>
@@ -27,6 +28,7 @@
 #include "qzsettings.h"
 #include "sqldatabase.h"
 #include "closedwindowsmanager.h"
+#include "clearprivatedata.h"
 
 #include <QApplication>
 #include <QWebEngineHistory>
@@ -80,8 +82,8 @@ void HistoryMenu::aboutToShow()
         actions().at(1)->setEnabled(view->history()->canGoForward());
     }
 
-    while (actions().count() != 8) {
-        QAction* act = actions().at(8);
+    while (actions().count() != 10) {
+        QAction* act = actions().at(10);
         if (act->menu()) {
             act->menu()->clear();
         }
@@ -244,7 +246,7 @@ void HistoryMenu::init()
     act = addAction(QIcon::fromTheme("go-home"), tr("&Home"), this, SLOT(goHome()));
     act->setShortcut(QKeySequence(Qt::ALT + Qt::Key_Home));
 
-    act = addAction(QIcon::fromTheme("deep-history", QIcon(":/icons/menu/history.svg")), tr("Show &All History"), this, SLOT(showHistoryManager()));
+    act = addAction(QIcon::fromTheme("deep-history", QIcon(":/icons/menu/history.svg")), tr("History &Manager"), this, SLOT(showHistoryManager()));
     act->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_H));
 
     addSeparator();
@@ -264,4 +266,9 @@ void HistoryMenu::init()
     addMenu(m_menuMostVisited);
     addMenu(m_menuClosedTabs);
     addMenu(m_menuClosedWindows);
+    addSeparator();
+    act = addAction(QIcon::fromTheme("edit-clear", QIcon(":/icons/menu/history.svg")), tr("Clear &History"), this,
+                    [this]{ClearPrivateData* dialog = new ClearPrivateData(m_window); dialog->open();});
+    act->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_Delete));
+
 }

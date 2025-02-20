@@ -172,7 +172,7 @@ void LocationCompleterDelegate::paint(QPainter* painter, const QStyleOptionViewI
     // Draw separator
     if (!link.isEmpty()) {
         QChar separator = QL1C('-');
-        QRect separatorRect(leftPosition, center - linkMetrics.height() / 2, linkMetrics.width(separator), linkMetrics.height());
+        QRect separatorRect(leftPosition, center - linkMetrics.height() / 2, linkMetrics.horizontalAdvance(separator), linkMetrics.height());
         style->drawItemText(painter, separatorRect, Qt::AlignCenter, textPalette, true, separator, colorRole);
         leftPosition += separatorRect.width() + m_padding * 2;
     }
@@ -315,7 +315,7 @@ int LocationCompleterDelegate::viewItemDrawText(QPainter *p, const QStyleOptionV
 
         // If we don't find any match, just paint it without any highlight
         if (!delimiters.isEmpty() && !(delimiters.count() % 2)) {
-            QList<QTextLayout::FormatRange> highlightParts;
+            QVector<QTextLayout::FormatRange> highlightParts;
 
             while (!delimiters.isEmpty()) {
                 QTextLayout::FormatRange highlightedPart;
@@ -329,7 +329,7 @@ int LocationCompleterDelegate::viewItemDrawText(QPainter *p, const QStyleOptionV
                 highlightParts << highlightedPart;
             }
 
-            textLayout.setAdditionalFormats(highlightParts);
+            textLayout.setFormats(highlightParts);
         }
     }
 

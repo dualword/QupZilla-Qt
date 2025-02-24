@@ -32,12 +32,10 @@
 #include "desktopnotificationsfactory.h"
 
 #include <QNetworkCookie>
-#include <QMessageBox>
 #include <QWebEngineSettings>
 #include <QNetworkDiskCache>
 #include <QDateTime>
 #include <QCloseEvent>
-#include <QFileInfo>
 #include <QWebEngineProfile>
 #include <QTimeZone>
 
@@ -51,7 +49,6 @@ ClearPrivateData::ClearPrivateData(QWidget* parent)
     ui->buttonBox->setFocus();
     connect(ui->history, SIGNAL(clicked(bool)), this, SLOT(historyClicked(bool)));
     connect(ui->clear, SIGNAL(clicked(bool)), this, SLOT(dialogAccepted()));
-    connect(ui->optimizeDb, SIGNAL(clicked(bool)), this, SLOT(optimizeDb()));
     connect(ui->editCookies, SIGNAL(clicked()), this, SLOT(showCookieManager()));
 
     Settings settings;
@@ -156,22 +153,6 @@ void ClearPrivateData::dialogAccepted()
     ui->clear->setText(tr("Done"));
 
     QTimer::singleShot(1000, this, SLOT(close()));
-}
-
-void ClearPrivateData::optimizeDb()
-{
-    mApp->setOverrideCursor(Qt::WaitCursor);
-
-    const QString profilePath = DataPaths::currentProfilePath();
-    QString sizeBefore = QzTools::fileSizeToString(QFileInfo(profilePath + "/browsedata.db").size());
-
-    IconProvider::instance()->clearOldIconsInDatabase();
-
-    QString sizeAfter = QzTools::fileSizeToString(QFileInfo(profilePath + "/browsedata.db").size());
-
-    mApp->restoreOverrideCursor();
-
-    QMessageBox::information(this, tr("Database Optimized"), tr("Database successfully optimized.<br/><br/><b>Database Size Before: </b>%1<br/><b>Database Size After: </b>%2").arg(sizeBefore, sizeAfter));
 }
 
 void ClearPrivateData::showCookieManager()

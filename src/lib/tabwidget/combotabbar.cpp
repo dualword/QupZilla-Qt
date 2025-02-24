@@ -1359,7 +1359,7 @@ void TabBarHelper::paintEvent(QPaintEvent *)
             grabImage.setDevicePixelRatio(devicePixelRatioF());
             grabImage.fill(Qt::transparent);
             QStylePainter p(&grabImage, this);
-            p.initFrom(this);
+            p.begin(this);
             if (tabDragOffset != 0) {
                 tab.position = QStyleOptionTab::OnlyOneTab;
             }
@@ -1718,10 +1718,10 @@ void TabBarScrollWidget::scrollByWheel(QWheelEvent* event)
 
     // Slower scrolling for horizontal wheel scrolling
     if (event->orientation() == Qt::Horizontal) {
-        if (event->delta() > 0) {
+        if (event->angleDelta().x() > 0) {
             scrollToLeft();
         }
-        else if (event->delta() < 0) {
+        else if (event->angleDelta().x() < 0) {
             scrollToRight();
         }
         return;

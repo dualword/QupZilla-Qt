@@ -30,16 +30,22 @@
 #include "downloadmanager.h"
 #include "mainapplication.h"
 #include "browsinglibrary.h"
+#include "clearprivatedata.h"
 #include "qzsettings.h"
 #include "pluginproxy.h"
 #include "sessionmanager.h"
 #include "statusbar.h"
+#include "datapaths.h"
+#include "qztools.h"
 
 #include <QApplication>
 #include <QMetaObject>
 #include <QWebEnginePage>
 #include <QMenuBar>
 #include <QDesktopServices>
+#include <QMessageBox>
+#include <QFileInfo>
+#include <QPushButton>
 
 #ifdef Q_OS_MACOS
 extern void qt_mac_set_dock_menu(QMenu* menu);
@@ -314,6 +320,32 @@ void MainMenu::showCookieManager()
     m->raise();
 }
 
+void MainMenu::showClearRecentHistoryDialog()
+{
+    ClearPrivateData* dialog = new ClearPrivateData(m_window);
+    dialog->open();
+}
+
+void MainMenu::showOptimizer()
+{
+    QMessageBox msgBox(QMessageBox::Question, "Do you want to optimize the database?",
+                       QFileInfo(DataPaths::currentProfilePath() + "/browsedata.db").absoluteFilePath(),
+                       QMessageBox::Close);
+    msgBox.setDefaultButton(QMessageBox::Close);
+    QPushButton *opt = msgBox.addButton(tr("Optimize"), QMessageBox::ActionRole);
+    opt->disconnect();
+    connect(opt, &QAbstractButton::clicked, this,
+            [=](){
+        mApp->setOverrideCursor(Qt::WaitCursor);
+        QString sizeBefore = QzTools::fileSizeToString(QFileInfo(DataPaths::currentProfilePath() + "/browsedata.db").size());
+        IconProvider::instance()->clearOldIconsInDatabase();
+        QString sizeAfter = QzTools::fileSizeToString(QFileInfo(DataPaths::currentProfilePath() + "/browsedata.db").size());
+        mApp->restoreOverrideCursor();
+        QMessageBox::information(this, tr("Database Optimized"), tr("Database successfully optimized.<br/><br/><b>Database Size Before: </b>%1<br/><b>Database Size After: </b>%2").arg(sizeBefore, sizeAfter));
+    });
+    msgBox.exec();
+}
+
 void MainMenu::showRssManager()
 {
     if (m_window) {
@@ -573,6 +605,8 @@ void MainMenu::init()
 
     ADD_ACTION("Tools/DownloadManager", m_menuTools, QIcon(), tr("&Download Manager"), SLOT(showDownloadManager()), "Ctrl+Y");
     ADD_ACTION("Tools/CookiesManager", m_menuTools, QIcon(), tr("&Cookies Manager"), SLOT(showCookieManager()), "");
+    ADD_ACTION("Tools/ClearRecentHistory", m_menuTools, QIcon::fromTheme(QSL("edit-clear")), tr("Clear &History"), SLOT(showClearRecentHistoryDialog()), "Ctrl+Shift+Del");
+     ADD_ACTION("Tools/Optimizer", m_menuTools, QIcon(), tr("&Optimize database"),SLOT(showOptimizer()), "");
     //ADD_ACTION("Tools/RssReader", m_menuTools, QIcon(), tr("RSS &Reader"), SLOT(showRssManager()), "");
     m_menuTools->addSeparator();
     ADD_ACTION("Tools/SiteInfo", m_menuTools, QIcon::fromTheme(QSL("dialog-information")), tr("Site &Info"), SLOT(showSiteInfo()), "Ctrl+I");

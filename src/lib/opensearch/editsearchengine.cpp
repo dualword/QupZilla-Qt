@@ -1,3 +1,4 @@
+/* QupZillKa (2021-2025) https://github.com/dualword/QupZillKa License:GNU GPL v3*/
 /* ============================================================
 * QupZilla - WebKit based browser
 * Copyright (C) 2010-2014  David Rosca <nowrep@gmail.com>
@@ -81,7 +82,7 @@ void EditSearchEngine::setShortcut(const QString &shortcut)
 
 QIcon EditSearchEngine::icon()
 {
-    return QIcon(*ui->icon->pixmap());
+    return QIcon(ui->icon->pixmap(Qt::ReturnByValue));
 }
 
 void EditSearchEngine::setIcon(const QIcon &icon)

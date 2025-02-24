@@ -28,7 +28,6 @@
 #include "qzsettings.h"
 #include "sqldatabase.h"
 #include "closedwindowsmanager.h"
-#include "clearprivatedata.h"
 
 #include <QApplication>
 #include <QWebEngineHistory>
@@ -82,8 +81,8 @@ void HistoryMenu::aboutToShow()
         actions().at(1)->setEnabled(view->history()->canGoForward());
     }
 
-    while (actions().count() != 10) {
-        QAction* act = actions().at(10);
+    while (actions().count() != 8) {
+        QAction* act = actions().at(8);
         if (act->menu()) {
             act->menu()->clear();
         }
@@ -266,9 +265,5 @@ void HistoryMenu::init()
     addMenu(m_menuMostVisited);
     addMenu(m_menuClosedTabs);
     addMenu(m_menuClosedWindows);
-    addSeparator();
-    act = addAction(QIcon::fromTheme("edit-clear", QIcon(":/icons/menu/history.svg")), tr("Clear &History"), this,
-                    [this]{ClearPrivateData* dialog = new ClearPrivateData(m_window); dialog->open();});
-    act->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_Delete));
 
 }
